@@ -1,2 +1,2 @@
 # search-chart
-Helm charts for the search functionality
+Helm chart to deploy search in an IBM Cloud Private cluster.
