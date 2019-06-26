@@ -1,0 +1,4 @@
+dependencies:
+  - name: search
+    version: latest
+    condition: search.enabled

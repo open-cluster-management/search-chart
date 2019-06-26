@@ -1,0 +1,38 @@
+# Licensed Materials - Property of IBM
+# 5737-E67
+# (C) Copyright IBM Corporation 2016, 2019 All Rights Reserved
+# US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+
+# Add override for ICP references which is providing guidance on what NOT to do
+ignoreMessages:
+ - "\\[INFO\\]*"
+
+# secret issue
+ - "\\[ERROR\\] .*NoSecretResources*"
+
+# ignore psp requirement
+ - "\\[ERROR\\] .*PSPInPodSecurityContext*"
+
+# support install crd hook
+ - "\\[ERROR\\] .*HelmHookMustBeValid*"
+
+#igore velero
+ - "\\[ERROR\\] .*AllSubchartsEnabled*"
+ ### WARNINGS
+
+# ignore the version
+ - "\\[ERROR\\] .*NoLatestImageTags*"
+ - "\\[WARNING\\] templates/hcmui-deployment.yaml: found image tag 'latest': found at spec.template.spec.containers\\[0\\].image"
+ - "\\[WARNING\\] templates/hcmuiapi-deployment.yaml: found image tag 'latest': found at spec.template.spec.containers\\[0\\].image"
+ - "\\[WARNING\\] templates/searchapi-deployment.yaml: found image tag 'latest': found at spec.template.spec.containers\\[0\\].image"
+ - "\\[WARNING\\] templates/mcm-search-deployment.yaml: found image tag 'latest': found at spec.template.spec.containers\\[1\\].image"
+ - "\\[WARNING\\] templates/platform-header-daemonset.yaml: found image tag 'latest': found at spec.template.spec.containers\\[0\\].image"
+ - "\\[WARNING\\] templates/pre-delete-hook.yaml: found image tag 'latest': found at spec.template.spec.containers\\[0\\].image"
+ - "\\[WARNING\\] templates/hcm-controller-deployment.yaml: found image tag 'latest': found at spec.template.spec.containers\\[0\\].image"
+ - "\\[WARNING\\] templates/hcm-controller-deployment.yaml: found image tag 'latest': found at spec.template.spec.containers\\[1\\].image"
+ - "\\[WARNING\\] templates/hcm-controller-deployment.yaml: found image tag 'latest': found at spec.template.spec.containers\\[2\\].image"
+ - "\\[WARNING\\] templates/hcm-webhook-deployment.yaml: found image tag 'latest': found at spec.template.spec.containers\\[0\\].image"
+ - "\\[WARNING\\] templates/grafana-postinstall-hook.yaml: found image tag 'latest': found at spec.template.spec.containers\\[0\\].image"
+ - "\\[WARNING\\] templates/grafana-predelete-hook.yaml: found image tag 'latest': found at spec.template.spec.containers\\[0\\].image"
+ - "\\[WARNING\\] templates/hcm-apiserver-deployment.yaml: found image tag 'latest': found at spec.template.spec.containers\\[0\\].image"
+ - "\\[WARNING\\] Chart.yaml: chart name, classification keywords, and version are incompatible (will eventually be ERROR): chart without Beta keyword must have a version >=1.0.0, found version 'latest'"

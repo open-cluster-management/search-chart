@@ -1,0 +1,11 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Issuer
+metadata:
+  labels:
+    app: {{ template "ibm-mcm-search.fullname" . }}
+    chart: {{ template "ibm-mcm-search.chart" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+  name: {{ .Release.Name }}-mcm-server-ca-issuer
+spec:
+  selfSigned: {}

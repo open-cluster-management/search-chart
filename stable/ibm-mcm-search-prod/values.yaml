@@ -23,6 +23,23 @@ global:
   tillerIntegration:
     user: null
 
+core:
+  enabled: false
+  highAvailability:
+    enabled: false
+    initWeight: 1
+    peerHub: ""
+    peerHubSecret: ""
+    backup:
+      period: 5m
+      ttl: 1h
+      region: null
+      url: null
+    restore:
+      period: 5m
+      region: null
+      url: null
+
 search:
   enabled: true
   aggregator:
@@ -49,6 +66,11 @@ search:
       limits:
         memory: "512Mi"
         cpu: "100m"
+  searchapi:
+    image:
+      repository: ibmcom/search-api
+      tag: latest
+      pullPolicy: Always
   redisgraph:
     image:
       repository: ibmcom/icp-redisgraph
@@ -61,3 +83,8 @@ search:
       limits:
         memory: "1024Mi"
         cpu: "200m"
+
+kubectl:
+  repository: ibmcom/kubectl
+  tag: v1.13.5
+  pullPolicy: IfNotPresent

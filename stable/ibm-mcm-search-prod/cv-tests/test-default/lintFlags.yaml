@@ -1,0 +1,12 @@
+# Licensed Materials - Property of IBM
+# 5737-E67
+# (C) Copyright IBM Corporation 2016, 2019 All Rights Reserved
+# US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+
+# This yaml file contains any name and namesapce options/flags to specify on cv lint command to be used rendering chart templates.  
+#
+# For example, if uncomment the name: test1 entry below the cv lint will use those values when rendering the chart templates.
+#
+
+#namespace: kube-system
+#name: test1

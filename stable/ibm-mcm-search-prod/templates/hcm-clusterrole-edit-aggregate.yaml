@@ -1,0 +1,38 @@
+# Licensed Materials - Property of IBM
+# 5737-E67
+# (C) Copyright IBM Corporation 2016, 2019 All Rights Reserved
+# US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+
+{{- if .Values.core.enabled }}
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    rbac.icp.com/aggregate-to-icp-edit: "true"
+    app: {{ template "ibm-mcm-search.name" . }}
+    chart: {{ template "ibm-mcm-search.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  name: {{ .Release.Name }}-edit-aggregate
+rules:
+- apiGroups: ["mcm.ibm.com"]
+  resources: ["resourceviews", "resourceviews/status", "works", "works/status", "worksets", "worksets/status"]
+  verbs: ["create", "get", "list", "watch", "update", "delete", "deletecollection", "patch"]
+- apiGroups: ["mcm.ibm.com"]
+  resources: ["clusterstatuses", "helmrepos", "helmrepos/status"]
+  verbs: ["get", "list", "watch", "update", "patch"]
+- apiGroups: ["clusterregistry.k8s.io"]
+  resources: ["clusters", "clusters/status"]
+  verbs: ["get", "list", "watch", "update", "patch"]
+- apiGroups: ["mcm.ibm.com"]
+  resources: ["deployables", "deployables/status", "placementbindings", "placementpolicies", "placementpolicies/status", "deployableoverrides", "deployableoverrides/status", "applicationrelationships", "applicationrelatioships/status"]
+  verbs: ["get", "list", "watch", "update", "patch"]
+- apiGroups: ["app.ibm.com"]
+  resources: [ "deployables", "deployables/status"]
+  verbs: ["get", "list", "watch", "update", "patch"]
+- apiGroups: ["app.k8s.io"]
+  resources: [ "applications", "applications/status"]
+  verbs: ["get", "list", "watch", "update", "patch"]
+
+{{- end }}

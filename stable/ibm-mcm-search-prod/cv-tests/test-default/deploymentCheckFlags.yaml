@@ -1,0 +1,13 @@
+# Licensed Materials - Property of IBM
+# 5737-E67
+# (C) Copyright IBM Corporation 2016, 2019 All Rights Reserved
+# US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+
+# This file contains any flags to specify on kubectl get deployments /
+# rollout status commands used to confirm install is complete.  Common
+# usage is to specify alternate namespace.
+#
+# For example, if uncomment the namespace: services entry below the deployment
+# commands will be called with '--namespace=services' option.
+#
+namespace: kube-system

@@ -5,16 +5,16 @@
 
 apiVersion: v1
 appVersion: "1.0"
-description: Helm chart for the search components
-name: search
-version: 4.1.0
+description:  IBM Multicloud Manager Search
+name: ibm-mcm-search-prod
+version: 99.99.99
 category: "Development"
 verified: "ICP"
 tillerVersion: ">=2.7.3"
 kubeVersion: ">=1.10.0"
 keywords:
-  - icp
-  - mcm
-  - multicloud
-  - search
-  - analytics
+  - ICP
+  - Analytics
+  - Commercial
+  - deploy
+  - amd64

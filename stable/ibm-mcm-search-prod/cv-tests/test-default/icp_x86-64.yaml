@@ -1,0 +1,13 @@
+# Licensed Materials - Property of IBM
+# 5737-E67
+# (C) Copyright IBM Corporation 2016, 2019 All Rights Reserved
+# US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+
+# This file contains target platform / architecture specific override(s) to specify in addition to the <chartname>/values.yaml & cv-tests/../values.yaml
+# during chart installation.  Target (icp, ics, ..) is first name of file followed by '_' and architecture (s390x, ppc64le, x86_64).
+#
+# Common overrides include :
+# - platform specific image based on target architecture when don't have fat manifest.
+# - pullPolicy update to Always pull latest as version isn't always updated for internal drops
+# - specify dynamic storage option unique to cluster (i.e. ibmc-block-gold storage in ics)
+#

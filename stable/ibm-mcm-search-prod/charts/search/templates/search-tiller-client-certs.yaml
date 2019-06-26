@@ -1,0 +1,25 @@
+# Licensed Materials - Property of IBM
+# 5737-E67
+# (C) Copyright IBM Corporation 2016, 2019 All Rights Reserved
+# US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  labels:
+    app: {{ template "search.name" . }}
+    chart: {{ template "search.chart" . }}
+    release: {{ .Release.Name }}
+    component: "search"
+    heritage: {{ .Release.Service }}
+  name: {{ .Release.Name }}-tiller-client-certs
+spec:
+  commonName: {{ .Values.global.tillerIntegration.user }}
+  organization:
+  - system:masters
+  dnsNames: null
+  issuerRef:
+    kind: ClusterIssuer
+    name: icp-ca-issuer
+  secretName: {{ .Release.Name }}-tiller-client-certs
+
