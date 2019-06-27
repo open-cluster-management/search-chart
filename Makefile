@@ -1,36 +1,50 @@
+###############################################################################
+# Licensed Materials - Property of IBM.
+# Copyright IBM Corporation 2019. All Rights Reserved.
+# U.S. Government Users Restricted Rights - Use, duplication or disclosure
+# restricted by GSA ADP Schedule Contract with IBM Corp.
+###############################################################################
+SHELL = /bin/bash
+STABLE_BUILD_DIR = repo/stable
+STABLE_REPO_URL ?= https://raw.githubusercontent.com/IBM/charts/master/repo/stable/
+STABLE_CHARTS := $(wildcard /*)
 
-include Configfile
-
+# CHART_NAME?= stable/ibm-mcm-search
 CHART_NAME ?= search-chart
-VERSION ?= $(shell grep version ./$(CHART_NAME)/Chart.yaml | awk '{print $$2}')
-FILENAME ?= ${CHART_NAME}-${VERSION}.tgz
+ARTIFACTORY_URL ?= https://na.artifactory.swg-devops.com/artifactory
+ARTIFACTORY_REPO ?= hyc-cloud-private-integration-helm-local
+LOCAL_REPO=hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom
 
-.PHONY: build lint setup
+VERSION := $(shell grep version ./$(CHART_NAME)/Chart.yaml | awk '{print $$2}')
 
-default: build
+$(STABLE_BUILD_DIR):
+	@mkdir -p $@
 
-tool:
-	curl -fksSL https://storage.googleapis.com/kubernetes-helm/helm-v2.7.2-linux-amd64.tar.gz | sudo tar --strip-components=1 -xvz -C /usr/local/bin/ linux-amd64/helm
+.PHONY: charts charts-stable $(STABLE_CHARTS)
 
-setup:
-	helm init -c
+# Default aliases: charts
+charts: charts-stable
 
-lint: setup
-	helm lint $(CHART_NAME)
+charts-stable: $(STABLE_CHARTS)
+$(STABLE_CHARTS): $(STABLE_BUILD_DIR)
+	helm package $@ -d $(STABLE_BUILD_DIR)
 
-build: lint
-	helm package $(CHART_NAME)
+# Pushes chart to Artifactory repository.
+release-chart: charts-stable
+	$(eval VERSION_NUMBER ?= ${VERSION})
+	$(eval NAME := $(notdir $(CHART_NAME)))
+	$(eval FILE_NAME := $(NAME)-$(VERSION_NUMBER).tgz)
+	$(eval URL := $(ARTIFACTORY_URL)/$(ARTIFACTORY_REPO))
+	curl -H "X-JFrog-Art-Api: $(ARTIFACTORY_APIKEY)" -T $(STABLE_BUILD_DIR)/$(FILE_NAME) $(URL)/$(FILE_NAME)
 
-publish: build
-	# We need to get the tar file, does it exist
-	@echo "Version: ${VERSION}"
-	if [ ! -f ./$(FILENAME) ]; then \
-    echo "File not found! - exitin"; \
-		exit; \
-	fi
+local:
+	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|ibmcom|$(LOCAL_REPO)|g" $$file; done
+	make charts
+	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|$(LOCAL_REPO)|ibmcom|g" $$file; done
 
-	# And push it to artifactory
-	curl -u $(ARTIFACTORY_USERNAME):$(ARTIFACTORY_APIKEY) -T $(FILENAME) "https://na.artifactory.swg-devops.com/artifactory/$(HELM_REPO_NAME)/$(FILENAME)"
-	@echo "DONE"
-
-include Makefile.docker
+local-ppc:
+	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|ibmcom|$(LOCAL_REPO)|g" $$file; done
+	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "/repository/s/$$/-ppc64le/" $$file; done
+	make charts
+	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|$(LOCAL_REPO)|ibmcom|g" $$file; done
+	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "/repository/ s/-ppc64le//" $$file; done
