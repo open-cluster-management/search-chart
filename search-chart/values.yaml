@@ -25,6 +25,7 @@ global:
 
 search:
   enabled: true
+  fullName: mcm-search
   aggregator:
     image:
       repository: ibmcom/search-aggregator

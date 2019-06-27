@@ -6,10 +6,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "search.fullname" . }}-search-aggregator
+  name: {{ .Values.search.fullname }}-search-aggregator
   labels:
-    app: {{ template "search.name" . }}
-    chart: {{ template "search.chart" . }}
+    app: {{ .Values.search.name }}
+    chart: {{ .Values.search.chart }}
     component: "search-aggregator"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -17,17 +17,17 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ template "search.name" . }}
+      app: {{ .Values.search.name }}
       component: "search-aggregator"
       release: {{ .Release.Name }}
       heritage: {{ .Release.Service }}
   template:
     metadata:
       labels:
-        app: {{ template "search.name" . }}
+        app: {{ .Values.search.name }}
         component: "search-aggregator"
         release: {{ .Release.Name }}
-        chart: {{ template "search.chart" . }}
+        chart: {{ .Values.search.chart }}
         heritage: {{ .Release.Service }}
       annotations:
         productName: "IBM Multicloud Manager - Server"
@@ -55,8 +55,8 @@ spec:
           effect: NoSchedule
       containers:
       - name: aggregator
-        image: "{{ .Values.aggregator.image.repository }}:{{ .Values.aggregator.image.tag }}"
-        imagePullPolicy: {{ .Values.aggregator.image.pullPolicy }}
+        image: "{{ .Values.search.aggregator.image.repository }}:{{ .Values.search.aggregator.image.tag }}"
+        imagePullPolicy: {{ .Values.search.aggregator.image.pullPolicy }}
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
@@ -68,7 +68,7 @@ spec:
           readOnlyRootFilesystem: false
         env:
         - name: REDIS_HOST
-          value: '{{ template "search.fullname" . }}-search-redisgraph'
+          value: '{{ .Values.search.fullname }}-search-redisgraph'
         - name: REDIS_SSH_PORT
           value: "6380"
         - name: REDIS_PASSWORD
@@ -77,7 +77,7 @@ spec:
               name: {{ .Release.Name }}-redisgraph-user-secrets
               key: redispwd
         resources:
-        {{- toYaml .Values.aggregator.resources | nindent 10 }}
+        {{- toYaml .Values.search.aggregator.resources | nindent 10 }}
         livenessProbe:
           httpGet:
             path: /liveness

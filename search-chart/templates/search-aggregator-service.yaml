@@ -6,11 +6,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "search.fullname" . }}-search-aggregator
+  name: {{ .Values.search.fullname }}-search-aggregator
   labels:
-    app: {{ template "search.name" . }}
+    app: {{ .Values.search.name }}
     component: "search-aggregator"
-    chart: {{ template "search.chart" . }}
+    chart: {{ .Values.search.chart }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -20,6 +20,6 @@ spec:
       port: 3010
       targetPort: 3010
   selector:
-    app: {{ template "search.name" . }}
+    app: {{ .Values.search.name }}
     component: "search-aggregator"
     release: {{ .Release.Name }}

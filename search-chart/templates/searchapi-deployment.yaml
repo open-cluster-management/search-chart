@@ -6,10 +6,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "search.fullname" . }}-searchapi
+  name: {{ .Values.search.fullname }}-searchapi
   labels:
-    app: {{ template "search.name" . }}
-    chart: {{ template "search.chart" . }}
+    app: {{ .Values.search.name }}
+    chart: {{ .Values.search.chart }}
     component: "searchapi"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -17,16 +17,16 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ template "search.name" . }}
+      app: {{ .Values.search.name }}
       component: "searchapi"
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "search.name" . }}
+        app: {{ .Values.search.name }}
         component: "searchapi"
         release: {{ .Release.Name }}
-        chart: {{ template "search.chart" . }}
+        chart: {{ .Values.search.chart }}
         heritage: {{ .Release.Service }}
       annotations:
         productName: "IBM Multicloud Manager - Server"
@@ -50,8 +50,8 @@ spec:
           effect: NoSchedule
       containers:
       - name: search-api
-        image: "{{ .Values.searchapi.image.repository }}:{{ .Values.searchapi.image.tag }}"
-        imagePullPolicy: {{ .Values.searchapi.image.pullPolicy }}
+        image: "{{ .Values.search.searchapi.image.repository }}:{{ .Values.search.searchapi.image.tag }}"
+        imagePullPolicy: {{ .Values.search.searchapi.image.pullPolicy }}
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
@@ -69,9 +69,9 @@ spec:
         - name: PLATFORM_IDENTITY_PROVIDER_URL
           value: {{ .Values.global.cfcRouterUrl }}/idprovider
         - name: redisEndpoint
-          value: '{{ template "search.fullname" . }}-search-redisgraph:6379'
+          value: '{{ .Values.search.fullname }}-search-redisgraph:6379'
         - name: redisSSLEndpoint
-          value: '{{ template "search.fullname" . }}-search-redisgraph:6380'
+          value: '{{ .Values.search.fullname }}-search-redisgraph:6380'
         - name: redisPassword
           valueFrom:
             secretKeyRef:
@@ -115,7 +115,7 @@ spec:
       volumes:
       - name: searchapi-certs
         secret:
-          secretName: {{ template "search.fullname" . }}-searchapi-secrets
+          secretName: {{ .Values.search.fullname }}-searchapi-secrets
           items:
           - key: ca.crt
             path: searchapica.crt

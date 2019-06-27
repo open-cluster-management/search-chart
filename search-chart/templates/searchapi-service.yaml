@@ -6,20 +6,20 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "search.fullname" . }}-search-redisgraph
+  name: {{ .Values.search.fullName }}-searchapi
   labels:
-    app: {{ template "search.name" . }}
-    component: "mcm-search"
-    chart: {{ template "search.chart" . }}
+    app: {{ .Values.search.name }}
+    component: "searchapi"
+    chart: {{ .Values.search.chart }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   ports:
-    - name: redisgraph
+    - port: 4010
+      targetPort: 4010
       protocol: TCP
-      port: 6380
-      targetPort: 6380
+      name: http
   selector:
-    app: {{ template "search.name" . }}
-    component: "redisgraph"
+    app: {{ .Values.search.name }}
+    component: "searchapi"
     release: {{ .Release.Name }}

@@ -1,7 +1,7 @@
 
 include Configfile
 
-CHART_NAME ?= mcm-search-chart
+CHART_NAME ?= search-chart
 VERSION ?= $(shell grep version ./$(CHART_NAME)/Chart.yaml | awk '{print $$2}')
 FILENAME ?= ${CHART_NAME}-${VERSION}.tgz
 
