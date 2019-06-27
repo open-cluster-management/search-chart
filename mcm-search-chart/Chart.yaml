@@ -1,0 +1,9 @@
+name: search-chart
+description: Search Helm Chart for IBM Multicloud Manager
+version: 99.99.99
+home: https://github.ibm.com/IBMPrivateCloud/search-chart
+sources:
+  - https://github.ibm.com/IBMPrivateCloud/search-chart/tree/master
+tillerVersion: ">=2.7.3"
+keywords:
+- IcpClusterResource

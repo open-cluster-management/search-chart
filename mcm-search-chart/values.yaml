@@ -23,23 +23,6 @@ global:
   tillerIntegration:
     user: null
 
-core:
-  enabled: false
-  highAvailability:
-    enabled: false
-    initWeight: 1
-    peerHub: ""
-    peerHubSecret: ""
-    backup:
-      period: 5m
-      ttl: 1h
-      region: null
-      url: null
-    restore:
-      period: 5m
-      region: null
-      url: null
-
 search:
   enabled: true
   aggregator:
