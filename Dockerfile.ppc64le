@@ -1,0 +1,3 @@
+FROM ppc64le/alpine
+
+COPY mcm-search-chart-*.tgz /mcm-search-chart/
