@@ -1,3 +1,0 @@
-FROM ppc64le/alpine
-
-COPY search-chart-*.tgz /search-chart/
