@@ -7,10 +7,10 @@
 SHELL = /bin/bash
 STABLE_BUILD_DIR = repo/stable
 STABLE_REPO_URL ?= https://raw.githubusercontent.com/IBM/charts/master/repo/stable/
-STABLE_CHARTS := $(wildcard /*)
+STABLE_CHARTS := $(wildcard stable/*)
 
 # CHART_NAME?= stable/ibm-mcm-search
-CHART_NAME ?= search-chart
+CHART_NAME ?= stable/search-chart
 ARTIFACTORY_URL ?= https://na.artifactory.swg-devops.com/artifactory
 ARTIFACTORY_REPO ?= hyc-cloud-private-integration-helm-local
 LOCAL_REPO=hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom
