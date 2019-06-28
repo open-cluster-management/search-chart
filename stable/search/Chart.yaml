@@ -1,4 +1,4 @@
-name: search-chart
+name: search
 description: Search Helm Chart for IBM Multicloud Manager
 version: 99.99.99
 icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png

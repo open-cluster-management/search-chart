@@ -6,28 +6,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.search.fullname }}-search-aggregator
+  name: {{ template "search.fullname" . }}-search-collector
   labels:
-    app: {{ .Values.search.name }}
-    chart: {{ .Values.search.chart }}
-    component: "search-aggregator"
+    app: {{ template "search.name" . }}
+    chart: {{ template "search.chart" . }}
+    component: "mcm-search"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.search.name }}
-      component: "search-aggregator"
+      app: {{ template "search.name" . }}
+      component: "mcm-search"
       release: {{ .Release.Name }}
       heritage: {{ .Release.Service }}
   template:
     metadata:
       labels:
-        app: {{ .Values.search.name }}
-        component: "search-aggregator"
+        app: {{ template "search.name" . }}
+        component: "mcm-search"
         release: {{ .Release.Name }}
-        chart: {{ .Values.search.chart }}
+        chart: {{ template "search.chart" . }}
         heritage: {{ .Release.Service }}
       annotations:
         productName: "IBM Multicloud Manager - Server"
@@ -54,50 +54,44 @@ spec:
           operator: Exists
           effect: NoSchedule
       containers:
-      - name: aggregator
-        image: "{{ .Values.search.aggregator.image.repository }}:{{ .Values.search.aggregator.image.tag }}"
-        imagePullPolicy: {{ .Values.search.aggregator.image.pullPolicy }}
+      - name: collector
+        image: "{{ .Values.search.collector.image.repository }}:{{ .Values.search.collector.image.tag }}"
+        imagePullPolicy: {{ .Values.search.collector.image.pullPolicy }}
         securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            add:
-            - NET_BIND_SERVICE
-            drop:
-            - ALL
           privileged: false
           readOnlyRootFilesystem: false
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          runAsUser: 1000
+          capabilities:
+            drop:
+            - ALL
         env:
-        - name: REDIS_HOST
-          value: '{{ .Values.search.fullname }}-search-redisgraph'
-        - name: REDIS_SSH_PORT
-          value: "6380"
-        - name: REDIS_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Release.Name }}-redisgraph-user-secrets
-              key: redispwd
+        - name: DEPLOYED_IN_HUB
+          value: "true"
+        - name: CLUSTER_NAME
+          value: local-cluster
+        - name: AGGREGATOR_URL
+          value: 'https://{{ template "search.fullname" . }}-search-aggregator:3010'
         resources:
-        {{- toYaml .Values.search.aggregator.resources | nindent 10 }}
+        {{- toYaml .Values.search.collector.resources | nindent 10 }}
         livenessProbe:
-          httpGet:
-            path: /liveness
-            port: 3010
-            scheme: HTTPS
+          exec:
+            command:
+            - ls
           initialDelaySeconds: 15
-          periodSeconds: 15
+          periodSeconds: 60
         readinessProbe:
-          httpGet:
-            path: /readiness
-            port: 3010
-            scheme: HTTPS
+          exec:
+            command:
+            - ls
           initialDelaySeconds: 15
-          periodSeconds: 30
+          periodSeconds: 60
         volumeMounts:
         - name: icp-search-certs
           mountPath: /sslcert
-        - name: redis-graph-certs
-          mountPath: /rediscert/redis.crt
-          subPath: redis.crt
+        - name: {{ .Release.Name }}-tiller-client-certs
+          mountPath: /helmcerts
       {{- if .Values.global.pullSecret }}
       imagePullSecrets:
       - name: {{ .Values.global.pullSecret }}
@@ -106,16 +100,9 @@ spec:
       - name: icp-search-certs
         secret:
           secretName: {{ .Release.Name }}-search-secrets
-      - name: redis-graph-certs
+      - name: {{ .Release.Name }}-tiller-client-certs
         secret:
-          secretName: {{ .Release.Name }}-redisgraph-secrets
-          items:
-          - key: ca.crt
-            path: redis.crt
-          - key: tls.crt
-            path: server.crt
-          - key: tls.key
-            path: server.key
+          secretName: {{ .Release.Name }}-tiller-client-certs
       {{- if .Values.global.nodeSelector.enabled }}
       nodeSelector:
       {{- if .Values.global.nodeSelector.os }}

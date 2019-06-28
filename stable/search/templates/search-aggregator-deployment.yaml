@@ -6,27 +6,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.search.fullname }}-searchapi
+  name: {{ template "search.fullname" . }}-search-aggregator
   labels:
-    app: {{ .Values.search.name }}
-    chart: {{ .Values.search.chart }}
-    component: "searchapi"
+    app: {{ template "search.name" . }}
+    chart: {{ template "search.chart" . }}
+    component: "search-aggregator"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.search.name }}
-      component: "searchapi"
+      app: {{ template "search.name" . }}
+      component: "search-aggregator"
       release: {{ .Release.Name }}
+      heritage: {{ .Release.Service }}
   template:
     metadata:
       labels:
-        app: {{ .Values.search.name }}
-        component: "searchapi"
+        app: {{ template "search.name" . }}
+        component: "search-aggregator"
         release: {{ .Release.Name }}
-        chart: {{ .Values.search.chart }}
+        chart: {{ template "search.chart" . }}
         heritage: {{ .Release.Service }}
       annotations:
         productName: "IBM Multicloud Manager - Server"
@@ -44,14 +45,18 @@ spec:
                 {{- range .Values.global.arch }}
                 - {{ . }}
                 {{- end }}
+              - key: management
+                operator: In
+                values:
+                - "true"
       tolerations:
         - key: dedicated
           operator: Exists
           effect: NoSchedule
       containers:
-      - name: search-api
-        image: "{{ .Values.search.searchapi.image.repository }}:{{ .Values.search.searchapi.image.tag }}"
-        imagePullPolicy: {{ .Values.search.searchapi.image.pullPolicy }}
+      - name: aggregator
+        image: "{{ .Values.search.aggregator.image.repository }}:{{ .Values.search.aggregator.image.tag }}"
+        imagePullPolicy: {{ .Values.search.aggregator.image.pullPolicy }}
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
@@ -62,68 +67,46 @@ spec:
           privileged: false
           readOnlyRootFilesystem: false
         env:
-        - name: ICP_STANDALONE
-          value: "{{ .Values.global.standalone }}"
-        - name: cfcRouterUrl
-          value: {{ .Values.global.cfcRouterUrl }}
-        - name: PLATFORM_IDENTITY_PROVIDER_URL
-          value: {{ .Values.global.cfcRouterUrl }}/idprovider
-        - name: redisEndpoint
-          value: '{{ .Values.search.fullname }}-search-redisgraph:6379'
-        - name: redisSSLEndpoint
-          value: '{{ .Values.search.fullname }}-search-redisgraph:6380'
-        - name: redisPassword
+        - name: REDIS_HOST
+          value: '{{ template "search.fullname" . }}-search-redisgraph'
+        - name: REDIS_SSH_PORT
+          value: "6380"
+        - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
               name: {{ .Release.Name }}-redisgraph-user-secrets
               key: redispwd
-        ports:
-        - containerPort: 4010
-          protocol: TCP
+        resources:
+        {{- toYaml .Values.search.aggregator.resources | nindent 10 }}
         livenessProbe:
-          failureThreshold: 3
           httpGet:
-            path: /livenessProbe
-            port: 4010
+            path: /liveness
+            port: 3010
             scheme: HTTPS
-          initialDelaySeconds: 30
-          periodSeconds: 30
-          successThreshold: 1
-          timeoutSeconds: 1
+          initialDelaySeconds: 15
+          periodSeconds: 15
         readinessProbe:
-          failureThreshold: 3
           httpGet:
-            path: /readinessProbe
-            port: 4010
+            path: /readiness
+            port: 3010
             scheme: HTTPS
-          initialDelaySeconds: 5
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
+          initialDelaySeconds: 15
+          periodSeconds: 30
         volumeMounts:
-        - name: searchapi-certs
-          mountPath: /opt/ibm/search-api/sslcert
-        - name: mcm-search-certs
-          mountPath: /opt/secrets
-        - name: redis-certs
-          mountPath: /opt/ibm/search-api/rediscert/redis.crt
+        - name: icp-search-certs
+          mountPath: /sslcert
+        - name: redis-graph-certs
+          mountPath: /rediscert/redis.crt
           subPath: redis.crt
       {{- if .Values.global.pullSecret }}
       imagePullSecrets:
       - name: {{ .Values.global.pullSecret }}
       {{- end }}
       volumes:
-      - name: searchapi-certs
+      - name: icp-search-certs
         secret:
-          secretName: {{ .Values.search.fullname }}-searchapi-secrets
-          items:
-          - key: ca.crt
-            path: searchapica.crt
-          - key: tls.crt
-            path: searchapi.crt
-          - key: tls.key
-            path: searchapi.key
-      - name: redis-certs
+          secretName: {{ .Release.Name }}-search-secrets
+      - name: redis-graph-certs
         secret:
           secretName: {{ .Release.Name }}-redisgraph-secrets
           items:
@@ -133,9 +116,6 @@ spec:
             path: server.crt
           - key: tls.key
             path: server.key
-      - name: mcm-search-certs
-        secret:
-          secretName: {{ .Release.Name }}-search-secrets
       {{- if .Values.global.nodeSelector.enabled }}
       nodeSelector:
       {{- if .Values.global.nodeSelector.os }}

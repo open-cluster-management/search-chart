@@ -6,10 +6,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.search.fullname }}-redisgraph
+  name: {{ template "search.fullname" . }}-redisgraph
   labels:
-    app: {{ .Values.search.name }}
-    chart: {{ .Values.search.chart }}
+    app: {{ template "search.name" . }}
+    chart: {{ template "search.chart" . }}
     component: "redisgraph"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -17,17 +17,17 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.search.name }}
+      app: {{ template "search.name" . }}
       component: "redisgraph"
       release: {{ .Release.Name }}
       heritage: {{ .Release.Service }}
   template:
     metadata:
       labels:
-        app: {{ .Values.search.name }}
+        app: {{ template "search.name" . }}
         component: "redisgraph"
         release: {{ .Release.Name }}
-        chart: {{ .Values.search.chart }}
+        chart: {{ template "search.chart" . }}
         heritage: {{ .Release.Service }}
       annotations:
         productName: "IBM Multicloud Manager - Server"
