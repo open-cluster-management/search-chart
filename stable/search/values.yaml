@@ -25,6 +25,8 @@ global:
 
 search:
   enabled: true
+  name: search
+  fullname: mcm-search
   aggregator:
     image:
       repository: ibmcom/search-aggregator
@@ -49,6 +51,11 @@ search:
       limits:
         memory: "512Mi"
         cpu: "100m"
+  searchapi:
+    image:
+      repository: ibmcom/search-api
+      tag: latest
+      pullPolicy: Always
   redisgraph:
     image:
       repository: ibmcom/icp-redisgraph
@@ -61,3 +68,8 @@ search:
       limits:
         memory: "1024Mi"
         cpu: "200m"
+
+kubectl:
+  repository: ibmcom/kubectl
+  tag: v1.13.5
+  pullPolicy: IfNotPresent

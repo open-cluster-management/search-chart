@@ -1,0 +1,28 @@
+os:
+  - linux
+
+services:
+  - docker
+
+branches:
+  only:
+    - master
+    - /^[0-9]+\..*$/
+    - /^v[0-9]+\..*$/
+    - /^release-[0-9]+\..*$/
+
+before_install:
+  - source travis-env.sh
+
+install:
+  - docker info
+
+before_script:
+  - make lint
+  - make chart
+
+script:
+  - |
+    if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
+      make release-chart
+    fi
