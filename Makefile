@@ -9,10 +9,9 @@ STABLE_BUILD_DIR = repo/stable
 STABLE_REPO_URL ?= https://raw.githubusercontent.com/IBM/charts/master/repo/stable/
 STABLE_CHARTS := $(wildcard stable/*)
 
-# CHART_NAME?= stable/ibm-mcm-search
 CHART_NAME ?= stable/search
 ARTIFACTORY_URL ?= https://na.artifactory.swg-devops.com/artifactory
-ARTIFACTORY_REPO ?= hyc-cloud-private-integration-helm-local
+ARTIFACTORY_REPO ?= hyc-cloud-private-scratch-helm-local # Using scratch until ready for integration
 LOCAL_REPO=hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom
 
 VERSION := $(shell grep version ./$(CHART_NAME)/Chart.yaml | awk '{print $$2}')
@@ -20,17 +19,15 @@ VERSION := $(shell grep version ./$(CHART_NAME)/Chart.yaml | awk '{print $$2}')
 $(STABLE_BUILD_DIR):
 	@mkdir -p $@
 
-.PHONY: charts charts-stable $(STABLE_CHARTS)
+lint:
+	helm lint ./stable/search
 
-# Default aliases: charts
-charts: charts-stable
-
-charts-stable: $(STABLE_CHARTS)
+chart: $(STABLE_CHARTS)
 $(STABLE_CHARTS): $(STABLE_BUILD_DIR)
 	helm package $@ -d $(STABLE_BUILD_DIR)
 
 # Pushes chart to Artifactory repository.
-release-chart: charts-stable
+release-chart:
 	$(eval VERSION_NUMBER ?= ${VERSION})
 	$(eval NAME := $(notdir $(CHART_NAME)))
 	$(eval FILE_NAME := $(NAME)-$(VERSION_NUMBER).tgz)
