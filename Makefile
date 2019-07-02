@@ -6,8 +6,6 @@
 ###############################################################################
 SHELL = /bin/bash
 STABLE_BUILD_DIR = repo/stable
-STABLE_REPO_URL ?= https://raw.githubusercontent.com/IBM/charts/master/repo/stable/
-STABLE_CHARTS := $(wildcard stable/*)
 
 CHART_NAME ?= stable/search
 ARTIFACTORY_URL ?= https://na.artifactory.swg-devops.com/artifactory
@@ -26,39 +24,41 @@ setup:
 	helm init -c
 
 lint: setup
+	@mkdir -p $(STABLE_BUILD_DIR)
 	helm lint $(CHART_NAME)
 
 build: lint
-	helm package $(CHART_NAME)
+	helm package $(CHART_NAME)  -d $(STABLE_BUILD_DIR)
 
 # chart: $(STABLE_CHARTS)
 # $(STABLE_CHARTS): $(STABLE_BUILD_DIR)
 # 	helm package $@ -d $(STABLE_BUILD_DIR)
 
 publish: build
-	# We need to get the tar file, does it exist
-	@echo "Version: ${VERSION}"
-	if [ ! -f ./$(FILENAME) ]; then \
-    echo "File not found! - exitin"; \
-		exit; \
-	fi
-
 	$(eval VERSION_NUMBER ?= ${VERSION})
 	$(eval NAME := $(notdir $(CHART_NAME)))
 	$(eval FILE_NAME := $(NAME)-$(VERSION_NUMBER).tgz)
 	$(eval URL := $(ARTIFACTORY_URL)/$(ARTIFACTORY_REPO))
+
+	# We need to get the tar file, does it exist
+	@echo "Version: ${VERSION}"
+	if [ ! -f ./$(FILE_NAME) ]; then \
+    echo "File not found! - exitin"; \
+		exit; \
+	fi
+
 	# And push it to artifactory
 	curl -H "X-JFrog-Art-Api: $(ARTIFACTORY_APIKEY)" -T $(STABLE_BUILD_DIR)/$(FILE_NAME) $(URL)/$(FILE_NAME)
 	@echo "DONE"
 
 local:
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|ibmcom|$(LOCAL_REPO)|g" $$file; done
-	make charts
+	make build 
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|$(LOCAL_REPO)|ibmcom|g" $$file; done
 
 local-ppc:
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|ibmcom|$(LOCAL_REPO)|g" $$file; done
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "/repository/s/$$/-ppc64le/" $$file; done
-	make charts
+	make build
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|$(LOCAL_REPO)|ibmcom|g" $$file; done
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "/repository/ s/-ppc64le//" $$file; done

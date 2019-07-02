@@ -19,12 +19,11 @@ install:
 
 before_script:
   - make tool
-  - make setup
   - make lint
 
 script:
   - make build
   - |
     if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
-      make release-chart
+      make publish
     fi
