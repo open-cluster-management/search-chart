@@ -26,7 +26,7 @@ spec:
         app: {{ .Values.search.name }}
         component: "searchapi"
         release: {{ .Release.Name }}
-        chart: {{ .Values.search.chart }}
+        chart: {{.Chart.Name}}-{{.Chart.Version}}
         heritage: {{ .Release.Service }}
       annotations:
         productName: "IBM Multicloud Manager - Server"

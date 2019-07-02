@@ -10,7 +10,7 @@ metadata:
   labels:
     app: {{ template "search.name" . }}
     chart: {{ template "search.chart" . }}
-    component: "mcm-search"
+    component: "search-collector"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -18,14 +18,14 @@ spec:
   selector:
     matchLabels:
       app: {{ template "search.name" . }}
-      component: "mcm-search"
+      component: "search-collector"
       release: {{ .Release.Name }}
       heritage: {{ .Release.Service }}
   template:
     metadata:
       labels:
         app: {{ template "search.name" . }}
-        component: "mcm-search"
+        component: "search-collector"
         release: {{ .Release.Name }}
         chart: {{ template "search.chart" . }}
         heritage: {{ .Release.Service }}
