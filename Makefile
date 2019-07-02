@@ -19,20 +19,37 @@ VERSION := $(shell grep version ./$(CHART_NAME)/Chart.yaml | awk '{print $$2}')
 $(STABLE_BUILD_DIR):
 	@mkdir -p $@
 
-lint:
-	helm lint ./stable/search
+tool:
+	curl -fksSL https://storage.googleapis.com/kubernetes-helm/helm-v2.12.3-linux-amd64.tar.gz | sudo tar --strip-components=1 -xvz -C /usr/local/bin/ linux-amd64/helm
 
-chart: $(STABLE_CHARTS)
-$(STABLE_CHARTS): $(STABLE_BUILD_DIR)
-	helm package $@ -d $(STABLE_BUILD_DIR)
+setup:
+	helm init -c
 
-# Pushes chart to Artifactory repository.
-release-chart:
+lint: setup
+	helm lint $(CHART_NAME)
+
+build: lint
+	helm package $(CHART_NAME)
+
+# chart: $(STABLE_CHARTS)
+# $(STABLE_CHARTS): $(STABLE_BUILD_DIR)
+# 	helm package $@ -d $(STABLE_BUILD_DIR)
+
+publish: build
+	# We need to get the tar file, does it exist
+	@echo "Version: ${VERSION}"
+	if [ ! -f ./$(FILENAME) ]; then \
+    echo "File not found! - exitin"; \
+		exit; \
+	fi
+
 	$(eval VERSION_NUMBER ?= ${VERSION})
 	$(eval NAME := $(notdir $(CHART_NAME)))
 	$(eval FILE_NAME := $(NAME)-$(VERSION_NUMBER).tgz)
 	$(eval URL := $(ARTIFACTORY_URL)/$(ARTIFACTORY_REPO))
+	# And push it to artifactory
 	curl -H "X-JFrog-Art-Api: $(ARTIFACTORY_APIKEY)" -T $(STABLE_BUILD_DIR)/$(FILE_NAME) $(URL)/$(FILE_NAME)
+	@echo "DONE"
 
 local:
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|ibmcom|$(LOCAL_REPO)|g" $$file; done

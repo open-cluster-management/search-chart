@@ -18,10 +18,12 @@ install:
   - docker info
 
 before_script:
+  - make tool
+  - make setup
   - make lint
-  - make chart
 
 script:
+  - make build
   - |
     if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
       make release-chart
