@@ -9,7 +9,7 @@ STABLE_BUILD_DIR = repo/stable
 
 CHART_NAME ?= stable/search
 ARTIFACTORY_URL ?= https://na.artifactory.swg-devops.com/artifactory
-ARTIFACTORY_REPO ?= hyc-cloud-private-scratch-helm-local # Using scratch until ready for integration
+ARTIFACTORY_REPO ?= hyc-cloud-private-scratch-helm-local
 LOCAL_REPO=hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom
 
 VERSION := $(shell grep version ./$(CHART_NAME)/Chart.yaml | awk '{print $$2}')
@@ -43,17 +43,17 @@ publish: build
 	# We need to get the tar file, does it exist
 	@echo "Version: ${VERSION}"
 	if [ ! -f ./$(FILE_NAME) ]; then \
-    echo "File not found! - exitin"; \
+    echo "File not found! - exiting"; \
 		exit; \
 	fi
 
 	# And push it to artifactory
-	curl -H "X-JFrog-Art-Api: $(ARTIFACTORY_APIKEY)" -T $(STABLE_BUILD_DIR)/$(FILE_NAME) $(URL)/$(FILE_NAME)
+	curl -H "X-JFrog-Art-Api: $(ARTIFACTORY_TOKEN)" -T $(STABLE_BUILD_DIR)/$(FILE_NAME) $(URL)/$(FILE_NAME)
 	@echo "DONE"
 
 local:
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|ibmcom|$(LOCAL_REPO)|g" $$file; done
-	make build 
+	make build
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|$(LOCAL_REPO)|ibmcom|g" $$file; done
 
 local-ppc:
