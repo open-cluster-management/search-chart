@@ -23,7 +23,5 @@ before_script:
 
 script:
   - make build
-  - |
-    if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
-      make publish
-    fi
+  - test "$TRAVIS_EVENT_TYPE" = "pull_request" && make push || echo "not pushing to scratch"
+  - test "$TRAVIS_EVENT_TYPE" != "pull_request" && make publish || echo "not pushing to integration"
