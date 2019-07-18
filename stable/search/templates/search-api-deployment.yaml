@@ -50,8 +50,8 @@ spec:
           effect: NoSchedule
       containers:
       - name: search-api
-        image: "{{ .Values.search.api.image.repository }}:{{ .Values.search.api.image.tag }}"
-        imagePullPolicy: {{ .Values.search.api.image.pullPolicy }}
+        image: "{{ .Values.search.searchapi.image.repository }}:{{ .Values.search.searchapi.image.tag }}"
+        imagePullPolicy: {{ .Values.search.searchapi.image.pullPolicy }}
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:

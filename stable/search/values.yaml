@@ -51,7 +51,7 @@ search:
       limits:
         memory: "512Mi"
         cpu: "100m"
-  api:
+  searchapi:
     image:
       repository: ibmcom/search-api
       tag: latest
