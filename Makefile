@@ -69,3 +69,10 @@ local-ppc:
 	make build
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|$(LOCAL_REPO)|ibmcom|g" $$file; done
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "/repository/ s/-ppc64le//" $$file; done
+
+local-s390x:
+	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|ibmcom|$(LOCAL_REPO)|g" $$file; done
+	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "/repository/s/$$/-s390x/" $$file; done
+	make build
+	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|$(LOCAL_REPO)|ibmcom|g" $$file; done
+	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "/repository/ s/-s390x//" $$file; done
