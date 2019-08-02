@@ -72,5 +72,5 @@ search:
 
 kubectl:
   repository: ibmcom/kubectl
-  tag: v1.13.7
+  tag: v1.13.5
   pullPolicy: IfNotPresent
