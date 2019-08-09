@@ -25,5 +25,5 @@ Repository that holds search chart.
   --namespace kube-system \
   --set global.pullSecret=artifactory-secret \
   --set global.tillerIntegration.user=admin \
-  repo/stable/search-99.99.99.tgz --tls
+  repo/stable/ibm-search-prod-99.99.99.tgz --tls
   ```
