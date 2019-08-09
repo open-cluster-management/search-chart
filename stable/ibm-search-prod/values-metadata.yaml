@@ -5,6 +5,10 @@
 
 
 search:
+  name:
+    type: string
+  fullname:
+    type: string    
   __metadata:
     label: "Multicloud Manager Search Service"
     description: "Configuration for Multicloud Manager Search Service"
@@ -44,6 +48,17 @@ search:
             value: "Always"
           - label: "Never"
             value: "Never"
+    resources:
+      requests:
+        memory: 
+          type: "string"
+        cpu: 
+          type: "string"
+      limits:
+        memory:
+          type: "string"
+        cpu:
+          type: "string"     
   collector:
     image:
       repository:
@@ -73,6 +88,17 @@ search:
             value: "Always"
           - label: "Never"
             value: "Never"
+    resources:
+      requests:
+        memory: 
+          type: "string"
+        cpu: 
+          type: "string"
+      limits:
+        memory:
+          type: "string"
+        cpu:
+          type: "string"            
   redisgraph:
     image:
       repository:
@@ -102,7 +128,18 @@ search:
             value: "Always"
           - label: "Never"
             value: "Never"
-  search-api:
+    resources:
+      requests:
+        memory: 
+          type: "string"
+        cpu: 
+          type: "string"
+      limits:
+        memory:
+          type: "string"
+        cpu:
+          type: "string"             
+  searchapi:
     image:
       repository:
         __metadata:
@@ -130,11 +167,43 @@ search:
           - label: "Always"
             value: "Always"
           - label: "Never"
-            value: "Never"            
-global:
+            value: "Never" 
+kubectl:
   __metadata:
-    label: "Multicloud Manager Search Settings"
-    description: "Global Settings for Search"
+    label: "kubectl pod config"
+    description: "Configuration for kubectl deployment"  
+  repository: 
+    type: string
+  tag:
+    type: string 
+  pullPolicy:
+    options:
+      - label: "IfNotPresent"
+        value: "IfNotPresent"
+      - label: "Always"
+        value: "Always"
+      - label: "Never"
+        value: "Never" 
+                         
+global:
+  arch:
+    type: options
+  standalone:
+    type: booelan
+  nodeSelector:
+    os:
+      type: string
+    customLabelValue:
+      type: string
+    customLabelSelector:
+      type: string 
+    enabled:
+      type: boolean
+  cfcRouterUrl:
+     type: string          
+  __metadata:
+    label: "Global Settings for Search"
+    description: "Global Settings for Search Chart Deployment"
   pullSecret:
     __metadata:
       label: "Docker Registry Authentication"

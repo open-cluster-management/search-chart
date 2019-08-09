@@ -42,6 +42,7 @@ For more information about system requirements for IBM Cloud Private, see [Syste
 For the recent installation documentation, see [IBM Multicloud Manager installation overview](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.1/mcm/installing/installing.html).
 
 ## Configuration
+The chart needs to use the release name as - search - for MCM console to work.
 The following tables lists the global configurable parameters of the search chart and their default values.
 
 | Parameter | Description | Default |

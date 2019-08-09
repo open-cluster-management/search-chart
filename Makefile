@@ -7,7 +7,7 @@
 SHELL = /bin/bash
 STABLE_BUILD_DIR = repo/stable
 
-CHART_NAME ?= stable/search
+CHART_NAME ?= stable/ibm-search-prod
 ARTIFACTORY_URL ?= https://na.artifactory.swg-devops.com/artifactory
 ARTIFACTORY_SCRATCH_REPO ?= hyc-cloud-private-scratch-helm-local
 ARTIFACTORY_INTEGRATION_REPO ?= hyc-cloud-private-integration-helm-local

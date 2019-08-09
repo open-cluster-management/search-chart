@@ -1,0 +1,17 @@
+overrides: 
+
+- rule: NoLatestImageTags
+  reason: "The latest tag is required by our CICD system and is replaced before a GA."
+- rule: PodSecurityInPodSecurityContext
+  reason: "Decision to postpone determination to make it at chart level."
+- rule: HelmTestMustExist
+  reason: "Search End to End Test Covers this"
+- rule: CheckForGrafanaDashboard
+  reason: "This is an internal ICP chart rather than an external product and does not contain a sample dashboard built-in"
+- rule: AppTestMustExist
+  reason: "Search End to End Test Covers this "
+- rule: InstallTestMustExist
+  reason: "Search End to End Test Covers this " 
+- rule: CheckForOldMetadataLabels
+  reason: "Upgrade from mcm may be affected" 
+    

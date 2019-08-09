@@ -100,6 +100,13 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "25m"
+          limits:
+            memory: "512Mi"
+            cpu: "100m"   
         volumeMounts:
         - name: search-api-certs
           mountPath: /opt/ibm/search-api/sslcert
