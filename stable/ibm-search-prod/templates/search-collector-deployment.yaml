@@ -103,6 +103,7 @@ spec:
       - name: {{ .Release.Name }}-tiller-client-certs
         secret:
           secretName: {{ .Release.Name }}-tiller-client-certs
+          optional: true
       {{- if .Values.global.nodeSelector.enabled }}
       nodeSelector:
       {{- if .Values.global.nodeSelector.os }}
