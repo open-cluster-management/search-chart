@@ -60,7 +60,7 @@ search:
   redisgraph:
     image:
       repository: ibmcom/icp-redisgraph
-      tag: 1.0.15
+      tag: latest
       pullPolicy: Always
     resources:
       requests:
