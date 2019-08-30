@@ -16,10 +16,13 @@ metadata:
 spec:
   secretName: {{ .Release.Name }}-search-api-secrets
   issuerRef:
-    name: {{ .Release.Name }}-search-server-ca-issuer
-    kind: Issuer
+    name: icp-ca-issuer
+    kind: ClusterIssuer
   commonName: {{ template "search.fullname" . }}
-  dnsNames: null
+  dnsNames:
+  - {{ template "search.fullname" . }}-search-api
+  - {{ template "search.fullname" . }}-search-api.{{ .Release.Namespace }}
+  - {{ template "search.fullname" . }}-search-api.{{ .Release.Namespace }}.svc
   isCA: true
   organization:
   - IBM

@@ -16,8 +16,8 @@ metadata:
 spec:
   secretName: {{ .Release.Name }}-search-secrets
   issuerRef:
-    name: {{ .Release.Name }}-search-server-ca-issuer
-    kind: Issuer
+    name: icp-ca-issuer
+    kind: ClusterIssuer
   commonName: {{ template "search.fullname" . }}
   dnsNames:
   - {{ template "search.fullname" . }}-search-aggregator
