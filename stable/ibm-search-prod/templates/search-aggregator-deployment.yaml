@@ -66,7 +66,9 @@ spec:
             drop:
             - ALL
           privileged: false
-          readOnlyRootFilesystem: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 1000
         env:
         - name: REDIS_HOST
           value: '{{ template "search.fullname" . }}-search-redisgraph'

@@ -61,7 +61,9 @@ spec:
             drop:
             - ALL
           privileged: false
-          readOnlyRootFilesystem: false
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 1000
         env:
         - name: ICP_STANDALONE
           value: "{{ .Values.global.standalone }}"
