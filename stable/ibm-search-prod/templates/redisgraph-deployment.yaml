@@ -61,12 +61,11 @@ spec:
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
-            add:
-            - NET_BIND_SERVICE
             drop:
             - ALL
           privileged: false
           readOnlyRootFilesystem: false
+          runAsUser: 999
         env:
         - name: REDIS_PASSWORD
           valueFrom:
