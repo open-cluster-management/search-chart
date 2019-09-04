@@ -38,7 +38,7 @@ search:
         memory: "32Mi"
         cpu: "25m"
       limits:
-        memory: "128Mi"
+        memory: "256Mi"
         cpu: "200m"
   collector:
     image:
@@ -68,7 +68,7 @@ search:
         cpu: "25m"
       limits:
         memory: "1024Mi"
-        cpu: "200m"
+        cpu: "500m"
 
 kubectl:
   repository: ibmcom/kubectl
