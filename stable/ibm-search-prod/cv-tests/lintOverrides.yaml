@@ -2,8 +2,6 @@ overrides:
 
 - rule: NoLatestImageTags
   reason: "The latest tag is required by our CICD system and is replaced before a GA."
-- rule: PodSecurityInPodSecurityContext
-  reason: "Decision to postpone determination to make it at chart level."
 - rule: HelmTestMustExist
   reason: "Search End to End Test Covers this"
 - rule: CheckForGrafanaDashboard

@@ -69,6 +69,9 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "50m"          
+      hostIPC: false
+      hostNetwork: false
+      hostPID: false 
       restartPolicy: OnFailure
       {{- if .Values.global.pullSecret }}
       imagePullSecrets:

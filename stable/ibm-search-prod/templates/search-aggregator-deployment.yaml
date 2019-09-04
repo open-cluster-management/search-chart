@@ -99,6 +99,9 @@ spec:
         - name: redis-graph-certs
           mountPath: /rediscert/redis.crt
           subPath: redis.crt
+      hostIPC: false
+      hostNetwork: false
+      hostPID: false 
       {{- if .Values.global.pullSecret }}
       imagePullSecrets:
       - name: {{ .Values.global.pullSecret }}

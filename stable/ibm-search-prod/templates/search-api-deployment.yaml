@@ -116,6 +116,9 @@ spec:
         - name: redis-certs
           mountPath: /opt/ibm/search-api/rediscert/redis.crt
           subPath: redis.crt
+      hostIPC: false
+      hostNetwork: false
+      hostPID: false 
       {{- if .Values.global.pullSecret }}
       imagePullSecrets:
       - name: {{ .Values.global.pullSecret }}

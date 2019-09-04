@@ -66,6 +66,7 @@ spec:
           privileged: false
           readOnlyRootFilesystem: false
           runAsUser: 999
+          runAsNonRoot: true
         env:
         - name: REDIS_PASSWORD
           valueFrom:
@@ -93,6 +94,9 @@ spec:
         - name: "redis-graph-certs"
           readOnly: true
           mountPath: "/certs"
+      hostIPC: false
+      hostNetwork: false
+      hostPID: false 
       {{- if .Values.global.pullSecret }}
       imagePullSecrets:
       - name: {{ .Values.global.pullSecret }}
