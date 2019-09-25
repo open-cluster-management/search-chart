@@ -1,15 +1,51 @@
 overrides: 
 
 - rule: NoLatestImageTags
+  severity: "ERROR"
   reason: "The latest tag is required by our CICD system and is replaced before a GA."
+  reduceTo: "INFO"
 - rule: HelmTestMustExist
+  severity: "ERROR"
   reason: "Search End to End Test Covers this"
+  reduceTo: "INFO"
 - rule: CheckForGrafanaDashboard
+  severity: "WARNING"
   reason: "This is an internal ICP chart rather than an external product and does not contain a sample dashboard built-in"
+  reduceTo: "INFO"
 - rule: AppTestMustExist
+  severity: "ERROR"
   reason: "Search End to End Test Covers this "
+  reduceTo: "INFO"
 - rule: InstallTestMustExist
+  severity: "ERROR"
   reason: "Search End to End Test Covers this " 
+  reduceTo: "INFO"
 - rule: CheckForOldMetadataLabels
+  severity: "REVIEW"
+  message: "templates: found use of old standard labels, consider using new labels if breaking chart upgrade is acceptable"
+  reason: "Upgrade from mcm may be affected"
+  reduceTo: "INFO"
+- rule: ReviewHelmHooks
+  severity: "REVIEW"
   reason: "Upgrade from mcm may be affected" 
+  reduceTo: "INFO"
+- rule: PodDisruptionBudgetExists
+  severity: "REVIEW"
+  reason: "We are a single instance stateful application so we accept occasional downtime"
+  reduceTo: "INFO"
+- rule: NoSensitiveInfoInValues
+  severity: "REVIEW"
+  reason: "No Secret Values are present in values.yaml" 
+  reduceTo: "INFO"
+- rule: NoDefaultServiceAccountName
+  severity: "REVIEW"
+  reason: "We don't create a custom service account to assign or use"    
+  reduceTo: "INFO" 
+- rule: CheckImageNameFormat
+  severity: "WARNING"
+  reason: "Need to change as per naming convention- Skipping temporarily"   
+  reduceTo: "INFO"
+# - rule: ProdChartIsCertified
+#   reason: "Certification required"
+
     
