@@ -102,12 +102,7 @@ spec:
           successThreshold: 1
           timeoutSeconds: 1
         resources:
-          requests:
-            memory: "64Mi"
-            cpu: "25m"
-          limits:
-            memory: "512Mi"
-            cpu: "100m"   
+        {{- toYaml .Values.search.searchapi.resources | nindent 10 }}
         volumeMounts:
         - name: search-api-certs
           mountPath: /opt/ibm/search-api/sslcert
@@ -118,7 +113,7 @@ spec:
           subPath: redis.crt
       hostIPC: false
       hostNetwork: false
-      hostPID: false 
+      hostPID: false
       {{- if .Values.global.pullSecret }}
       imagePullSecrets:
       - name: {{ .Values.global.pullSecret }}

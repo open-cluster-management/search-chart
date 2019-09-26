@@ -56,6 +56,13 @@ search:
       repository: ibmcom/search-api
       tag: latest
       pullPolicy: Always
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "25m"
+      limits:
+        memory: "512Mi"
+        cpu: "100m"
   redisgraph:
     image:
       repository: ibmcom/icp-redisgraph
