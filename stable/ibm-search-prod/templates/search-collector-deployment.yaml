@@ -30,9 +30,6 @@ spec:
         chart: {{ template "search.chart" . }}
         heritage: {{ .Release.Service }}
       annotations:
-        productName: "IBM Multicloud Manager - Server"
-        productID: "317a72a4f22645aaa1b7a07a83c60af5"
-        productVersion: "3.1.1"
         seccomp.security.alpha.kubernetes.io/pod: docker/default
     spec:
       affinity:
@@ -66,7 +63,7 @@ spec:
           runAsUser: 1000
           capabilities:
             drop:
-            - ALL   
+            - ALL
         env:
         - name: DEPLOYED_IN_HUB
           value: "true"
@@ -107,7 +104,7 @@ spec:
           optional: true
       hostIPC: false
       hostNetwork: false
-      hostPID: false     
+      hostPID: false
       {{- if .Values.global.nodeSelector.enabled }}
       nodeSelector:
       {{- if .Values.global.nodeSelector.os }}
