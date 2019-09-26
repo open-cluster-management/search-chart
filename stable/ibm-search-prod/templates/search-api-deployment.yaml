@@ -60,8 +60,6 @@ spec:
           runAsNonRoot: true
           runAsUser: 1000
         env:
-        - name: ICP_STANDALONE
-          value: "{{ .Values.global.standalone }}"
         - name: cfcRouterUrl
           value: {{ .Values.global.cfcRouterUrl }}
         - name: PLATFORM_IDENTITY_PROVIDER_URL

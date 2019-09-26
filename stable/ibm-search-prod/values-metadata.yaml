@@ -188,8 +188,6 @@ kubectl:
 global:
   arch:
     type: options
-  standalone:
-    type: booelan
   nodeSelector:
     os:
       type: string
