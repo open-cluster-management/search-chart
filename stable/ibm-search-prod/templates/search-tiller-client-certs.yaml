@@ -17,7 +17,6 @@ spec:
   commonName: {{ .Values.global.tillerIntegration.user }}
   organization:
   - system:masters
-  dnsNames: null
   issuerRef:
     kind: ClusterIssuer
     name: icp-ca-issuer
