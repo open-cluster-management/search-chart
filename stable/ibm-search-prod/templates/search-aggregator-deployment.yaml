@@ -90,6 +90,7 @@ spec:
             scheme: HTTPS
           initialDelaySeconds: 15
           periodSeconds: 30
+          timeoutSeconds: 2
         volumeMounts:
         - name: icp-search-certs
           mountPath: /sslcert
