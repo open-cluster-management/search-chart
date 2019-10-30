@@ -19,7 +19,7 @@ global:
     os: ""
     customLabelSelector: ""
     customLabelValue: ""
-  cfcRouterUrl: "https://icp-management-ingress:8443"
+  cfcRouterUrl: "https://icp-management-ingress:443"
   tillerIntegration:
     user: null
 
