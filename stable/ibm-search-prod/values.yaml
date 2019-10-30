@@ -48,8 +48,8 @@ search:
         memory: "64Mi"
         cpu: "25m"
       limits:
-        memory: "512Mi"
-        cpu: "100m"
+        memory: "768Mi"
+        cpu: "250m"
   searchapi:
     image:
       repository: ibmcom/search-api
