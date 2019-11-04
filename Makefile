@@ -13,7 +13,29 @@ ARTIFACTORY_SCRATCH_REPO ?= hyc-cloud-private-scratch-helm-local
 ARTIFACTORY_INTEGRATION_REPO ?= hyc-cloud-private-integration-helm-local
 LOCAL_REPO=hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom
 
-VERSION := $(shell grep version ./$(CHART_NAME)/Chart.yaml | awk '{print $$2}')
+# GITHUB_USER containing '@' char must be escaped with '%40'
+GITHUB_USER := $(shell echo $(GITHUB_USER) | sed 's/@/%40/g')
+GITHUB_TOKEN ?=
+
+.PHONY: default
+default:: init;
+
+.PHONY: init\:
+init::
+ifndef GITHUB_USER
+	$(info GITHUB_USER not defined)
+	exit 1
+endif
+	$(info Using GITHUB_USER=$(GITHUB_USER))
+ifndef GITHUB_TOKEN
+	$(info GITHUB_TOKEN not defined)
+	exit 1
+endif
+
+-include $(shell curl -fso .build-harness -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.v3.raw" "https://raw.github.ibm.com/ICP-DevOps/build-harness/master/templates/Makefile.build-harness"; echo .build-harness)
+
+
+VERSION := $(SEMVERSION)
 $(eval VERSION_NUMBER ?= ${VERSION})
 $(eval NAME := $(notdir $(CHART_NAME)))
 $(eval FILE_NAME := $(NAME)-$(VERSION_NUMBER).tgz)
@@ -32,7 +54,9 @@ lint: setup
 	helm lint $(CHART_NAME)
 
 build: lint
-	helm package $(CHART_NAME)  -d $(STABLE_BUILD_DIR)
+	@echo "CHART_NAME: $(CHART_NAME)"
+	@echo "CHART_VERSION: $(VERSION)"
+	helm package  --version $(VERSION) $(CHART_NAME)  -d $(STABLE_BUILD_DIR)
 
 push: build
 	# We need to get the tar file, does it exist
@@ -43,7 +67,7 @@ push: build
 	fi
 
 	# And push it to scratch artifactory
-	curl -H "X-JFrog-Art-Api: $(ARTIFACTORY_TOKEN)" -T $(STABLE_BUILD_DIR)/$(FILE_NAME) $(ARTIFACTORY_URL)/$(ARTIFACTORY_SCRATCH_REPO)/$(FILE_NAME)
+	curl -H "X-JFrog-Art-Api: $(DOCKER_PASS)" -T $(STABLE_BUILD_DIR)/$(FILE_NAME) $(ARTIFACTORY_URL)/$(ARTIFACTORY_SCRATCH_REPO)/$(FILE_NAME)
 	@echo "DONE"
 
 publish: build
@@ -55,7 +79,7 @@ publish: build
 	fi
 
 	# And push it to Integration artifactory
-	curl -H "X-JFrog-Art-Api: $(ARTIFACTORY_TOKEN)" -T $(STABLE_BUILD_DIR)/$(FILE_NAME) $(ARTIFACTORY_URL)/$(ARTIFACTORY_INTEGRATION_REPO)/$(FILE_NAME)
+	curl -H "X-JFrog-Art-Api: $(DOCKER_PASS)" -T $(STABLE_BUILD_DIR)/$(FILE_NAME) $(ARTIFACTORY_URL)/$(ARTIFACTORY_INTEGRATION_REPO)/$(FILE_NAME)
 	@echo "DONE"
 
 local:

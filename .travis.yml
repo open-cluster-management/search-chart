@@ -19,6 +19,7 @@ install:
 
 before_script:
   - make tool
+  - make init
   - make lint
 
 script:

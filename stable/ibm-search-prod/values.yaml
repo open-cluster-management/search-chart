@@ -29,7 +29,7 @@ search:
   aggregator:
     image:
       repository: ibmcom/search-aggregator
-      tag: latest
+      tag: 3.3.0
       pullPolicy: Always
     resources:
       requests:
@@ -41,7 +41,7 @@ search:
   collector:
     image:
       repository: ibmcom/search-collector
-      tag: latest
+      tag: 3.3.0
       pullPolicy: Always
     resources:
       requests:
@@ -53,7 +53,7 @@ search:
   searchapi:
     image:
       repository: ibmcom/search-api
-      tag: latest
+      tag: 3.3.0
       pullPolicy: Always
     resources:
       requests:
@@ -65,7 +65,7 @@ search:
   redisgraph:
     image:
       repository: ibmcom/icp-redisgraph
-      tag: latest
+      tag: 3.3.0
       pullPolicy: Always
     resources:
       requests:
