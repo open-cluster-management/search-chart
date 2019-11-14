@@ -1,6 +1,5 @@
 # Licensed Materials - Property of IBM
-# 5737-E67
-# (C) Copyright IBM Corporation 2016, 2019 All Rights Reserved
+# (C) Copyright IBM Corporation 2019 All Rights Reserved
 # US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 
 
@@ -8,7 +7,7 @@ search:
   name:
     type: string
   fullname:
-    type: string    
+    type: string
   __metadata:
     label: "Multicloud Manager Search Service"
     description: "Configuration for Multicloud Manager Search Service"
@@ -50,15 +49,15 @@ search:
             value: "Never"
     resources:
       requests:
-        memory: 
+        memory:
           type: "string"
-        cpu: 
+        cpu:
           type: "string"
       limits:
         memory:
           type: "string"
         cpu:
-          type: "string"     
+          type: "string"
   collector:
     image:
       repository:
@@ -90,15 +89,15 @@ search:
             value: "Never"
     resources:
       requests:
-        memory: 
+        memory:
           type: "string"
-        cpu: 
+        cpu:
           type: "string"
       limits:
         memory:
           type: "string"
         cpu:
-          type: "string"            
+          type: "string"
   redisgraph:
     image:
       repository:
@@ -130,15 +129,15 @@ search:
             value: "Never"
     resources:
       requests:
-        memory: 
+        memory:
           type: "string"
-        cpu: 
+        cpu:
           type: "string"
       limits:
         memory:
           type: "string"
         cpu:
-          type: "string"             
+          type: "string"
   searchapi:
     image:
       repository:
@@ -167,15 +166,15 @@ search:
           - label: "Always"
             value: "Always"
           - label: "Never"
-            value: "Never" 
+            value: "Never"
 kubectl:
   __metadata:
     label: "kubectl pod config"
-    description: "Configuration for kubectl deployment"  
-  repository: 
+    description: "Configuration for kubectl deployment"
+  repository:
     type: string
   tag:
-    type: string 
+    type: string
   pullPolicy:
     options:
       - label: "IfNotPresent"
@@ -183,8 +182,8 @@ kubectl:
       - label: "Always"
         value: "Always"
       - label: "Never"
-        value: "Never" 
-                         
+        value: "Never"
+
 global:
   arch:
     type: options
@@ -194,11 +193,11 @@ global:
     customLabelValue:
       type: string
     customLabelSelector:
-      type: string 
+      type: string
     enabled:
       type: boolean
   cfcRouterUrl:
-     type: string          
+     type: string
   __metadata:
     label: "Global Settings for Search"
     description: "Global Settings for Search Chart Deployment"
@@ -216,4 +215,4 @@ global:
         description: "Username to tls connect Tiller from Hub"
         type: "string"
         immutable: false
-        required: true      
+        required: true
