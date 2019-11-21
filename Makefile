@@ -58,6 +58,9 @@ build: lint
 	@echo "CHART_VERSION: $(VERSION)"
 	helm package  --version $(VERSION) $(CHART_NAME)  -d $(STABLE_BUILD_DIR)
 
+build-local: lint
+	helm package  $(CHART_NAME) -d $(STABLE_BUILD_DIR)
+
 push: build
 	# We need to get the tar file, does it exist
 	@echo "Version: ${VERSION}"
@@ -84,19 +87,19 @@ publish: build
 
 local:
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|ibmcom|$(LOCAL_REPO)|g" $$file; done
-	make build
+	make build-local
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|$(LOCAL_REPO)|ibmcom|g" $$file; done
 
 local-ppc:
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|ibmcom|$(LOCAL_REPO)|g" $$file; done
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "/repository/s/$$/-ppc64le/" $$file; done
-	make build
+	make build-local
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|$(LOCAL_REPO)|ibmcom|g" $$file; done
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "/repository/ s/-ppc64le//" $$file; done
 
 local-s390x:
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|ibmcom|$(LOCAL_REPO)|g" $$file; done
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "/repository/s/$$/-s390x/" $$file; done
-	make build
+	make build-local
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|$(LOCAL_REPO)|ibmcom|g" $$file; done
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "/repository/ s/-s390x//" $$file; done
