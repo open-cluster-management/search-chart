@@ -9,8 +9,8 @@ STABLE_BUILD_DIR = repo/stable
 
 CHART_NAME ?= stable/ibm-search-prod
 ARTIFACTORY_URL ?= https://na.artifactory.swg-devops.com/artifactory
-ARTIFACTORY_SCRATCH_REPO ?= hyc-cloud-private-scratch-helm-local
-ARTIFACTORY_INTEGRATION_REPO ?= hyc-cloud-private-integration-helm-local
+ARTIFACTORY_SCRATCH_REPO ?= hyc-cloud-private-fixpack-helm-virtual/3.2.1
+ARTIFACTORY_INTEGRATION_REPO ?= hyc-cloud-private-fixpack-helm-virtual/3.2.1
 LOCAL_REPO=hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom
 
 VERSION := $(shell grep version ./$(CHART_NAME)/Chart.yaml | awk '{print $$2}')

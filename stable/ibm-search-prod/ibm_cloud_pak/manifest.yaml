@@ -37,9 +37,9 @@ images:
     tag: latest
   - repository: icp-redisgraph-ppc64le
     tag: latest
-- image: kubectl:v1.13.9
+- image: kubectl:v1.13.11.1911
   references:
   - repository: kubectl-amd64
-    tag: v1.13.9
+    tag: v1.13.11.1911
   - repository: kubectl-ppc64le
-    tag: v1.13.9
+    tag: v1.13.11.1911
