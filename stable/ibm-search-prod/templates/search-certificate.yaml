@@ -17,7 +17,7 @@ spec:
   issuerRef:
     name: icp-ca-issuer
     kind: ClusterIssuer
-  commonName: {{ template "search.fullname" . }}
+  commonName: search-aggregator
   dnsNames:
   - {{ template "search.fullname" . }}-search-aggregator
   isCA: true
