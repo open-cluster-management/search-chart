@@ -13,30 +13,30 @@ charts:
     - kubectl.repository
 
 images:
-- image: search-aggregator:latest
+- image: search-aggregator:3.2.1
   references:
   - repository: search-aggregator-amd64
-    tag: latest
+    tag: 3.2.1
   - repository: search-aggregator-ppc64le
-    tag: latest
-- image: search-collector:latest
+    tag: 3.2.1
+- image: search-collector:3.2.1
   references:
   - repository: search-collector-amd64
-    tag: latest
+    tag: 3.2.1
   - repository: search-collector-ppc64le
-    tag: latest
-- image: search-api:latest
+    tag: 3.2.1
+- image: search-api:3.2.1
   references:
   - repository: search-api-amd64
-    tag: latest
+    tag: 3.2.1
   - repository: search-api-ppc64le
-    tag: latest
-- image: icp-redisgraph:latest
+    tag: 3.2.1
+- image: icp-redisgraph:3.2.1
   references:
   - repository: icp-redisgraph-amd64
-    tag: latest
+    tag: 3.2.1
   - repository: icp-redisgraph-ppc64le
-    tag: latest
+    tag: 3.2.1
 - image: kubectl:v1.13.11.1911
   references:
   - repository: kubectl-amd64
