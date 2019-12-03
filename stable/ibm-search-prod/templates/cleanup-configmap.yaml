@@ -55,7 +55,7 @@ spec:
             capabilities:
               drop:
               - ALL
-          command: ["/bin/bash","-c","ulimit -u  && kubectl delete configmap -l 'release in (search)'"]
+          command: ["/bin/bash","-c","kubectl delete configmap -l 'release in (search)'"]
           resources:
             requests:
               memory: "64Mi"

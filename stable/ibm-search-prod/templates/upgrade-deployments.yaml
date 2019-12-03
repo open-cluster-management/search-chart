@@ -55,7 +55,7 @@ spec:
             capabilities:
               drop:
               - ALL
-          command:  ["/bin/bash","-c","ulimit -u   && kubectl delete deployment -l 'component in (mcm-search,search-aggregator,redisgraph)'" ]
+          command:  ["/bin/bash","-c","kubectl delete deployment -l 'component in (mcm-search,search-aggregator,redisgraph)'" ]
           resources:
             requests:
               memory: "64Mi"
