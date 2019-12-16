@@ -86,6 +86,7 @@ spec:
             scheme: HTTPS
           initialDelaySeconds: 15
           periodSeconds: 15
+          timeoutSeconds: 2
         readinessProbe:
           httpGet:
             path: /readiness
@@ -93,6 +94,7 @@ spec:
             scheme: HTTPS
           initialDelaySeconds: 15
           periodSeconds: 30
+          timeoutSeconds: 2
         volumeMounts:
         - name: icp-search-certs
           mountPath: /sslcert
