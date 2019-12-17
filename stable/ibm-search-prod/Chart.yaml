@@ -1,6 +1,6 @@
 name: ibm-search-prod
-description: Search Helm Chart for IBM Multicloud Manager
-version: 3.4.0
+description: Search Helm Chart for IBM Cloud Pak for Multicloud Management
+version: 3.5.0
 icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png
 tillerVersion: ">=2.7.3"
 kubeVersion: '>=1.10.0'

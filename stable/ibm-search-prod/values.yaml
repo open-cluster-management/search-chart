@@ -28,7 +28,7 @@ search:
   aggregator:
     image:
       repository: ibmcom/search-aggregator
-      tag: 3.3.0
+      tag: 3.5.0
       pullPolicy: Always
     resources:
       requests:
@@ -40,7 +40,7 @@ search:
   collector:
     image:
       repository: ibmcom/search-collector
-      tag: 3.3.0
+      tag: 3.5.0
       pullPolicy: Always
     resources:
       requests:
@@ -52,7 +52,7 @@ search:
   searchapi:
     image:
       repository: ibmcom/search-api
-      tag: 3.3.0
+      tag: 3.5.0
       pullPolicy: Always
     resources:
       requests:

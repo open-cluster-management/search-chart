@@ -5,6 +5,5 @@ DOCKER_PASSWORD ?=
 IMAGE_DESCRIPTION =
 IMAGE_NAME = search-chart
 IMAGE_REPO ?= hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com
-RELEASE_TAG = 4.1.0
 ARCH = $(shell uname -m)
 DOCKER_FLAG =
