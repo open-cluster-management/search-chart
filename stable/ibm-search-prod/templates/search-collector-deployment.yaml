@@ -80,14 +80,16 @@ spec:
           exec:
             command:
             - ls
-          initialDelaySeconds: 15
-          periodSeconds: 60
+          initialDelaySeconds: 60
+          periodSeconds: 90
+          timeoutSeconds: 3
         readinessProbe:
           exec:
             command:
             - ls
-          initialDelaySeconds: 15
-          periodSeconds: 60
+          initialDelaySeconds: 60
+          periodSeconds: 90
+          timeoutSeconds: 3
         volumeMounts:
         - name: icp-search-certs
           mountPath: /sslcert
