@@ -84,17 +84,17 @@ spec:
             path: /liveness
             port: 3010
             scheme: HTTPS
-          initialDelaySeconds: 15
+          initialDelaySeconds: 60
           periodSeconds: 15
-          timeoutSeconds: 2
+          timeoutSeconds: 3
         readinessProbe:
           httpGet:
             path: /readiness
             port: 3010
             scheme: HTTPS
-          initialDelaySeconds: 15
+          initialDelaySeconds: 60
           periodSeconds: 30
-          timeoutSeconds: 2
+          timeoutSeconds: 3
         volumeMounts:
         - name: icp-search-certs
           mountPath: /sslcert
