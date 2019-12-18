@@ -85,7 +85,7 @@ spec:
             port: 3010
             scheme: HTTPS
           initialDelaySeconds: 60
-          periodSeconds: 15
+          periodSeconds: 90
           timeoutSeconds: 3
         readinessProbe:
           httpGet:
@@ -93,7 +93,7 @@ spec:
             port: 3010
             scheme: HTTPS
           initialDelaySeconds: 60
-          periodSeconds: 30
+          periodSeconds: 90
           timeoutSeconds: 3
         volumeMounts:
         - name: icp-search-certs
