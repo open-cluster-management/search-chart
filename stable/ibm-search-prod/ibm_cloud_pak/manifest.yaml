@@ -3,7 +3,7 @@
 # US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 
 charts:
-- archive: 'file:../../../repo/stable/ibm-search-prod-3.4.0.tgz'
+- archive: 'file:../../../repo/stable/ibm-search-prod-3.5.0.tgz'
   repository-keys:
     - search.aggregator.image.repository
     - search.collector.image.repository
@@ -12,54 +12,54 @@ charts:
     - kubectl.repository
 
 images:
-- image: search-aggregator:3.3.0
+- image: search-aggregator:3.5.0
   references:
-  - repository: ibmcom/search-aggregator-amd64:3.3.0-amd64
-    pull-repository: cp.icr.io/cp/ibmcom/search-aggregator-amd64:3.3.0-amd64
+  - repository: ibmcom/search-aggregator-amd64:3.5.0-amd64
+    pull-repository: cp.icr.io/cp/ibmcom/search-aggregator-amd64:3.5.0-amd64
     platform:
       os: linux
       architecture: amd64
-  - repository: ibmcom/search-aggregator-ppc64le:3.3.0-ppc64le
-    pull-repository: cp.icr.io/cp/ibmcom/search-aggregator-ppc64le:3.3.0-ppc64le
+  - repository: ibmcom/search-aggregator-ppc64le:3.5.0-ppc64le
+    pull-repository: cp.icr.io/cp/ibmcom/search-aggregator-ppc64le:3.5.0-ppc64le
     platform:
       os: linux
       architecture: ppc64le
-  - repository: ibmcom/search-aggregator-s390x:3.3.0-s390x
-    pull-repository: cp.icr.io/cp/ibmcom/search-aggregator-s390x:3.3.0-s390x
+  - repository: ibmcom/search-aggregator-s390x:3.5.0-s390x
+    pull-repository: cp.icr.io/cp/ibmcom/search-aggregator-s390x:3.5.0-s390x
     platform:
       os: linux
       architecture: s390x
-- image: search-collector:3.3.0
+- image: search-collector:3.5.0
   references:
-  - repository: ibmcom/search-collector-amd64:3.3.0-amd64
-    pull-repository: cp.icr.io/cp/ibmcom/search-collector-amd64:3.3.0-amd64
+  - repository: ibmcom/search-collector-amd64:3.5.0-amd64
+    pull-repository: cp.icr.io/cp/ibmcom/search-collector-amd64:3.5.0-amd64
     platform:
       os: linux
       architecture: amd64
-  - repository: ibmcom/search-collector-ppc64le:3.3.0-ppc64le
-    pull-repository: cp.icr.io/cp/ibmcom/search-collector-ppc64le:3.3.0-ppc64le
+  - repository: ibmcom/search-collector-ppc64le:3.5.0-ppc64le
+    pull-repository: cp.icr.io/cp/ibmcom/search-collector-ppc64le:3.5.0-ppc64le
     platform:
       os: linux
       architecture: ppc64le
-  - repository: ibmcom/search-collector-s390x:3.3.0-s390x
-    pull-repository: cp.icr.io/cp/ibmcom/search-collector-s390x:3.3.0-s390x
+  - repository: ibmcom/search-collector-s390x:3.5.0-s390x
+    pull-repository: cp.icr.io/cp/ibmcom/search-collector-s390x:3.5.0-s390x
     platform:
       os: linux
       architecture: s390x
-- image: search-api:3.3.0
+- image: search-api:3.5.0
   references:
-  - repository: ibmcom/search-api-amd64:3.3.0-amd64
-    pull-repository: cp.icr.io/cp/ibmcom/search-api-amd64:3.3.0-amd64
+  - repository: ibmcom/search-api-amd64:3.5.0-amd64
+    pull-repository: cp.icr.io/cp/ibmcom/search-api-amd64:3.5.0-amd64
     platform:
       os: linux
       architecture: amd64
-  - repository: ibmcom/search-api-ppc64le:3.3.0-ppc64le
-    pull-repository: cp.icr.io/cp/ibmcom/search-api-ppc64le:3.3.0-ppc64le
+  - repository: ibmcom/search-api-ppc64le:3.5.0-ppc64le
+    pull-repository: cp.icr.io/cp/ibmcom/search-api-ppc64le:3.5.0-ppc64le
     platform:
       os: linux
       architecture: ppc64le
-  - repository: ibmcom/search-api-s390x:3.3.0-s390x
-    pull-repository: cp.icr.io/cp/ibmcom/search-api-s390x:3.3.0-s390x
+  - repository: ibmcom/search-api-s390x:3.5.0-s390x
+    pull-repository: cp.icr.io/cp/ibmcom/search-api-s390x:3.5.0-s390x
     platform:
       os: linux
       architecture: s390x
