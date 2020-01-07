@@ -15,7 +15,11 @@ metadata:
     component: "search"
     release: {{ .Release.Name }}
     chart: {{ template "search.chart" . }}
-    heritage: {{ .Release.Service }}
+    hertage: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ template "search.fullname" . }}
+    app.kubernetes.io/managed-by: {{ template "search.managedBy" .}}
+    app.kubernetes.io/name: {{ template "search.fullname" . }}-upgrade-services
+    helm.sh/chart: {{ template "search.chart" . }}
 spec:
   template:
     metadata:
@@ -26,6 +30,10 @@ spec:
         release: {{ .Release.Name }}
         chart: {{ template "search.chart" . }}
         heritage: {{ .Release.Service }}
+        app.kubernetes.io/instance: {{ template "search.fullname" . }}
+        app.kubernetes.io/managed-by: {{ template "search.managedBy" .}}
+        app.kubernetes.io/name: {{ template "search.fullname" . }}-upgrade-services
+        helm.sh/chart: {{ template "search.chart" . }}
     spec:
       affinity:
         nodeAffinity:

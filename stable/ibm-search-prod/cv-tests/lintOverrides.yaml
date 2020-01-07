@@ -1,30 +1,9 @@
-overrides: 
+# Licensed Materials - Property of IBM
+# @ Copyright IBM Corporation 2016, 2019. All Rights Reserved.
+# US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 
-- rule: NoLatestImageTags
-  severity: "ERROR"
-  reason: "The latest tag is required by our CICD system and is replaced before a GA."
-  reduceTo: "INFO"
-- rule: HelmTestMustExist
-  severity: "ERROR"
-  reason: "Search End to End Test Covers this"
-  reduceTo: "INFO"
-- rule: CheckForGrafanaDashboard
-  severity: "WARNING"
-  reason: "This is an internal ICP chart rather than an external product and does not contain a sample dashboard built-in"
-  reduceTo: "INFO"
-- rule: AppTestMustExist
-  severity: "ERROR"
-  reason: "Search End to End Test Covers this "
-  reduceTo: "INFO"
-- rule: InstallTestMustExist
-  severity: "ERROR"
-  reason: "Search End to End Test Covers this " 
-  reduceTo: "INFO"
-- rule: CheckForOldMetadataLabels
-  severity: "REVIEW"
-  message: "templates: found use of old standard labels, consider using new labels if breaking chart upgrade is acceptable"
-  reason: "Upgrade from mcm may be affected"
-  reduceTo: "INFO"
+
+overrides: 
 - rule: ReviewHelmHooks
   severity: "REVIEW"
   reason: "Upgrade from mcm may be affected" 
@@ -45,7 +24,37 @@ overrides:
   severity: "WARNING"
   reason: "Need to change as per naming convention- Skipping temporarily"   
   reduceTo: "INFO"
-# - rule: ProdChartIsCertified
-#   reason: "Certification required"
+- reason: "Using the new values breaks upgrade becuase it is trying to change immutable sections."    # REQUIRED, a justification for the override.
+  rule: "RequiredMetadataLabelsDefined"      # the name of a rule to ignore, must be exact match.
+  severity: "ERROR"  # the severity name to ignore, "INFO", "ERROR", etc.
+  reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore.
+- reason: "Removing for 4Q release"    # REQUIRED, a justification for the override.
+  rule: "MeteringAnnotationsDefined"      # the name of a rule to ignore, must be exact match.
+  severity: "ERROR"  # the severity name to ignore, "INFO", "ERROR", etc.
+  reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore.
+- reason: "Search is an Internal Service, we dont need a seperate Dashboard "
+  rule: "MonitoringDashboardExists"
+  severity: "WARNING"
+  reduceTo: "INFO"
+- reason: "Search is not a crtiical application - it can take some downtime"
+  rule: "PodDisruptionBudgetInReadme"
+  severity: "WARNING"
+  reduceTo: "INFO"
+- reason: "Test pod config - not shipped to customer - stunnel needs write permission"    # REQUIRED, a justification for the override.
+  rule: "PodSecurityContextDefined"      # the name of a rule to ignore, must be exact match.
+  filenames: [templates/tests/test-redis-connection-pod.yaml] # a list of filenames to match on, must be a superset of the filenames listed in the message to match. If a message includes a line number with the filename, omit the line number in the override.
+  severity: "ERROR"  # the severity name to ignore, "INFO", "ERROR", etc.
+  reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore.
+
+- reason: "Test pod config - not shipped to customer - stunnel needs write permission"    # REQUIRED, a justification for the override.
+  rule: "NoRunAsRootUser"      # the name of a rule to ignore, must be exact match.
+  filenames: [templates/tests/test-redis-connection-pod.yaml] # a list of filenames to match on, must be a superset of the filenames listed in the message to match. If a message includes a line number with the filename, omit the line number in the override.
+  severity: "ERROR"  # the severity name to ignore, "INFO", "ERROR", etc.
+  reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore.  
+
+- reason: "kubectl image version tsgged with v - fix will be from kubectl squad"    # REQUIRED, a justification for the override.
+  rule: "ContainerImageNameIsValid"      # the name of a rule to ignore, must be exact match.
+  severity: "WARNING"  # the severity name to ignore, "INFO", "ERROR", etc.
+  reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore.  
 
     

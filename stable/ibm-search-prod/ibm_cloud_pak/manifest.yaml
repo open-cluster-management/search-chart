@@ -14,31 +14,86 @@ charts:
 images:
 - image: search-aggregator:3.3.0
   references:
-  - repository: search-aggregator-amd64
-    tag: 3.3.0
-  - repository: search-aggregator-ppc64le
-    tag: 3.3.0
+  - repository: ibmcom/search-aggregator-amd64:3.3.0-amd64
+    pull-repository: cp.icr.io/cp/ibmcom/search-aggregator-amd64:3.3.0-amd64
+    platform:
+      os: linux
+      architecture: amd64
+  - repository: ibmcom/search-aggregator-ppc64le:3.3.0-ppc64le
+    pull-repository: cp.icr.io/cp/ibmcom/search-aggregator-ppc64le:3.3.0-ppc64le
+    platform:
+      os: linux
+      architecture: ppc64le
+  - repository: ibmcom/search-aggregator-s390x:3.3.0-s390x
+    pull-repository: cp.icr.io/cp/ibmcom/search-aggregator-s390x:3.3.0-s390x
+    platform:
+      os: linux
+      architecture: s390x
 - image: search-collector:3.3.0
   references:
-  - repository: search-collector-amd64
-    tag: 3.3.0
-  - repository: search-collector-ppc64le
-    tag: 3.3.0
+  - repository: ibmcom/search-collector-amd64:3.3.0-amd64
+    pull-repository: cp.icr.io/cp/ibmcom/search-collector-amd64:3.3.0-amd64
+    platform:
+      os: linux
+      architecture: amd64
+  - repository: ibmcom/search-collector-ppc64le:3.3.0-ppc64le
+    pull-repository: cp.icr.io/cp/ibmcom/search-collector-ppc64le:3.3.0-ppc64le
+    platform:
+      os: linux
+      architecture: ppc64le
+  - repository: ibmcom/search-collector-s390x:3.3.0-s390x
+    pull-repository: cp.icr.io/cp/ibmcom/search-collector-s390x:3.3.0-s390x
+    platform:
+      os: linux
+      architecture: s390x
 - image: search-api:3.3.0
   references:
-  - repository: search-api-amd64
-    tag: 3.3.0
-  - repository: search-api-ppc64le
-    tag: 3.3.0
+  - repository: ibmcom/search-api-amd64:3.3.0-amd64
+    pull-repository: cp.icr.io/cp/ibmcom/search-api-amd64:3.3.0-amd64
+    platform:
+      os: linux
+      architecture: amd64
+  - repository: ibmcom/search-api-ppc64le:3.3.0-ppc64le
+    pull-repository: cp.icr.io/cp/ibmcom/search-api-ppc64le:3.3.0-ppc64le
+    platform:
+      os: linux
+      architecture: ppc64le
+  - repository: ibmcom/search-api-s390x:3.3.0-s390x
+    pull-repository: cp.icr.io/cp/ibmcom/search-api-s390x:3.3.0-s390x
+    platform:
+      os: linux
+      architecture: s390x
 - image: icp-redisgraph:3.3.0
   references:
-  - repository: icp-redisgraph-amd64
-    tag: 3.3.0
-  - repository: icp-redisgraph-ppc64le
-    tag: 3.3.0
+  - repository: ibmcom/icp-redisgraph-amd64:3.3.0-amd64
+    pull-repository: cp.icr.io/cp/ibmcom/icp-redisgraph-amd64:3.3.0-amd64
+    platform:
+      os: linux
+      architecture: amd64
+  - repository: ibmcom/icp-redisgraph-ppc64le:3.3.0-ppc64le
+    pull-repository: cp.icr.io/cp/ibmcom/icp-redisgraph-ppc64le:3.3.0-ppc64le
+    platform:
+      os: linux
+      architecture: ppc64le
+  - repository: ibmcom/icp-redisgraph-s390x:3.3.0-s390x
+    pull-repository: cp.icr.io/cp/ibmcom/icp-redisgraph-s390x:3.3.0-s390x
+    platform:
+      os: linux
+      architecture: s390x
 - image: kubectl:v1.13.11
   references:
-  - repository: kubectl-amd64
-    tag: v1.13.11
-  - repository: kubectl-ppc64le
-    tag: v1.13.11
+  - repository: ibmcom/kubectl-amd64:v1.13.11-amd64
+    pull-repository: cp.icr.io/cp/ibmcom/kubectl-amd64:v1.13.11-amd64
+    platform:
+      os: linux
+      architecture: amd64
+  - repository: ibmcom/kubectl-ppc64le:v1.13.11-ppc64le
+    pull-repository: cp.icr.io/cp/ibmcom/kubectl-ppc64le:v1.13.11-ppc64le
+    platform:
+      os: linux
+      architecture: ppc64le
+  - repository: ibmcom/kubectl-s390x:v1.13.11-s390x
+    pull-repository: cp.icr.io/cp/ibmcom/kubectl-s390x:v1.13.11-s390x
+    platform:
+      os: linux
+      architecture: s390x

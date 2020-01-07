@@ -167,6 +167,18 @@ search:
             value: "Always"
           - label: "Never"
             value: "Never"
+    resources:
+      requests:
+        memory:
+          type: "string"
+        cpu:
+          type: "string"
+      limits:
+        memory:
+          type: "string"
+        cpu:
+          type: "string"
+
 kubectl:
   __metadata:
     label: "kubectl pod config"

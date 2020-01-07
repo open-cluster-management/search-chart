@@ -2,9 +2,9 @@ name: ibm-search-prod
 description: Search Helm Chart for IBM Cloud Pak for Multicloud Management
 version: 3.5.0
 icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png
-tillerVersion: ">=2.7.3"
+tillerVersion: ">=2.9.0"
 kubeVersion: '>=1.10.0'
-appVersion: '3.4.0'
+appVersion: 3.4.0
 keywords:
 - ICP
 - multicluster
