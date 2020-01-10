@@ -18,7 +18,7 @@ before_install:
       git clone git@github.ibm.com:ibmprivatecloud/content-tools;
     fi
   - export toolsPath=`pwd`/content-tools/travis-tools/
-  # Install dependencies & determine chart delta 
+  # Install dependencies & determine chart delta - true set for debug
   - $toolsPath/build/bin/installDependencies.sh | true
   - export changeList=`$toolsPath/build/bin/determineChartDelta.sh | tee determineChartDelta.out | grep 'return determineChartDelta:' | cut -f2 -d:` && cat determineChartDelta.out
   - source travis-env.sh
