@@ -12,7 +12,7 @@ charts:
     - kubectl.repository
 
 images:
-- image: search-aggregator:3.5.0
+- image: ibmcom/search-aggregator:3.5.0
   references:
   - repository: ibmcom/search-aggregator-amd64:3.5.0-amd64
     pull-repository: cp.icr.io/cp/ibmcom/search-aggregator-amd64:3.5.0-amd64
@@ -29,7 +29,7 @@ images:
     platform:
       os: linux
       architecture: s390x
-- image: search-collector:3.5.0
+- image: ibmcom/search-collector:3.5.0
   references:
   - repository: ibmcom/search-collector-amd64:3.5.0-amd64
     pull-repository: cp.icr.io/cp/ibmcom/search-collector-amd64:3.5.0-amd64
@@ -46,7 +46,7 @@ images:
     platform:
       os: linux
       architecture: s390x
-- image: search-api:3.5.0
+- image: ibmcom/search-api:3.5.0
   references:
   - repository: ibmcom/search-api-amd64:3.5.0-amd64
     pull-repository: cp.icr.io/cp/ibmcom/search-api-amd64:3.5.0-amd64
@@ -63,7 +63,7 @@ images:
     platform:
       os: linux
       architecture: s390x
-- image: icp-redisgraph:3.3.0
+- image: ibmcom/icp-redisgraph:3.3.0
   references:
   - repository: ibmcom/icp-redisgraph-amd64:3.3.0-amd64
     pull-repository: cp.icr.io/cp/ibmcom/icp-redisgraph-amd64:3.3.0-amd64
@@ -80,7 +80,7 @@ images:
     platform:
       os: linux
       architecture: s390x
-- image: kubectl:v1.13.11
+- image: ibmcom/kubectl:v1.13.11
   references:
   - repository: ibmcom/kubectl-amd64:v1.13.11-amd64
     pull-repository: cp.icr.io/cp/ibmcom/kubectl-amd64:v1.13.11-amd64
