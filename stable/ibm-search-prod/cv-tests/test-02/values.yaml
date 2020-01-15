@@ -75,6 +75,6 @@ search:
         cpu: "500m"
 
 kubectl:
-  repository: hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom/kubectl-amd64
+  repository: hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom/kubectl
   tag: v1.13.11
   pullPolicy: IfNotPresent
