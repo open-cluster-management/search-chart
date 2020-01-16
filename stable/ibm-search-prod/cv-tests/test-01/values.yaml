@@ -7,7 +7,7 @@
 # Declare variables to be passed into your templates.
 
 global:
-  pullSecret: hyc-cloud-private-scratch-docker-local.artifactory.swg-devops.com
+  pullSecret: hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com
   arch:
   - amd64
   - ppc64le
@@ -27,8 +27,8 @@ search:
   name: search
   aggregator:
     image:
-      repository: hyc-cloud-private-scratch-docker-local.artifactory.swg-devops.com/ibmcom/search-aggregator-amd64
-      tag: 54b6f71
+      repository: hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom/search-aggregator-amd64
+      tag: 3.5.0
       pullPolicy: Always
     resources:
       requests:
@@ -39,8 +39,8 @@ search:
         cpu: "200m"
   collector:
     image:
-      repository: hyc-cloud-private-scratch-docker-local.artifactory.swg-devops.com/ibmcom/search-collector-amd64
-      tag: e3a9d44
+      repository: hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom/search-collector-amd64
+      tag: 3.5.0
       pullPolicy: Always
     resources:
       requests:
@@ -51,8 +51,8 @@ search:
         cpu: "250m"
   searchapi:
     image:
-      repository: hyc-cloud-private-scratch-docker-local.artifactory.swg-devops.com/ibmcom/search-api-amd64
-      tag: 0a0822d
+      repository: hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom/search-api-amd64
+      tag: 3.5.0
       pullPolicy: Always
     resources:
       requests:
@@ -63,8 +63,8 @@ search:
         cpu: "250m"
   redisgraph:
     image:
-      repository: hyc-cloud-private-scratch-docker-local.artifactory.swg-devops.com/ibmcom/icp-redisgraph-amd64
-      tag: 591fe24
+      repository: hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom/icp-redisgraph-amd64
+      tag: 3.3.0
       pullPolicy: Always
     resources:
       requests:
@@ -75,6 +75,6 @@ search:
         cpu: "500m"
 
 kubectl:
-  repository: hyc-cloud-private-scratch-docker-local.artifactory.swg-devops.com/ibmcom/kubectl
+  repository: hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom/kubectl
   tag: v1.13.11
   pullPolicy: IfNotPresent
