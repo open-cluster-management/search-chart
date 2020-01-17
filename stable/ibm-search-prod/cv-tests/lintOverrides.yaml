@@ -48,6 +48,14 @@ overrides:
   rule: "UsedImagesInManifest"
   severity: "ERROR"
   reduceTo: "INFO"  
+- reason: "Require Doc Verification and review"
+  rule: "NoICPReferences"
+  severity: "REVIEW"
+  reduceTo: "INFO"  
+- reason: "Require Verification "
+  rule: "ChartUsesSCH"
+  severity: "INFO"
+  reduceTo: "INFO"    
 - reason: "Test pod config - not shipped to customer - stunnel needs write permission"    # REQUIRED, a justification for the override.
   rule: "PodSecurityContextDefined"      # the name of a rule to ignore, must be exact match.
   filenames: [templates/tests/test-redis-connection-pod.yaml] # a list of filenames to match on, must be a superset of the filenames listed in the message to match. If a message includes a line number with the filename, omit the line number in the override.
