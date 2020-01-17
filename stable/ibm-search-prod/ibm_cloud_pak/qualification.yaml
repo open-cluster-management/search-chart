@@ -8,7 +8,7 @@ prereqs:
   security:
     kubernetes:
       podSecurityPolicy:
-        name: "ibm-restricted-psp"
+        name: "ibm-privileged-psp"
     ibmCloudPrivate:
       installerRole:
         name: "ClusterAdministrator"
