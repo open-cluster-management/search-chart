@@ -6,7 +6,7 @@ tillerVersion: ">=2.9.0"
 kubeVersion: '>=1.10.0'
 appVersion: 3.4.0
 keywords:
-- ICP
+- ICPRHOCP
 - multicluster
 - search
 - Commercial

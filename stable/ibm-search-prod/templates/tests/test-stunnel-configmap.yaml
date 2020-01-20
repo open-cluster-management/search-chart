@@ -21,7 +21,7 @@ data:
     [redis-cli]
     client=yes
     accept=6667
-    connect=search-search-redisgraph:6380
+    connect={{ template "search.fullname" . }}-search-redisgraph:6380
     verify=2
     CAfile=/rediscert/redis.crt
   runTests.sh: |

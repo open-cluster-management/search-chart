@@ -92,6 +92,9 @@ This chart also defines a custom PodSecurityPolicy which can be used to finely c
       - use
     ```
 
+# Red Hat OpenShift SecurityContextConstraints Requirements
+Supports Red Hat OpenShift SecurityContextConstraints [`ibm-anyuid-scc`](https://ibm.biz/cpkspec-scc)
+
 ## Resources Required
 
 For more information about system requirements for IBM Cloud Private, see [System requirements](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.1/supported_system_config/system_reqs.html).

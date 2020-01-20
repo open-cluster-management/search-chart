@@ -19,7 +19,7 @@ before_install:
     fi
   - export toolsPath=`pwd`/content-tools/travis-tools/
   # Install dependencies & determine chart delta - true set for debug
-  - $toolsPath/build/bin/installDependencies.sh | true
+  - $toolsPath/build/bin/installDependencies.sh
   - export changeList=`$toolsPath/build/bin/determineChartDelta.sh | tee determineChartDelta.out | grep 'return determineChartDelta:' | cut -f2 -d:` && cat determineChartDelta.out
   - source travis-env.sh
    
@@ -27,7 +27,7 @@ install:
   # Package for release 
   - if [[ ! -z "$TRAVIS_TAG" ]] ; then $toolsPath/release/bin/package.sh; fi
   # Lint and install/test charts (if cv-tests exist)
-  - $toolsPath/cv-test/bin/validateContent.sh | true
+  - $toolsPath/cv-test/bin/validateContent.sh
   - docker info
 
 
