@@ -63,7 +63,7 @@ overrides:
   reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore.
 - reason: "Test pod config - not shipped to customer - stunnel needs write permission"    # REQUIRED, a justification for the override.
   rule: "PodSecurityContextDefined"      # the name of a rule to ignore, must be exact match.
-  message: '\[ERROR\] .*redis-test.yaml: UID 0 at spec.containers[0].securityContext.runAsUser not allowed' # a list of filenames to match on, must be a superset of the filenames listed in the message to match. If a message includes a line number with the filename, omit the line number in the override.
+  message: '\[ERROR\] .*redis-test.yaml.*' # a list of filenames to match on, must be a superset of the filenames listed in the message to match. If a message includes a line number with the filename, omit the line number in the override.
   severity: "ERROR"  # the severity name to ignore, "INFO", "ERROR", etc.
   reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore.
 
@@ -74,7 +74,7 @@ overrides:
   reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore.  
 - reason: "Test pod config - not shipped to customer - stunnel needs write permission"    # REQUIRED, a justification for the override.
   rule: "NoRunAsRootUser"      # the name of a rule to ignore, must be exact match.
-  message: '\[ERROR\] .*redis-test.yaml: keys for pod security context not defined.*' # a list of filenames to match on, must be a superset of the filenames listed in the message to match. If a message includes a line number with the filename, omit the line number in the override.
+  message: '\[ERROR\] .*redis-test.yaml.*' # a list of filenames to match on, must be a superset of the filenames listed in the message to match. If a message includes a line number with the filename, omit the line number in the override.
   severity: "ERROR"  # the severity name to ignore, "INFO", "ERROR", etc.
   reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore. 
 
