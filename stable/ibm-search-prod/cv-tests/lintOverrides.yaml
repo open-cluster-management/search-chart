@@ -63,12 +63,7 @@ overrides:
   reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore.
 - reason: "Test pod config - not shipped to customer - stunnel needs write permission"    # REQUIRED, a justification for the override.
   rule: "PodSecurityContextDefined"      # the name of a rule to ignore, must be exact match.
-  filenames: [templates/tests/test-redis-connection-pod.yaml] # a list of filenames to match on, must be a superset of the filenames listed in the message to match. If a message includes a line number with the filename, omit the line number in the override.
-  severity: "ERROR"  # the severity name to ignore, "INFO", "ERROR", etc.
-  reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore.
-- reason: "Test pod config - not shipped to customer - stunnel needs write permission"    # REQUIRED, a justification for the override.
-  rule: "PodSecurityContextDefined"      # the name of a rule to ignore, must be exact match.
-  filenames: [templates/tests/test-redis-connection-pod.yaml] # a list of filenames to match on, must be a superset of the filenames listed in the message to match. If a message includes a line number with the filename, omit the line number in the override.
+  message: '`*`redis-test.yaml' # a list of filenames to match on, must be a superset of the filenames listed in the message to match. If a message includes a line number with the filename, omit the line number in the override.
   severity: "ERROR"  # the severity name to ignore, "INFO", "ERROR", etc.
   reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore.
 
@@ -79,14 +74,10 @@ overrides:
   reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore.  
 - reason: "Test pod config - not shipped to customer - stunnel needs write permission"    # REQUIRED, a justification for the override.
   rule: "NoRunAsRootUser"      # the name of a rule to ignore, must be exact match.
-  filenames: [templates/tests/test-redis-connection-pod.yaml] # a list of filenames to match on, must be a superset of the filenames listed in the message to match. If a message includes a line number with the filename, omit the line number in the override.
+  message: '`*`redis-test.yaml' # a list of filenames to match on, must be a superset of the filenames listed in the message to match. If a message includes a line number with the filename, omit the line number in the override.
   severity: "ERROR"  # the severity name to ignore, "INFO", "ERROR", etc.
   reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore. 
-- reason: "Test pod config - not shipped to customer - stunnel needs write permission"    # REQUIRED, a justification for the override.
-  rule: "NoRunAsRootUser"      # the name of a rule to ignore, must be exact match.
-  filenames: [templates/tests/test-redis-connection-pod.yaml] # a list of filenames to match on, must be a superset of the filenames listed in the message to match. If a message includes a line number with the filename, omit the line number in the override.
-  severity: "ERROR"  # the severity name to ignore, "INFO", "ERROR", etc.
-  reduceTo: "INFO"  # the severity to map to a matching message. If undefined, corresponds to ignore.     
+
 
 - reason: "kubectl image version tsgged with v - fix will be from kubectl squad"    # REQUIRED, a justification for the override.
   rule: "ContainerImageNameIsValid"      # the name of a rule to ignore, must be exact match.
