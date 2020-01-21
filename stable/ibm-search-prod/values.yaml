@@ -42,7 +42,7 @@ search:
   collector:
     image:
       repository: ibmcom/search-collector
-      tag: 3.2.1
+      tag: 3.2.1.2001
       pullPolicy: Always
     resources:
       requests:

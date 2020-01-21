@@ -1,6 +1,6 @@
 name: ibm-search-prod
 description: Search Helm Chart for IBM Multicloud Manager
-version: 3.3.1911
+version: 3.3.2001
 icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png
 tillerVersion: ">=2.7.3"
 kubeVersion: '>=1.10.0'

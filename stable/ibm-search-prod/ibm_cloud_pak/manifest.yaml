@@ -19,12 +19,12 @@ images:
     tag: 3.2.1
   - repository: search-aggregator-ppc64le
     tag: 3.2.1
-- image: search-collector:3.2.1
+- image: search-collector:3.2.1.2001
   references:
   - repository: search-collector-amd64
-    tag: 3.2.1
+    tag: 3.2.1.2001
   - repository: search-collector-ppc64le
-    tag: 3.2.1
+    tag: 3.2.1.2001
 - image: search-api:3.2.1
   references:
   - repository: search-api-amd64
