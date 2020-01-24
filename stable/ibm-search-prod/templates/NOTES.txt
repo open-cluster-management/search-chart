@@ -6,3 +6,5 @@ To learn more about the release, try:
 
 $ helm status {{ .Release.Name }}
 $ helm get {{ .Release.Name }}
+
+Usage guide can be found at https://www.ibm.com/support/knowledgecenter/SSFC4F_1.2.0/mcm/getting_started/console.html#search 

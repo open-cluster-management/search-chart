@@ -23,7 +23,8 @@ _IBM Multicloud Manager Search_ is a REST API layer that provides the Search ser
 
 ## Prerequisites
 
-* IBM Cloud Private Release 3.2.0 or later
+* RH OpenShift (4.2) OR
+* IBM Cloud Pak for Multicloud Management
 
 ## Online user documentation
 
@@ -97,10 +98,8 @@ Supports Red Hat OpenShift SecurityContextConstraints [`ibm-anyuid-scc`](https:/
 
 ## Resources Required
 
-For more information about system requirements for IBM Cloud Private, see [System requirements](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.2.1/supported_system_config/system_reqs.html).
-
- For IBM Multicloud Manager Search, you need at least the following values:
-    CPU: 1 cores
+For IBM Multicloud Manager Search, minimum resource requirements in the cluster is as follows:
+    CPU: 1 core
     Memory: 2 GB
 
 ## Installing the Chart
