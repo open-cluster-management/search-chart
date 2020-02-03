@@ -2,7 +2,7 @@ qualification:
   levelName: "certified-ibm-cloud-pak"
   levelDescription: "IBM Cloud Pak"
   issueDate: "1/2020"
-  duration: "6M"
+  duration: "12M"
   terms: "Valid from date of issue. Security vulnerability management and enhancements are delivered on the latest version of the chart and images."
 prereqs:
   security:

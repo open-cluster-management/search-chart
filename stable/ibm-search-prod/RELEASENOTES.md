@@ -17,7 +17,7 @@ For the recent installation documentation, see [IBM Multicloud Manager installat
 
 # Version History
 
-| Chart | Date | Kubernetes Required | Image(s) Supported | Breaking Changes | Details |
-| ----- | ---- | ------------ | ------------------ | ---------------- | ------- |
-| 3.5.0 | Jan 31, 2020 | >=1.9.1 |  |  |  |
+| Chart | Date | Kubernetes Required |  Details |
+| ----- | ---- | -------------- ---- |  ------- |
+| 3.5.0 | Jan 31, 2020 | >=1.10.0 | IBM Multicloud Manager Search Chart |
 

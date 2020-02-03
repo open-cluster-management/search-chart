@@ -33,7 +33,7 @@ For the most up-to-date IBM Multicloud Manager user documentation, see [IBM Mult
 ## PodSecurityPolicy Requirements
    This chart has to be installed in kube-system namespace.
 # Red Hat OpenShift SecurityContextConstraints Requirements
-   This chart has to be installed in  kube-system namespace on a Openshift cluster.
+   This chart has to be installed in  kube-system namespace on a OpenShift cluster.
 ## Resources Required
 
 For IBM Multicloud Manager Search, minimum resource requirements in the cluster is as follows:
