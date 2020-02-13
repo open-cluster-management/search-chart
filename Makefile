@@ -13,24 +13,12 @@ ARTIFACTORY_SCRATCH_REPO ?= hyc-cloud-private-scratch-helm-local
 ARTIFACTORY_INTEGRATION_REPO ?= hyc-cloud-private-integration-helm-local
 LOCAL_REPO=hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom
 
-# GITHUB_USER containing '@' char must be escaped with '%40'
-GITHUB_USER := $(shell echo $(GITHUB_USER) | sed 's/@/%40/g')
-GITHUB_TOKEN ?=
 
 .PHONY: default
 default:: init;
 
 .PHONY: init\:
 init::
-ifndef GITHUB_USER
-	$(info GITHUB_USER not defined)
-	exit 1
-endif
-	$(info Using GITHUB_USER=$(GITHUB_USER))
-ifndef GITHUB_TOKEN
-	$(info GITHUB_TOKEN not defined)
-	exit 1
-endif
 
 -include $(shell curl -fso .build-harness -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.v3.raw" "https://raw.github.ibm.com/ICP-DevOps/build-harness/master/templates/Makefile.build-harness"; echo .build-harness)
 
@@ -61,29 +49,7 @@ build: lint
 build-local: lint
 	helm package  $(CHART_NAME) -d $(STABLE_BUILD_DIR)
 
-push: build
-	# We need to get the tar file, does it exist
-	@echo "Version: ${VERSION}"
-	if [ ! -f ./$(STABLE_BUILD_DIR)/$(FILE_NAME) ]; then \
-    echo "File not found! - exiting"; \
-		exit; \
-	fi
 
-	# And push it to scratch artifactory
-	curl -H "X-JFrog-Art-Api: $(DOCKER_PASS)" -T $(STABLE_BUILD_DIR)/$(FILE_NAME) $(ARTIFACTORY_URL)/$(ARTIFACTORY_SCRATCH_REPO)/$(FILE_NAME)
-	@echo "DONE"
-
-publish: build
-	# We need to get the tar file, does it exist
-	@echo "Version: ${VERSION}"
-	if [ ! -f ./$(STABLE_BUILD_DIR)/$(FILE_NAME) ]; then \
-    echo "File not found! - exiting"; \
-		exit; \
-	fi
-
-	# And push it to Integration artifactory
-	curl -H "X-JFrog-Art-Api: $(DOCKER_PASS)" -T $(STABLE_BUILD_DIR)/$(FILE_NAME) $(ARTIFACTORY_URL)/$(ARTIFACTORY_INTEGRATION_REPO)/$(FILE_NAME)
-	@echo "DONE"
 
 local:
 	for file in `find . -name values.yaml`; do echo $$file; sed -i '' -e "s|ibmcom|$(LOCAL_REPO)|g" $$file; done
