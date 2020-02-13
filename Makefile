@@ -23,7 +23,7 @@ init::
 -include $(shell curl -fso .build-harness -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.v3.raw" "https://raw.github.ibm.com/ICP-DevOps/build-harness/master/templates/Makefile.build-harness"; echo .build-harness)
 
 
-VERSION := $(SEMVERSION)
+VERSION := 3.5.0
 $(eval VERSION_NUMBER ?= ${VERSION})
 $(eval NAME := $(notdir $(CHART_NAME)))
 $(eval FILE_NAME := $(NAME)-$(VERSION_NUMBER).tgz)
