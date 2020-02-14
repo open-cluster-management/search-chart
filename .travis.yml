@@ -1,20 +1,14 @@
 ---
 dist: xenial
 sudo: required
-# group: bluezone
 language: generic
 
-# Environment variables (setup endpoint to IBM github)
-env:
-  global:
-  - OCTOKIT_API_ENDPOINT="https://github.ibm.com/api/v3/"
 
 before_install:
   - source travis-env.sh
    
 install:
   - docker info
-
 
 os:
   - linux

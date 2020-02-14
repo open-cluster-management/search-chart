@@ -6,12 +6,8 @@
 ###############################################################################
 SHELL = /bin/bash
 STABLE_BUILD_DIR = repo/stable
-
 CHART_NAME ?= stable/ibm-search-prod
-ARTIFACTORY_URL ?= https://na.artifactory.swg-devops.com/artifactory
-ARTIFACTORY_SCRATCH_REPO ?= hyc-cloud-private-scratch-helm-local
-ARTIFACTORY_INTEGRATION_REPO ?= hyc-cloud-private-integration-helm-local
-LOCAL_REPO=hyc-cloud-private-integration-docker-local.artifactory.swg-devops.com/ibmcom
+VERSION := 3.5.0
 
 
 .PHONY: default
@@ -23,7 +19,6 @@ init::
 -include $(shell curl -fso .build-harness -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.v3.raw" "https://raw.github.ibm.com/ICP-DevOps/build-harness/master/templates/Makefile.build-harness"; echo .build-harness)
 
 
-VERSION := 3.5.0
 $(eval VERSION_NUMBER ?= ${VERSION})
 $(eval NAME := $(notdir $(CHART_NAME)))
 $(eval FILE_NAME := $(NAME)-$(VERSION_NUMBER).tgz)
