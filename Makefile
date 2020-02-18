@@ -6,7 +6,7 @@
 ###############################################################################
 SHELL = /bin/bash
 STABLE_BUILD_DIR = repo/stable
-CHART_NAME ?= stable/ibm-search-prod
+CHART_NAME ?= stable/search-prod
 VERSION := 3.5.0
 
 
