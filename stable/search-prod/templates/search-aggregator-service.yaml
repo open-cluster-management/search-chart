@@ -1,0 +1,24 @@
+# Licensed Materials - Property of IBM
+# (C) Copyright IBM Corporation 2019 All Rights Reserved
+# US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "search.fullname" . }}-search-aggregator
+  labels:
+    app: {{ template "search.name" . }}
+    component: "search-aggregator"
+    chart: {{ template "search.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  ports:
+    - name: search-aggregator
+      protocol: TCP
+      port: 3010
+      targetPort: 3010
+  selector:
+    app: {{ template "search.name" . }}
+    component: "search-aggregator"
+    release: {{ .Release.Name }}

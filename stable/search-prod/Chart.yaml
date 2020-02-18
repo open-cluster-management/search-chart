@@ -1,0 +1,18 @@
+name: search-prod
+description: Helm chart to install the Multicloud Search service
+version: 3.5.0
+icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png
+tillerVersion: ">=2.9.0"
+kubeVersion: '>=1.10.0'
+appVersion: 3.4.0
+keywords:
+- RHOCP
+- ICPRHOCP
+- multicloud
+- multicluster
+- search
+- Commercial
+- amd64
+- ppc64le
+- s390x
+- runtime
