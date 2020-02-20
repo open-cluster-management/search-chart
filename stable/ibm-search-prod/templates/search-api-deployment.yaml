@@ -99,11 +99,11 @@ spec:
         {{- toYaml .Values.search.searchapi.resources | nindent 10 }}
         volumeMounts:
         - name: search-api-certs
-          mountPath: /opt/app-root/search-api/sslcert
+          mountPath: /opt/ibm/search-api/sslcert
         - name: mcm-search-certs
           mountPath: /opt/secrets
         - name: redis-certs
-          mountPath: /opt/app-root/search-api/rediscert/redis.crt
+          mountPath: /opt/ibm/search-api/rediscert/redis.crt
           subPath: redis.crt
       hostIPC: false
       hostNetwork: false
