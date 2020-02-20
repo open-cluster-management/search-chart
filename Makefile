@@ -10,20 +10,15 @@ CHART_NAME ?= stable/search-prod
 VERSION := $(shell cat COMPONENT_VERSION)
 
 
-.PHONY: default
-default:: init;
-
-.PHONY: init\:
-init::
-
 -include $(shell curl -fso .build-harness -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.v3.raw" "https://raw.github.ibm.com/ICP-DevOps/build-harness/master/templates/Makefile.build-harness"; echo .build-harness)
 
 
-$(STABLE_BUILD_DIR):
-	@mkdir -p $@
+default::
+	@echo "Build Harness Bootstrapped"
+
 
 tool:
-	curl -fksSL https://storage.googleapis.com/kubernetes-helm/helm-v2.12.3-linux-amd64.tar.gz | sudo tar --strip-components=1 -xvz -C /usr/local/bin/ linux-amd64/helm
+	curl -fksSL https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-linux-amd64.tar.gz | sudo tar --strip-components=1 -xvz -C /usr/local/bin/ linux-amd64/helm
 
 setup:
 	helm init -c
