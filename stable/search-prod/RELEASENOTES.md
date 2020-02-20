@@ -2,16 +2,18 @@
 
 # What’s new in Chart Version 3.5.0
 
-With Search 3.5.0, the following new
+With Multicloud Search 3.5.0, the following new
 features are available:
-
+TBD
 
 # Fixes
+TBD
 
 # Prerequisites
 1. RH OpenShift (4.2)
 
 # Documentation
+TBD
 
 # Version History
 

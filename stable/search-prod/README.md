@@ -8,12 +8,12 @@ The Multicloud Search service enables you to search for and manage resources in 
 
  1. Chart Details
  2. Prerequisites
- 2. Online user documentation
- 3. System requirements
- 4. Installation
- 5. Configuration
- 6. Limitations
- 5. Copyright and trademark information
+ 3. Online user documentation
+ 4. System requirements
+ 5. Installation
+ 6. Configuration
+ 7. Limitations
+ 8. Copyright and trademark information
 
 ## Chart Details
 
@@ -27,6 +27,7 @@ _Multicloud Search_ is a REST API layer that provides the Search service, which 
 
 ## Online user documentation
 
+TBD
 
 ## PodSecurityPolicy Requirements
    This chart has to be installed in kube-system namespace.
@@ -40,6 +41,7 @@ For Multicloud Search, minimum resource requirements in the cluster is as follow
 
 ## Installing the Chart
 
+TBD
 
 ## Configuration
 
@@ -58,3 +60,7 @@ The following tables lists the global configurable parameters of the search char
 ## Limitations
 
 * These charts cannot be deployed multiple times in the same Kuberentes namespace.
+
+## Copyright and trademark information
+
+TBD

@@ -219,6 +219,8 @@ kubectl:
       - label: "Never"
         value: "Never"
 
+imageTagPostfix:
+  type: string
 global:
   arch:
     type: options
