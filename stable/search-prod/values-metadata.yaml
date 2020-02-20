@@ -11,13 +11,6 @@ search:
   __metadata:
     label: "Multicloud Search Service"
     description: "Configuration for Multicloud Manager Search Service"
-  enabled:
-    __metadata:
-      label: "Enable Multicloud Search Service"
-      description: "Enable/Disable Multicloud Search Service"
-      type: "boolean"
-      immutable: false
-      required: true
   aggregator:
     image:
       repository:

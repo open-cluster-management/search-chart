@@ -22,7 +22,6 @@ global:
     user: null
 
 search:
-  enabled: true
   name: search
   aggregator:
     image:
