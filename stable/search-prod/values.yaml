@@ -67,7 +67,7 @@ search:
     image:
       repository: quay.io/open-cluster-management
       name: redisgraph-tls
-      tag: 3.3.0
+      tag: 3.5.0
       pullPolicy: Always
     resources:
       requests:
@@ -78,6 +78,7 @@ search:
         cpu: "500m"
 
 kubectl:
-  repository: ibmcom/kubectl
+  repository: quay.io/open-cluster-management
+  name: kubectl
   tag: v1.13.11
   pullPolicy: IfNotPresent

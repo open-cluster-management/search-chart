@@ -9,12 +9,12 @@ search:
   fullname:
     type: string
   __metadata:
-    label: "Multicloud Manager Search Service"
+    label: "Multicloud Search Service"
     description: "Configuration for Multicloud Manager Search Service"
   enabled:
     __metadata:
-      label: "Enable Multicloud Manager Search Service"
-      description: "Enable/Disable Multicloud Manager Search Service"
+      label: "Enable Multicloud Search Service"
+      description: "Enable/Disable Multicloud Search Service"
       type: "boolean"
       immutable: false
       required: true
@@ -24,6 +24,13 @@ search:
         __metadata:
           label: "Search-aggregator Image Repository"
           description: "Repository for Search-aggregator Image "
+          type: "string"
+          immutable: false
+          required: false
+      name:
+        __metadata:
+          label: "Search-aggregator Image Name"
+          description: "Name for Search-aggregator Image "
           type: "string"
           immutable: false
           required: false
@@ -67,6 +74,13 @@ search:
           type: "string"
           immutable: false
           required: false
+      name:
+        __metadata:
+          label: "Search-collector Image Name"
+          description: "Name for Search-collector Image "
+          type: "string"
+          immutable: false
+          required: false
       tag:
         __metadata:
           label: "Search-collector Image Tag"
@@ -104,6 +118,13 @@ search:
         __metadata:
           label: "RedisGraph Image Repository"
           description: "Image Repository for RedisGraph"
+          type: "string"
+          immutable: false
+          required: false
+      name:
+        __metadata:
+          label: "RedisGraph Image Name"
+          description: "Image Name for RedisGraph"
           type: "string"
           immutable: false
           required: false
@@ -147,6 +168,13 @@ search:
           type: "string"
           immutable: false
           required: false
+      name:
+        __metadata:
+          label: "Search-api Image Name"
+          description: "Image Name for Search-api"
+          type: "string"
+          immutable: false
+          required: false
       tag:
         __metadata:
           label: "Search-api Image Tag"
@@ -184,6 +212,8 @@ kubectl:
     label: "kubectl pod config"
     description: "Configuration for kubectl deployment"
   repository:
+    type: string
+  name:
     type: string
   tag:
     type: string
