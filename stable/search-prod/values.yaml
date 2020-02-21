@@ -1,0 +1,85 @@
+# Licensed Materials - Property of IBM
+# (C) Copyright IBM Corporation 2019 All Rights Reserved
+# US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+
+# Default values for hybrid-cluster-manager-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+imageTagPostfix: ""
+global:
+  pullSecret: null
+  arch:
+  - amd64
+  - ppc64le
+  - s390x
+
+  nodeSelector:
+    enabled: false
+    os: ""
+    customLabelSelector: ""
+    customLabelValue: ""
+  cfcRouterUrl: "https://icp-management-ingress:443"
+  tillerIntegration:
+    user: null
+
+search:
+  name: search
+  aggregator:
+    image:
+      repository: quay.io/open-cluster-management
+      name: search-aggregator
+      tag: 3.5.0
+      pullPolicy: Always
+    resources:
+      requests:
+        memory: "32Mi"
+        cpu: "25m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+  collector:
+    image:
+      repository: quay.io/open-cluster-management
+      name: search-collector
+      tag: 3.5.0
+      pullPolicy: Always
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "25m"
+      limits:
+        memory: "768Mi"
+        cpu: "250m"
+  searchapi:
+    image:
+      repository: quay.io/open-cluster-management
+      name: search-api
+      tag: 3.5.0
+      pullPolicy: Always
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "25m"
+      limits:
+        memory: "512Mi"
+        cpu: "250m"
+  redisgraph:
+    image:
+      repository: quay.io/open-cluster-management
+      name: redisgraph-tls
+      tag: 3.5.0
+      pullPolicy: Always
+    resources:
+      requests:
+        memory: "32Mi"
+        cpu: "25m"
+      limits:
+        memory: "1024Mi"
+        cpu: "500m"
+
+kubectl:
+  repository: quay.io/open-cluster-management
+  name: kubectl
+  tag: v1.13.11
+  pullPolicy: IfNotPresent
