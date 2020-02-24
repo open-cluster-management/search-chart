@@ -67,7 +67,7 @@ spec:
         - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: {{ .Release.Name  }}-redisgraph-user-secrets
+              name: redisgraph-user-secret
               key: redispwd
         - name: REDIS_GRAPH_SSL
           value: "true"
