@@ -31,5 +31,5 @@ spec:
             #       fieldPath: metadata.name
             - name: OPERATOR_NAME
               value: "search-operator"
-        resources:
-          {{- toYaml .Values.search.redisgraph.resources | nindent 10 }}
+          resources:
+          {{- toYaml .Values.search.operator.resources | nindent 10 }}
