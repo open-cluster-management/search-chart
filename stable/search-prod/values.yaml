@@ -90,3 +90,9 @@ search:
       limits:
         memory: "128Mi"
         cpu: "50m"
+
+kubectl:
+  repository: quay.io/open-cluster-management
+  name: kubectl
+  tag: v1.13.11
+  pullPolicy: IfNotPresent
