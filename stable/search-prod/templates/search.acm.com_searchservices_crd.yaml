@@ -4,6 +4,7 @@ metadata:
   name: searchservices.search.acm.com
   annotations:
     "helm.sh/hook": crd-install
+    "helm.sh/hook-delete-policy": "before-hook-creation"
 spec:
   group: search.acm.com
   names:
