@@ -70,7 +70,7 @@ spec:
         - name: redisPassword
           valueFrom:
             secretKeyRef:
-              name: {{ .Release.Name }}-redisgraph-user-secrets
+              name: redisgraph-user-secret
               key: redispwd
         ports:
         - containerPort: 4010

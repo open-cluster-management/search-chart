@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: search-operator
+  template:
+    metadata:
+      labels:
+        name: search-operator
+    spec:
+      serviceAccountName: search-operator
+      containers:
+        - name: search-operator
+          image: "{{ .Values.search.operator.image.repository}}/{{.Values.search.operator.image.name}}:{{ .Values.search.operator.image.tag }}{{ .Values.imageTagPostfix }}"
+          imagePullPolicy: {{ .Values.search.operator.image.pullPolicy }}
+          command:
+          - search-operator
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "search-operator"
+          resources:
+          {{- toYaml .Values.search.operator.resources | nindent 10 }}
