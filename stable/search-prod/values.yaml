@@ -81,7 +81,7 @@ search:
     image:
       repository: quay.io/open-cluster-management
       name: search-operator
-      tag: 0.0.1
+      tag: 0.1.0
       pullPolicy: Always
     resources:
       requests:
