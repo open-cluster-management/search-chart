@@ -15,7 +15,7 @@ metadata:
 spec:
   secretName: {{ .Release.Name }}-search-api-secrets
   issuerRef:
-    name: icp-ca-issuer
+    name: {{ .Values.global.clusterCAIssuer }}
     kind: ClusterIssuer
   commonName: search-api
   dnsNames:
@@ -24,4 +24,4 @@ spec:
   - {{ template "search.fullname" . }}-search-api.{{ .Release.Namespace }}.svc
   isCA: true
   organization:
-  - IBM
+  - Red Hat

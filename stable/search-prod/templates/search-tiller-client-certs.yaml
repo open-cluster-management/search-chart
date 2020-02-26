@@ -18,6 +18,6 @@ spec:
   - system:masters
   issuerRef:
     kind: ClusterIssuer
-    name: icp-ca-issuer
+    name: {{ .Values.global.clusterCAIssuer }}
   secretName: {{ .Release.Name }}-tiller-client-certs
 

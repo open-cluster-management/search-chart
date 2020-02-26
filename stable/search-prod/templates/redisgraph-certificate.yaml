@@ -15,11 +15,11 @@ metadata:
 spec:
   secretName: {{ .Release.Name }}-redisgraph-secrets
   issuerRef:
-    name: icp-ca-issuer
+    name: {{ .Values.global.clusterCAIssuer }}
     kind: ClusterIssuer
   commonName: search-redisgraph
   dnsNames:
   - {{ template "search.fullname" . }}-search-redisgraph
   isCA: true
   organization:
-  - IBM
+  - Red Hat
