@@ -15,11 +15,11 @@ metadata:
 spec:
   secretName: {{ .Release.Name }}-search-secrets
   issuerRef:
-    name: icp-ca-issuer
+    name: {{ .Values.global.clusterCAIssuer }}
     kind: ClusterIssuer
   commonName: search-aggregator
   dnsNames:
   - {{ template "search.fullname" . }}-search-aggregator
   isCA: true
   organization:
-  - IBM
+  - Red Hat

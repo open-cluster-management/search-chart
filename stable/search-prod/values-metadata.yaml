@@ -224,6 +224,12 @@ imageTagPostfix:
 global:
   arch:
     type: options
+  cfcRouterUrl:
+    type: string
+  clusterCAIssuer:
+    label: "Cluster CA Issuer"
+    description: "Root CA to sign the certificates for the search services"
+    type: string
   nodeSelector:
     os:
       type: string
@@ -233,8 +239,6 @@ global:
       type: string
     enabled:
       type: boolean
-  cfcRouterUrl:
-     type: string
   __metadata:
     label: "Global Settings for Search"
     description: "Global Settings for Search Chart Deployment"
