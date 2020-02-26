@@ -14,7 +14,9 @@ global:
   - ppc64le
   - s390x
   cfcRouterUrl: "https://icp-management-ingress:443"
-  clusterCAIssuer: multicloud-ca-issuer
+  certificateAuthority:
+    issuer: multicloud-ca-issuer
+    kind: Issuer
   nodeSelector:
     enabled: false
     os: ""

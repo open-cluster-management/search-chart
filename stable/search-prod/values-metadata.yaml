@@ -226,10 +226,17 @@ global:
     type: options
   cfcRouterUrl:
     type: string
-  clusterCAIssuer:
-    label: "Cluster CA Issuer"
-    description: "Root CA to sign the certificates for the search services"
-    type: string
+  certificateAuthority:
+    issuer:
+      __metadata:
+        label: "Certificate Authority Issuer"
+        description: "CA to sign the certificates for the search services"
+        type: string
+    kind:
+      __metadata:
+        label: "Certificate Issuer Kind"
+        description: "Kind of certificate issuer (ClusterIssuer or Issuer)"
+        type: string
   nodeSelector:
     os:
       type: string
