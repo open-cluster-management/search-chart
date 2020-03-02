@@ -40,7 +40,7 @@ spec:
       image: {{ .Values.search.redisgraph.image.repository }}:{{ .Values.search.redisgraph.image.tag }}
       imagePullPolicy: {{ .Values.search.redisgraph.image.pullPolicy }}
       securityContext:
-        runAsUser: 0
+        runAsUser: 1001010000
         runAsNonRoot: false
         capabilities:
           drop:
