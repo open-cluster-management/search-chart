@@ -61,7 +61,7 @@ spec:
             - ALL
           privileged: false
           readOnlyRootFilesystem: false
-          runAsUser: 1001010000
+          runAsUser: 999
           runAsNonRoot: true
         env:
         - name: REDIS_PASSWORD
