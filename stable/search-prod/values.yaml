@@ -13,7 +13,7 @@ global:
   - amd64
   - ppc64le
   - s390x
-  cfcRouterUrl: "https://icp-management-ingress:443"
+  cfcRouterUrl: "https://management-ingress:443"
   clusterCAIssuer: multicloud-ca-issuer
   nodeSelector:
     enabled: false
@@ -21,6 +21,7 @@ global:
     customLabelSelector: ""
     customLabelValue: ""
   tillerIntegration:
+    enabled: false
     user: null
 
 search:
