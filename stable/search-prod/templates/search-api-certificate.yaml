@@ -15,8 +15,8 @@ metadata:
 spec:
   secretName: {{ .Release.Name }}-search-api-secrets
   issuerRef:
-    name: {{ .Values.global.clusterCAIssuer }}
-    kind: ClusterIssuer
+    name: {{ .Values.global.certificateAuthority.issuer }}
+    kind: {{ .Values.global.certificateAuthority.kind }}
   commonName: search-api
   dnsNames:
   - {{ template "search.fullname" . }}-search-api

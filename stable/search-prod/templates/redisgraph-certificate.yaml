@@ -15,8 +15,8 @@ metadata:
 spec:
   secretName: {{ .Release.Name }}-redisgraph-secrets
   issuerRef:
-    name: {{ .Values.global.clusterCAIssuer }}
-    kind: ClusterIssuer
+    name: {{ .Values.global.certificateAuthority.issuer }}
+    kind: {{ .Values.global.certificateAuthority.kind }}
   commonName: search-redisgraph
   dnsNames:
   - {{ template "search.fullname" . }}-search-redisgraph

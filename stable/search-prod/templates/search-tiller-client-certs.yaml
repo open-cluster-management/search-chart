@@ -18,7 +18,7 @@ spec:
   organization:
   - system:masters
   issuerRef:
-    kind: ClusterIssuer
-    name: {{ .Values.global.clusterCAIssuer }}
+    name: {{ .Values.global.certificateAuthority.issuer }}
+    kind: {{ .Values.global.certificateAuthority.kind }}
   secretName: {{ .Release.Name }}-tiller-client-certs
 {{- end }}
