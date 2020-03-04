@@ -1,0 +1,7 @@
+# Copyright (c) 2020 Red Hat, Inc.
+
+dependencies:
+- name: search-crd
+  version: "1.0.0"
+  repository: "file://search-crd"
+  alias: crd 
