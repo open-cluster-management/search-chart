@@ -42,10 +42,6 @@ spec:
                 {{- range .Values.global.arch }}
                 - {{ . }}
                 {{- end }}
-              - key: management
-                operator: In
-                values:
-                - "true"
       tolerations:
         - key: dedicated
           operator: Exists
@@ -59,7 +55,6 @@ spec:
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
           runAsNonRoot: true
-          runAsUser: 1001010000
           capabilities:
             drop:
             - ALL

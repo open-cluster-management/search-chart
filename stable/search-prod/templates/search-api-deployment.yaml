@@ -57,7 +57,6 @@ spec:
           privileged: false
           readOnlyRootFilesystem: true
           runAsNonRoot: true
-          runAsUser: 1001010000
         env:
         - name: cfcRouterUrl
           value: {{ .Values.global.cfcRouterUrl }}
