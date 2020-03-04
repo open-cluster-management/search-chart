@@ -5,7 +5,7 @@
 # restricted by GSA ADP Schedule Contract with IBM Corp.
 ###############################################################################
 SHELL = /bin/bash
-STABLE_BUILD_DIR = repo/stable
+STABLE_BUILD_DIR = stable
 CHART_NAME ?= stable/search-prod
 VERSION := $(shell cat COMPONENT_VERSION)
 
