@@ -23,6 +23,7 @@ global:
     customLabelSelector: ""
     customLabelValue: ""
   tillerIntegration:
+    enabled: false
     user: null
 
 search:
