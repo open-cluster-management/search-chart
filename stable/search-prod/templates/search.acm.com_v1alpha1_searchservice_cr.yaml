@@ -1,3 +1,5 @@
+# Copyright (c) 2020 Red Hat, Inc.
+
 apiVersion: search.acm.com/v1alpha1
 kind: SearchService
 metadata:
