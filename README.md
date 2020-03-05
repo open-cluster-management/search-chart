@@ -24,5 +24,5 @@ Repository that holds search chart.
   helm upgrade --install search \
   --namespace kube-system \
   --set global.pullSecret=quay-secret \
-  repo/stable/search-prod-3.5.0.tgz --tls
+  stable/search-prod-3.5.0.tgz --tls
   ```
