@@ -31,6 +31,8 @@ spec:
       annotations:
         seccomp.security.alpha.kubernetes.io/pod: docker/default
     spec:
+      securityContext:
+          runAsNonRoot: true
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -57,7 +59,6 @@ spec:
             - ALL
           privileged: false
           readOnlyRootFilesystem: true
-          runAsNonRoot: true
         env:
         - name: cfcRouterUrl
           value: {{ .Values.global.cfcRouterUrl }}

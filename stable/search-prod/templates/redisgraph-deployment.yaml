@@ -58,7 +58,6 @@ spec:
             - ALL
           privileged: false
           readOnlyRootFilesystem: false
-          runAsNonRoot: true
         env:
         - name: REDIS_PASSWORD
           valueFrom:
