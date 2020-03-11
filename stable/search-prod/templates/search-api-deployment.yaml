@@ -64,8 +64,6 @@ spec:
           value: {{ .Values.global.cfcRouterUrl }}
         - name: PLATFORM_IDENTITY_PROVIDER_URL
           value: {{ .Values.global.cfcRouterUrl }}/idprovider
-        - name: redisEndpoint
-          value: '{{ template "search.fullname" . }}-search-redisgraph:6379'
         - name: redisSSLEndpoint
           value: '{{ template "search.fullname" . }}-search-redisgraph:6380'
         - name: redisPassword
