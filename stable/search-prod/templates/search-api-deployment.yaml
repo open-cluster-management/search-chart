@@ -99,8 +99,6 @@ spec:
         volumeMounts:
         - name: search-api-certs
           mountPath: /opt/app-root/search-api/sslcert
-        - name: mcm-search-certs
-          mountPath: /opt/secrets
         - name: redis-certs
           mountPath: /opt/app-root/search-api/rediscert/redis.crt
           subPath: redis.crt
@@ -132,9 +130,6 @@ spec:
             path: server.crt
           - key: tls.key
             path: server.key
-      - name: mcm-search-certs
-        secret:
-          secretName: {{ .Release.Name }}-search-secrets
       {{- if .Values.global.nodeSelector.enabled }}
       nodeSelector:
       {{- if .Values.global.nodeSelector.os }}

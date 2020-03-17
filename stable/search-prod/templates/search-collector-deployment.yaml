@@ -66,7 +66,7 @@ spec:
         - name: CLUSTER_NAME
           value: local-cluster
         - name: AGGREGATOR_URL
-          value: 'https://{{ template "search.fullname" . }}-search-aggregator:3010'
+          value: 'https://search-aggregator:3010'
         resources:
         {{- toYaml .Values.search.collector.resources | nindent 10 }}
         livenessProbe:
@@ -82,7 +82,7 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 60
         volumeMounts:
-        - name: icp-search-certs
+        - name: search-aggregator-certs
           mountPath: /sslcert
         - name: {{ .Release.Name }}-tiller-client-certs
           mountPath: /helmcerts
@@ -91,9 +91,9 @@ spec:
       - name: {{ .Values.global.pullSecret }}
       {{- end }}
       volumes:
-      - name: icp-search-certs
+      - name: search-aggregator-certs
         secret:
-          secretName: {{ .Release.Name }}-search-secrets
+          secretName: search-aggregator-secrets
       - name: {{ .Release.Name }}-tiller-client-certs
         secret:
           secretName: {{ .Release.Name }}-tiller-client-certs
