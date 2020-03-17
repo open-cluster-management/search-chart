@@ -19,7 +19,7 @@ spec:
     kind: {{ .Values.global.certificateAuthority.kind }}
   commonName: search-aggregator
   dnsNames:
-  - {{ template "search.fullname" . }}-search-aggregator
+  - search-aggregator
   isCA: true
   organization:
   - Red Hat
