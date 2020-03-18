@@ -89,7 +89,7 @@ spec:
           periodSeconds: 30
           timeoutSeconds: 2
         volumeMounts:
-        - name: icp-search-certs
+        - name: search-certs
           mountPath: /sslcert
         - name: redis-graph-certs
           mountPath: /rediscert/redis.crt
@@ -102,9 +102,9 @@ spec:
       - name: {{ .Values.global.pullSecret }}
       {{- end }}
       volumes:
-      - name: icp-search-certs
+      - name: search-certs
         secret:
-          secretName: {{ .Release.Name }}-search-secrets
+          secretName: search-aggregator-secrets
       - name: redis-graph-certs
         secret:
           secretName: {{ .Release.Name }}-redisgraph-secrets
