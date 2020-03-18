@@ -34,4 +34,4 @@ spec:
             - name: OPERATOR_NAME
               value: "search-operator"
           resources:
-          {{- toYaml .Values.search.operator.resources | nindent 10 }}
+{{ toYaml .Values.search.operator.resources | indent 12 }}
