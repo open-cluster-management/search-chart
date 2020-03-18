@@ -95,7 +95,7 @@ spec:
           successThreshold: 1
           timeoutSeconds: 1
         resources:
-        {{- toYaml .Values.search.searchapi.resources | nindent 10 }}
+{{ toYaml .Values.search.searchapi.resources | indent 10 }}
         volumeMounts:
         - name: search-api-certs
           mountPath: /opt/app-root/search-api/sslcert
