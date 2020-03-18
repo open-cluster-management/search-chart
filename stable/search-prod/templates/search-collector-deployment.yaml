@@ -68,7 +68,7 @@ spec:
         - name: AGGREGATOR_URL
           value: 'https://search-aggregator:3010'
         resources:
-{{- toYaml .Values.search.collector.resources | indent 10 }}
+{{ toYaml .Values.search.collector.resources | indent 10 }}
         livenessProbe:
           exec:
             command:

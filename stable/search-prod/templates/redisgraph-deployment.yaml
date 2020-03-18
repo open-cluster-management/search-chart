@@ -70,7 +70,7 @@ spec:
         - name: redisgraph
           containerPort: 6380
         resources:
-{{- toYaml .Values.search.redisgraph.resources | indent 10 }}
+{{ toYaml .Values.search.redisgraph.resources | indent 10 }}
         livenessProbe:
           tcpSocket:
             port: 6380
