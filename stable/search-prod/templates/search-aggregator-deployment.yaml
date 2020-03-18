@@ -104,7 +104,7 @@ spec:
       volumes:
       - name: icp-search-certs
         secret:
-          secretName: {{ .Release.Name }}-search-secrets
+          secretName: search-aggregator-secrets
       - name: redis-graph-certs
         secret:
           secretName: {{ .Release.Name }}-redisgraph-secrets
