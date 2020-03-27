@@ -39,7 +39,7 @@ search:
         memory: "32Mi"
         cpu: "25m"
       limits:
-        memory: "256Mi"
+        memory: "1024Mi"
         cpu: "200m"
   collector:
     image:
