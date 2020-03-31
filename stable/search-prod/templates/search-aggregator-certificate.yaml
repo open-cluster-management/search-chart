@@ -5,7 +5,7 @@
 apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate
 metadata:
-  name: {{ template "search.fullname" . }}-aggregator-ca-cert
+  name: search-aggregator-ca-cert
   labels:
     app: {{ template "search.name" . }}
     chart: {{ template "search.chart" . }}
@@ -13,13 +13,13 @@ metadata:
     component: "search"
     heritage: {{ .Release.Service }}
 spec:
-  secretName: {{ .Release.Name }}-search-secrets
+  secretName: search-aggregator-secrets
   issuerRef:
     name: {{ .Values.global.certificateAuthority.issuer }}
     kind: {{ .Values.global.certificateAuthority.kind }}
   commonName: search-aggregator
   dnsNames:
-  - {{ template "search.fullname" . }}-search-aggregator
+  - search-aggregator
   isCA: true
   organization:
   - Red Hat

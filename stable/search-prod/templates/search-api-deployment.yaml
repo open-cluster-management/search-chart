@@ -64,8 +64,6 @@ spec:
           value: {{ .Values.global.cfcRouterUrl }}
         - name: PLATFORM_IDENTITY_PROVIDER_URL
           value: {{ .Values.global.cfcRouterUrl }}/idprovider
-        - name: redisEndpoint
-          value: '{{ template "search.fullname" . }}-search-redisgraph:6379'
         - name: redisSSLEndpoint
           value: '{{ template "search.fullname" . }}-search-redisgraph:6380'
         - name: redisPassword
@@ -97,12 +95,10 @@ spec:
           successThreshold: 1
           timeoutSeconds: 1
         resources:
-        {{- toYaml .Values.search.searchapi.resources | nindent 10 }}
+{{ toYaml .Values.search.searchapi.resources | indent 10 }}
         volumeMounts:
         - name: search-api-certs
           mountPath: /opt/app-root/search-api/sslcert
-        - name: mcm-search-certs
-          mountPath: /opt/secrets
         - name: redis-certs
           mountPath: /opt/app-root/search-api/rediscert/redis.crt
           subPath: redis.crt
@@ -134,9 +130,6 @@ spec:
             path: server.crt
           - key: tls.key
             path: server.key
-      - name: mcm-search-certs
-        secret:
-          secretName: {{ .Release.Name }}-search-secrets
       {{- if .Values.global.nodeSelector.enabled }}
       nodeSelector:
       {{- if .Values.global.nodeSelector.os }}

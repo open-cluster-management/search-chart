@@ -71,7 +71,7 @@ spec:
               name: redisgraph-user-secret
               key: redispwd
         resources:
-        {{- toYaml .Values.search.aggregator.resources | nindent 10 }}
+{{ toYaml .Values.search.aggregator.resources | indent 10 }}
         livenessProbe:
           httpGet:
             path: /liveness
@@ -79,7 +79,7 @@ spec:
             scheme: HTTPS
           initialDelaySeconds: 20
           periodSeconds: 15
-          timeoutSeconds: 2
+          timeoutSeconds: 30
         readinessProbe:
           httpGet:
             path: /readiness
@@ -87,9 +87,9 @@ spec:
             scheme: HTTPS
           initialDelaySeconds: 15
           periodSeconds: 30
-          timeoutSeconds: 2
+          timeoutSeconds: 30
         volumeMounts:
-        - name: icp-search-certs
+        - name: search-certs
           mountPath: /sslcert
         - name: redis-graph-certs
           mountPath: /rediscert/redis.crt
@@ -102,9 +102,9 @@ spec:
       - name: {{ .Values.global.pullSecret }}
       {{- end }}
       volumes:
-      - name: icp-search-certs
+      - name: search-certs
         secret:
-          secretName: {{ .Release.Name }}-search-secrets
+          secretName: search-aggregator-secrets
       - name: redis-graph-certs
         secret:
           secretName: {{ .Release.Name }}-redisgraph-secrets
