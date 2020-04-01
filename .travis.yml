@@ -19,6 +19,7 @@ branches:
 before_script:
   - make init
   - make lint
+  - make test
 
 script:
   - make build
