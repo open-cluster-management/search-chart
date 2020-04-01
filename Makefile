@@ -4,18 +4,17 @@
 # U.S. Government Users Restricted Rights - Use, duplication or disclosure
 # restricted by GSA ADP Schedule Contract with IBM Corp.
 ###############################################################################
+# Copyright (c) 2020 Red Hat, Inc.
+
 SHELL = /bin/bash
 STABLE_BUILD_DIR = stable
 CHART_NAME ?= stable/search-prod
 VERSION := $(shell cat COMPONENT_VERSION)
 
-
--include $(shell curl -fso .build-harness -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.v3.raw" "https://raw.github.ibm.com/ICP-DevOps/build-harness/master/templates/Makefile.build-harness"; echo .build-harness)
-
+-include $(shell curl -H 'Authorization: token ${GITHUB_TOKEN}' -H 'Accept: application/vnd.github.v4.raw' -L https://api.github.com/repos/open-cluster-management/build-harness-extensions/contents/templates/Makefile.build-harness-bootstrap -o .build-harness-bootstrap; echo .build-harness-bootstrap)
 
 default::
 	@echo "Build Harness Bootstrapped"
-
 
 init:
 	curl -fksSL https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-linux-amd64.tar.gz | sudo tar --strip-components=1 -xvz -C /usr/local/bin/ linux-amd64/helm
@@ -33,4 +32,5 @@ build:
 build-local: lint
 	helm package  $(CHART_NAME) -d $(STABLE_BUILD_DIR)
 
-
+test:
+	helm install search stable/search-prod --dry-run
