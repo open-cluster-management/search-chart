@@ -20,6 +20,5 @@ spec:
   commonName: search-redisgraph
   dnsNames:
   - {{ template "search.fullname" . }}-search-redisgraph
-  isCA: true
   organization:
   - Red Hat

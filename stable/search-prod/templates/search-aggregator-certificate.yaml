@@ -20,6 +20,5 @@ spec:
   commonName: search-aggregator
   dnsNames:
   - search-aggregator
-  isCA: true
   organization:
   - Red Hat

@@ -22,6 +22,5 @@ spec:
   - {{ template "search.fullname" . }}-search-api
   - {{ template "search.fullname" . }}-search-api.{{ .Release.Namespace }}
   - {{ template "search.fullname" . }}-search-api.{{ .Release.Namespace }}.svc
-  isCA: true
   organization:
   - Red Hat
