@@ -6,11 +6,11 @@
 
 imageTagPostfix: ""
 imageShaDigests:
-  search_operator: ""
   redisgraph_tls: ""
   search_aggregator: ""
-  search_collector: ""
   search_api: ""
+  search_collector: ""
+  search_operator: ""
 
 global:
   pullSecret: null
