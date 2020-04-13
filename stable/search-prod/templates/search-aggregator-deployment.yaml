@@ -51,7 +51,11 @@ spec:
           effect: NoSchedule
       containers:
       - name: aggregator
+{{- if .Values.imageShaDigests.search_aggregator }}
+        image: "{{ .Values.search.aggregator.image.repository }}/{{ .Values.search.aggregator.image.name }}@{{ .Values.imageShaDigests.search_aggregator }}"
+{{- else }}
         image: "{{ .Values.search.aggregator.image.repository}}/{{.Values.search.aggregator.image.name}}:{{ .Values.search.aggregator.image.tag }}{{ .Values.imageTagPostfix }}"
+{{- end }}
         imagePullPolicy: {{ .Values.search.aggregator.image.pullPolicy }}
         securityContext:
           allowPrivilegeEscalation: false
