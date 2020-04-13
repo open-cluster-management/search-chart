@@ -5,6 +5,13 @@
 # Copyright (c) 2020 Red Hat, Inc.
 
 imageTagPostfix: ""
+imageShaDigests:
+  redisgraph_tls: ""
+  search_aggregator: ""
+  search_api: ""
+  search_collector: ""
+  search_operator: ""
+
 global:
   pullSecret: null
   arch:
