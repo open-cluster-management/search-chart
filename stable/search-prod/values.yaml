@@ -4,14 +4,6 @@
 
 # Copyright (c) 2020 Red Hat, Inc.
 
-imageTagPostfix: ""
-imageShaDigests:
-  redisgraph_tls: ""
-  search_aggregator: ""
-  search_api: ""
-  search_collector: ""
-  search_operator: ""
-
 global:
   pullSecret: null
   arch:
@@ -30,14 +22,17 @@ global:
   tillerIntegration:
     enabled: false
     user: null
+  imageOverrides:
+    redisgraph_tls: ""
+    search_aggregator: ""
+    search_api: ""
+    search_collector: ""
+    search_operator: ""
 
 search:
   name: search
   aggregator:
     image:
-      repository: quay.io/open-cluster-management
-      name: search-aggregator
-      tag: 3.5.0
       pullPolicy: Always
     resources:
       requests:
@@ -47,9 +42,6 @@ search:
         memory: "1024Mi"
   collector:
     image:
-      repository: quay.io/open-cluster-management
-      name: search-collector
-      tag: 3.5.0
       pullPolicy: Always
     resources:
       requests:
@@ -59,9 +51,6 @@ search:
         memory: "768Mi"
   searchapi:
     image:
-      repository: quay.io/open-cluster-management
-      name: search-api
-      tag: 3.5.0
       pullPolicy: Always
     resources:
       requests:
@@ -71,9 +60,6 @@ search:
         memory: "1024Mi"
   redisgraph:
     image:
-      repository: quay.io/open-cluster-management
-      name: redisgraph-tls
-      tag: 3.5.0
       pullPolicy: Always
     resources:
       requests:
@@ -83,9 +69,6 @@ search:
         memory: "1024Mi"
   operator: 
     image:
-      repository: quay.io/open-cluster-management
-      name: search-operator
-      tag: 0.1.0
       pullPolicy: Always
     resources:
       requests:

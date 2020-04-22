@@ -49,11 +49,7 @@ spec:
           effect: NoSchedule
       containers:
       - name: redisgraph
-{{- if .Values.imageShaDigests.redisgraph_tls }}
-        image: "{{ .Values.search.redisgraph.image.repository }}/{{ .Values.search.redisgraph.image.name }}@{{ .Values.imageShaDigests.redisgraph_tls }}"
-{{- else }}
-        image: "{{ .Values.search.redisgraph.image.repository }}/{{ .Values.search.redisgraph.image.name }}:{{ .Values.search.redisgraph.image.tag }}{{ .Values.imageTagPostfix }}"
-{{- end }}
+        image: {{ .Values.global.imageOverrides.redisgraph_tls }}
         imagePullPolicy: {{ .Values.search.redisgraph.image.pullPolicy }}
         securityContext:
           allowPrivilegeEscalation: false

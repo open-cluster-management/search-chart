@@ -13,27 +13,6 @@ search:
     description: "Configuration for Multicloud Manager Search Service"
   aggregator:
     image:
-      repository:
-        __metadata:
-          label: "Search-aggregator Image Repository"
-          description: "Repository for Search-aggregator Image "
-          type: "string"
-          immutable: false
-          required: false
-      name:
-        __metadata:
-          label: "Search-aggregator Image Name"
-          description: "Name for Search-aggregator Image "
-          type: "string"
-          immutable: false
-          required: false
-      tag:
-        __metadata:
-          label: "Search-aggregator Image Tag"
-          description: "Tag of Search-aggregator Image "
-          type: "string"
-          immutable: false
-          required: false
       pullPolicy:
         __metadata:
           label: "Search-aggregator Image Pull Policy"
@@ -60,27 +39,6 @@ search:
           type: "string"
   collector:
     image:
-      repository:
-        __metadata:
-          label: "Search-collector Image Repository"
-          description: "Repository for Search-collector Image "
-          type: "string"
-          immutable: false
-          required: false
-      name:
-        __metadata:
-          label: "Search-collector Image Name"
-          description: "Name for Search-collector Image "
-          type: "string"
-          immutable: false
-          required: false
-      tag:
-        __metadata:
-          label: "Search-collector Image Tag"
-          description: "Tag of Search-collector Image "
-          type: "string"
-          immutable: false
-          required: false
       pullPolicy:
         __metadata:
           label: "Search-collector Image Pull Policy"
@@ -107,27 +65,6 @@ search:
           type: "string"
   redisgraph:
     image:
-      repository:
-        __metadata:
-          label: "RedisGraph Image Repository"
-          description: "Image Repository for RedisGraph"
-          type: "string"
-          immutable: false
-          required: false
-      name:
-        __metadata:
-          label: "RedisGraph Image Name"
-          description: "Image Name for RedisGraph"
-          type: "string"
-          immutable: false
-          required: false
-      tag:
-        __metadata:
-          label: "RedisGraph Image Tag"
-          description: "Tag of RedisGraph Image"
-          type: "string"
-          immutable: false
-          required: false
       pullPolicy:
         __metadata:
           label: "RedisGraph Image Pull Policy"
@@ -154,27 +91,6 @@ search:
           type: "string"
   searchapi:
     image:
-      repository:
-        __metadata:
-          label: "Search-api Image Repository"
-          description: "Image Repository for Search-api"
-          type: "string"
-          immutable: false
-          required: false
-      name:
-        __metadata:
-          label: "Search-api Image Name"
-          description: "Image Name for Search-api"
-          type: "string"
-          immutable: false
-          required: false
-      tag:
-        __metadata:
-          label: "Search-api Image Tag"
-          description: "Tag of Search-api Image"
-          type: "string"
-          immutable: false
-          required: false
       pullPolicy:
         __metadata:
           label: "Search-api Image Pull Policy"
@@ -219,8 +135,6 @@ kubectl:
       - label: "Never"
         value: "Never"
 
-imageTagPostfix:
-  type: string
 global:
   arch:
     type: options

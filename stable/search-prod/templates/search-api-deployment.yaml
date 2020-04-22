@@ -50,11 +50,7 @@ spec:
           effect: NoSchedule
       containers:
       - name: search-api
-{{- if .Values.imageShaDigests.search_api }}
-        image: "{{ .Values.search.searchapi.image.repository }}/{{ .Values.search.searchapi.image.name }}@{{ .Values.imageShaDigests.search_api }}"
-{{- else }}
-        image: "{{ .Values.search.searchapi.image.repository}}/{{.Values.search.searchapi.image.name}}:{{ .Values.search.searchapi.image.tag }}{{ .Values.imageTagPostfix }}"
-{{- end }}
+        image: {{ .Values.global.imageOverrides.search_api }}
         imagePullPolicy: {{ .Values.search.searchapi.image.pullPolicy }}
         securityContext:
           allowPrivilegeEscalation: false
