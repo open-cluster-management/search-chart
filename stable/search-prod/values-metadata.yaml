@@ -224,6 +224,19 @@ imageTagPostfix:
 global:
   arch:
     type: options
+  cfcRouterUrl:
+    type: string
+  certificateAuthority:
+    issuer:
+      __metadata:
+        label: "Certificate Authority Issuer"
+        description: "CA to sign the certificates for the search services"
+        type: string
+    kind:
+      __metadata:
+        label: "Certificate Issuer Kind"
+        description: "Kind of certificate issuer (ClusterIssuer or Issuer)"
+        type: string
   nodeSelector:
     os:
       type: string
@@ -233,8 +246,6 @@ global:
       type: string
     enabled:
       type: boolean
-  cfcRouterUrl:
-     type: string
   __metadata:
     label: "Global Settings for Search"
     description: "Global Settings for Search Chart Deployment"

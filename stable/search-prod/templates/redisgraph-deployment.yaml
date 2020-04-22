@@ -1,6 +1,7 @@
 # Licensed Materials - Property of IBM
 # (C) Copyright IBM Corporation 2019 All Rights Reserved
 # US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+# Copyright (c) 2020 Red Hat, Inc.
 
 apiVersion: apps/v1
 kind: Deployment
@@ -42,17 +43,17 @@ spec:
                 {{- range .Values.global.arch }}
                 - {{ . }}
                 {{- end }}
-              - key: management
-                operator: In
-                values:
-                - "true"
       tolerations:
         - key: dedicated
           operator: Exists
           effect: NoSchedule
       containers:
       - name: redisgraph
-        image: "{{ .Values.search.redisgraph.image.repository}}/{{.Values.search.redisgraph.image.name}}:{{ .Values.search.redisgraph.image.tag }}{{ .Values.imageTagPostfix }}"
+{{- if .Values.imageShaDigests.redisgraph_tls }}
+        image: "{{ .Values.search.redisgraph.image.repository }}/{{ .Values.search.redisgraph.image.name }}@{{ .Values.imageShaDigests.redisgraph_tls }}"
+{{- else }}
+        image: "{{ .Values.search.redisgraph.image.repository }}/{{ .Values.search.redisgraph.image.name }}:{{ .Values.search.redisgraph.image.tag }}{{ .Values.imageTagPostfix }}"
+{{- end }}
         imagePullPolicy: {{ .Values.search.redisgraph.image.pullPolicy }}
         securityContext:
           allowPrivilegeEscalation: false
@@ -61,8 +62,6 @@ spec:
             - ALL
           privileged: false
           readOnlyRootFilesystem: false
-          runAsUser: 999
-          runAsNonRoot: true
         env:
         - name: REDIS_PASSWORD
           valueFrom:
@@ -75,7 +74,7 @@ spec:
         - name: redisgraph
           containerPort: 6380
         resources:
-        {{- toYaml .Values.search.redisgraph.resources | nindent 10 }}
+{{ toYaml .Values.search.redisgraph.resources | indent 10 }}
         livenessProbe:
           tcpSocket:
             port: 6380

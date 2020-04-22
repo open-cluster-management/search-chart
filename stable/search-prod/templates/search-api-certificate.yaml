@@ -1,6 +1,7 @@
 # Licensed Materials - Property of IBM
 # (C) Copyright IBM Corporation 2019 All Rights Reserved
 # US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+# Copyright (c) 2020 Red Hat, Inc.
 
 apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate
@@ -15,13 +16,12 @@ metadata:
 spec:
   secretName: {{ .Release.Name }}-search-api-secrets
   issuerRef:
-    name: icp-ca-issuer
-    kind: ClusterIssuer
+    name: {{ .Values.global.certificateAuthority.issuer }}
+    kind: {{ .Values.global.certificateAuthority.kind }}
   commonName: search-api
   dnsNames:
   - {{ template "search.fullname" . }}-search-api
   - {{ template "search.fullname" . }}-search-api.{{ .Release.Namespace }}
   - {{ template "search.fullname" . }}-search-api.{{ .Release.Namespace }}.svc
-  isCA: true
   organization:
-  - IBM
+  - Red Hat

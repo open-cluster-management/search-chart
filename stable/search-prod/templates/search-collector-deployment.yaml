@@ -1,6 +1,7 @@
 # Licensed Materials - Property of IBM
 # (C) Copyright IBM Corporation 2019 All Rights Reserved
 # US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+# Copyright (c) 2020 Red Hat, Inc.
 
 apiVersion: apps/v1
 kind: Deployment
@@ -28,9 +29,10 @@ spec:
         release: {{ .Release.Name }}
         chart: {{ template "search.chart" . }}
         heritage: {{ .Release.Service }}
-      annotations:
-        seccomp.security.alpha.kubernetes.io/pod: docker/default
     spec:
+      serviceAccountName: search-collector
+      securityContext:
+          runAsNonRoot: true
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -42,24 +44,22 @@ spec:
                 {{- range .Values.global.arch }}
                 - {{ . }}
                 {{- end }}
-              - key: management
-                operator: In
-                values:
-                - "true"
       tolerations:
         - key: dedicated
           operator: Exists
           effect: NoSchedule
       containers:
       - name: collector
+{{- if .Values.imageShaDigests.search_collector }}
+        image: "{{ .Values.search.collector.image.repository }}/{{ .Values.search.collector.image.name }}@{{ .Values.imageShaDigests.search_collector }}"
+{{- else }}
         image: "{{ .Values.search.collector.image.repository}}/{{.Values.search.collector.image.name}}:{{ .Values.search.collector.image.tag }}{{ .Values.imageTagPostfix }}"
+{{- end }}
         imagePullPolicy: {{ .Values.search.collector.image.pullPolicy }}
         securityContext:
           privileged: false
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
-          runAsNonRoot: true
-          runAsUser: 1000
           capabilities:
             drop:
             - ALL
@@ -69,9 +69,9 @@ spec:
         - name: CLUSTER_NAME
           value: local-cluster
         - name: AGGREGATOR_URL
-          value: 'https://{{ template "search.fullname" . }}-search-aggregator:3010'
+          value: 'https://search-aggregator:3010'
         resources:
-        {{- toYaml .Values.search.collector.resources | nindent 10 }}
+{{ toYaml .Values.search.collector.resources | indent 10 }}
         livenessProbe:
           exec:
             command:
@@ -85,7 +85,7 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 60
         volumeMounts:
-        - name: icp-search-certs
+        - name: search-aggregator-certs
           mountPath: /sslcert
         - name: {{ .Release.Name }}-tiller-client-certs
           mountPath: /helmcerts
@@ -94,9 +94,9 @@ spec:
       - name: {{ .Values.global.pullSecret }}
       {{- end }}
       volumes:
-      - name: icp-search-certs
+      - name: search-aggregator-certs
         secret:
-          secretName: {{ .Release.Name }}-search-secrets
+          secretName: search-aggregator-secrets
       - name: {{ .Release.Name }}-tiller-client-certs
         secret:
           secretName: {{ .Release.Name }}-tiller-client-certs

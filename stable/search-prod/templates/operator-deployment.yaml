@@ -1,3 +1,5 @@
+# Copyright (c) 2020 Red Hat, Inc.
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,7 +17,11 @@ spec:
       serviceAccountName: search-operator
       containers:
         - name: search-operator
-          image: "{{ .Values.search.operator.image.repository}}/{{.Values.search.operator.image.name}}:{{ .Values.search.operator.image.tag }}{{ .Values.imageTagPostfix }}"
+{{- if .Values.imageShaDigests.search_operator }}
+          image: "{{ .Values.search.operator.image.repository }}/{{ .Values.search.operator.image.name }}@{{ .Values.imageShaDigests.search_operator }}"
+{{- else }}
+          image: "{{ .Values.search.operator.image.repository }}/{{ .Values.search.operator.image.name }}:{{ .Values.search.operator.image.tag }}{{ .Values.imageTagPostfix }}"
+{{- end }}
           imagePullPolicy: {{ .Values.search.operator.image.pullPolicy }}
           command:
           - search-operator
@@ -32,4 +38,4 @@ spec:
             - name: OPERATOR_NAME
               value: "search-operator"
           resources:
-          {{- toYaml .Values.search.operator.resources | nindent 10 }}
+{{ toYaml .Values.search.operator.resources | indent 12 }}

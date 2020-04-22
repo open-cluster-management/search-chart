@@ -5,3 +5,5 @@ build-harness/*
 build-harness 
 repo/stable/ibm-search-prod-3.4.0.tgz
 repo/stable/search-prod-3.5.0.tgz
+stable/search-prod-3.5.0.tgz
+.build-harness-bootstrap

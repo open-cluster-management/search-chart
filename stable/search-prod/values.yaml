@@ -2,25 +2,33 @@
 # (C) Copyright IBM Corporation 2019 All Rights Reserved
 # US Government Users Restricted Rights - Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 
-# Default values for hybrid-cluster-manager-chart.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+# Copyright (c) 2020 Red Hat, Inc.
 
 imageTagPostfix: ""
+imageShaDigests:
+  redisgraph_tls: ""
+  search_aggregator: ""
+  search_api: ""
+  search_collector: ""
+  search_operator: ""
+
 global:
   pullSecret: null
   arch:
   - amd64
   - ppc64le
   - s390x
-
+  cfcRouterUrl: "https://management-ingress:443"
+  certificateAuthority:
+    issuer: multicloud-ca-issuer
+    kind: Issuer
   nodeSelector:
     enabled: false
     os: ""
     customLabelSelector: ""
     customLabelValue: ""
-  cfcRouterUrl: "https://icp-management-ingress:443"
   tillerIntegration:
+    enabled: false
     user: null
 
 search:
@@ -36,8 +44,7 @@ search:
         memory: "32Mi"
         cpu: "25m"
       limits:
-        memory: "256Mi"
-        cpu: "200m"
+        memory: "1024Mi"
   collector:
     image:
       repository: quay.io/open-cluster-management
@@ -50,7 +57,6 @@ search:
         cpu: "25m"
       limits:
         memory: "768Mi"
-        cpu: "250m"
   searchapi:
     image:
       repository: quay.io/open-cluster-management
@@ -62,8 +68,7 @@ search:
         memory: "64Mi"
         cpu: "25m"
       limits:
-        memory: "512Mi"
-        cpu: "250m"
+        memory: "1024Mi"
   redisgraph:
     image:
       repository: quay.io/open-cluster-management
@@ -72,11 +77,10 @@ search:
       pullPolicy: Always
     resources:
       requests:
-        memory: "32Mi"
+        memory: "64Mi"
         cpu: "25m"
       limits:
         memory: "1024Mi"
-        cpu: "500m"
   operator: 
     image:
       repository: quay.io/open-cluster-management
@@ -85,8 +89,7 @@ search:
       pullPolicy: Always
     resources:
       requests:
-        memory: "64Mi"
-        cpu: "25m"
+        memory: "32Mi"
+        cpu: "10m"
       limits:
         memory: "128Mi"
-        cpu: "50m"
