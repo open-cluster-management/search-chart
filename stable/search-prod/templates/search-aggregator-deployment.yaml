@@ -52,7 +52,7 @@ spec:
       containers:
       - name: aggregator
         image: {{ .Values.global.imageOverrides.search_aggregator }}
-        imagePullPolicy: {{ .Values.search.aggregator.image.pullPolicy }}
+        imagePullPolicy: {{ .Values.global.pullPolicy }}
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:

@@ -50,7 +50,7 @@ spec:
       containers:
       - name: redisgraph
         image: {{ .Values.global.imageOverrides.redisgraph_tls }}
-        imagePullPolicy: {{ .Values.search.redisgraph.image.pullPolicy }}
+        imagePullPolicy: {{ .Values.global.pullPolicy }}
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:

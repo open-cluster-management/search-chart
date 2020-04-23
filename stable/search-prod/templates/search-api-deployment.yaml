@@ -51,7 +51,7 @@ spec:
       containers:
       - name: search-api
         image: {{ .Values.global.imageOverrides.search_api }}
-        imagePullPolicy: {{ .Values.search.searchapi.image.pullPolicy }}
+        imagePullPolicy: {{ .Values.global.pullPolicy }}
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:

@@ -51,7 +51,7 @@ spec:
       containers:
       - name: collector
         image: {{ .Values.global.imageOverrides.search_collector }}
-        imagePullPolicy: {{ .Values.search.collector.image.pullPolicy }}
+        imagePullPolicy: {{ .Values.global.pullPolicy }}
         securityContext:
           privileged: false
           readOnlyRootFilesystem: true

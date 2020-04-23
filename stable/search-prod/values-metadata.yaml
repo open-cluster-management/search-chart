@@ -12,20 +12,6 @@ search:
     label: "Multicloud Search Service"
     description: "Configuration for Multicloud Manager Search Service"
   aggregator:
-    image:
-      pullPolicy:
-        __metadata:
-          label: "Search-aggregator Image Pull Policy"
-          description:  "Image Pull Policy for Search-aggregator"
-          type: "string"
-          required: false
-          options:
-          - label: "IfNotPresent"
-            value: "IfNotPresent"
-          - label: "Always"
-            value: "Always"
-          - label: "Never"
-            value: "Never"
     resources:
       requests:
         memory:
@@ -38,20 +24,6 @@ search:
         cpu:
           type: "string"
   collector:
-    image:
-      pullPolicy:
-        __metadata:
-          label: "Search-collector Image Pull Policy"
-          description:  "Image Pull Policy for Search-collector"
-          type: "string"
-          required: false
-          options:
-          - label: "IfNotPresent"
-            value: "IfNotPresent"
-          - label: "Always"
-            value: "Always"
-          - label: "Never"
-            value: "Never"
     resources:
       requests:
         memory:
@@ -64,20 +36,6 @@ search:
         cpu:
           type: "string"
   redisgraph:
-    image:
-      pullPolicy:
-        __metadata:
-          label: "RedisGraph Image Pull Policy"
-          description:  "Image Pull Policy for RedisGraph"
-          type: "string"
-          required: false
-          options:
-          - label: "IfNotPresent"
-            value: "IfNotPresent"
-          - label: "Always"
-            value: "Always"
-          - label: "Never"
-            value: "Never"
     resources:
       requests:
         memory:
@@ -90,20 +48,6 @@ search:
         cpu:
           type: "string"
   searchapi:
-    image:
-      pullPolicy:
-        __metadata:
-          label: "Search-api Image Pull Policy"
-          description:  "Image Pull Policy for Search-api"
-          type: "string"
-          required: false
-          options:
-          - label: "IfNotPresent"
-            value: "IfNotPresent"
-          - label: "Always"
-            value: "Always"
-          - label: "Never"
-            value: "Never"
     resources:
       requests:
         memory:
@@ -115,25 +59,6 @@ search:
           type: "string"
         cpu:
           type: "string"
-
-kubectl:
-  __metadata:
-    label: "kubectl pod config"
-    description: "Configuration for kubectl deployment"
-  repository:
-    type: string
-  name:
-    type: string
-  tag:
-    type: string
-  pullPolicy:
-    options:
-      - label: "IfNotPresent"
-        value: "IfNotPresent"
-      - label: "Always"
-        value: "Always"
-      - label: "Never"
-        value: "Never"
 
 global:
   arch:
@@ -170,6 +95,19 @@ global:
       type: "string"
       immutable: false
       required: false
+  pullPolicy:
+    __metadata:
+      label: "Image Pull Policy"
+      description:  "Global image pullPolicy for all components"
+      type: "string"
+      required: false
+      options:
+      - label: "IfNotPresent"
+        value: "IfNotPresent"
+      - label: "Always"
+        value: "Always"
+      - label: "Never"
+        value: "Never"
   tillerIntegration:
     user:
       __metadata:
