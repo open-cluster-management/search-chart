@@ -12,41 +12,6 @@ search:
     label: "Multicloud Search Service"
     description: "Configuration for Multicloud Manager Search Service"
   aggregator:
-    image:
-      repository:
-        __metadata:
-          label: "Search-aggregator Image Repository"
-          description: "Repository for Search-aggregator Image "
-          type: "string"
-          immutable: false
-          required: false
-      name:
-        __metadata:
-          label: "Search-aggregator Image Name"
-          description: "Name for Search-aggregator Image "
-          type: "string"
-          immutable: false
-          required: false
-      tag:
-        __metadata:
-          label: "Search-aggregator Image Tag"
-          description: "Tag of Search-aggregator Image "
-          type: "string"
-          immutable: false
-          required: false
-      pullPolicy:
-        __metadata:
-          label: "Search-aggregator Image Pull Policy"
-          description:  "Image Pull Policy for Search-aggregator"
-          type: "string"
-          required: false
-          options:
-          - label: "IfNotPresent"
-            value: "IfNotPresent"
-          - label: "Always"
-            value: "Always"
-          - label: "Never"
-            value: "Never"
     resources:
       requests:
         memory:
@@ -59,41 +24,6 @@ search:
         cpu:
           type: "string"
   collector:
-    image:
-      repository:
-        __metadata:
-          label: "Search-collector Image Repository"
-          description: "Repository for Search-collector Image "
-          type: "string"
-          immutable: false
-          required: false
-      name:
-        __metadata:
-          label: "Search-collector Image Name"
-          description: "Name for Search-collector Image "
-          type: "string"
-          immutable: false
-          required: false
-      tag:
-        __metadata:
-          label: "Search-collector Image Tag"
-          description: "Tag of Search-collector Image "
-          type: "string"
-          immutable: false
-          required: false
-      pullPolicy:
-        __metadata:
-          label: "Search-collector Image Pull Policy"
-          description:  "Image Pull Policy for Search-collector"
-          type: "string"
-          required: false
-          options:
-          - label: "IfNotPresent"
-            value: "IfNotPresent"
-          - label: "Always"
-            value: "Always"
-          - label: "Never"
-            value: "Never"
     resources:
       requests:
         memory:
@@ -106,41 +36,6 @@ search:
         cpu:
           type: "string"
   redisgraph:
-    image:
-      repository:
-        __metadata:
-          label: "RedisGraph Image Repository"
-          description: "Image Repository for RedisGraph"
-          type: "string"
-          immutable: false
-          required: false
-      name:
-        __metadata:
-          label: "RedisGraph Image Name"
-          description: "Image Name for RedisGraph"
-          type: "string"
-          immutable: false
-          required: false
-      tag:
-        __metadata:
-          label: "RedisGraph Image Tag"
-          description: "Tag of RedisGraph Image"
-          type: "string"
-          immutable: false
-          required: false
-      pullPolicy:
-        __metadata:
-          label: "RedisGraph Image Pull Policy"
-          description:  "Image Pull Policy for RedisGraph"
-          type: "string"
-          required: false
-          options:
-          - label: "IfNotPresent"
-            value: "IfNotPresent"
-          - label: "Always"
-            value: "Always"
-          - label: "Never"
-            value: "Never"
     resources:
       requests:
         memory:
@@ -153,41 +48,6 @@ search:
         cpu:
           type: "string"
   searchapi:
-    image:
-      repository:
-        __metadata:
-          label: "Search-api Image Repository"
-          description: "Image Repository for Search-api"
-          type: "string"
-          immutable: false
-          required: false
-      name:
-        __metadata:
-          label: "Search-api Image Name"
-          description: "Image Name for Search-api"
-          type: "string"
-          immutable: false
-          required: false
-      tag:
-        __metadata:
-          label: "Search-api Image Tag"
-          description: "Tag of Search-api Image"
-          type: "string"
-          immutable: false
-          required: false
-      pullPolicy:
-        __metadata:
-          label: "Search-api Image Pull Policy"
-          description:  "Image Pull Policy for Search-api"
-          type: "string"
-          required: false
-          options:
-          - label: "IfNotPresent"
-            value: "IfNotPresent"
-          - label: "Always"
-            value: "Always"
-          - label: "Never"
-            value: "Never"
     resources:
       requests:
         memory:
@@ -200,27 +60,6 @@ search:
         cpu:
           type: "string"
 
-kubectl:
-  __metadata:
-    label: "kubectl pod config"
-    description: "Configuration for kubectl deployment"
-  repository:
-    type: string
-  name:
-    type: string
-  tag:
-    type: string
-  pullPolicy:
-    options:
-      - label: "IfNotPresent"
-        value: "IfNotPresent"
-      - label: "Always"
-        value: "Always"
-      - label: "Never"
-        value: "Never"
-
-imageTagPostfix:
-  type: string
 global:
   arch:
     type: options
@@ -256,6 +95,19 @@ global:
       type: "string"
       immutable: false
       required: false
+  pullPolicy:
+    __metadata:
+      label: "Image Pull Policy"
+      description:  "Global image pullPolicy for all components"
+      type: "string"
+      required: false
+      options:
+      - label: "IfNotPresent"
+        value: "IfNotPresent"
+      - label: "Always"
+        value: "Always"
+      - label: "Never"
+        value: "Never"
   tillerIntegration:
     user:
       __metadata:

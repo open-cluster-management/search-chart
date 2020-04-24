@@ -50,12 +50,8 @@ spec:
           effect: NoSchedule
       containers:
       - name: collector
-{{- if .Values.imageShaDigests.search_collector }}
-        image: "{{ .Values.search.collector.image.repository }}/{{ .Values.search.collector.image.name }}@{{ .Values.imageShaDigests.search_collector }}"
-{{- else }}
-        image: "{{ .Values.search.collector.image.repository}}/{{.Values.search.collector.image.name}}:{{ .Values.search.collector.image.tag }}{{ .Values.imageTagPostfix }}"
-{{- end }}
-        imagePullPolicy: {{ .Values.search.collector.image.pullPolicy }}
+        image: {{ .Values.global.imageOverrides.search_collector }}
+        imagePullPolicy: {{ .Values.global.pullPolicy }}
         securityContext:
           privileged: false
           readOnlyRootFilesystem: true

@@ -17,15 +17,10 @@ spec:
       serviceAccountName: search-operator
       containers:
         - name: search-operator
-{{- if .Values.imageShaDigests.search_operator }}
-          image: "{{ .Values.search.operator.image.repository }}/{{ .Values.search.operator.image.name }}@{{ .Values.imageShaDigests.search_operator }}"
-{{- else }}
-          image: "{{ .Values.search.operator.image.repository }}/{{ .Values.search.operator.image.name }}:{{ .Values.search.operator.image.tag }}{{ .Values.imageTagPostfix }}"
-{{- end }}
-          imagePullPolicy: {{ .Values.search.operator.image.pullPolicy }}
+          image: {{ .Values.global.imageOverrides.search_operator }}
+          imagePullPolicy: {{ .Values.global.pullPolicy }}
           command:
           - search-operator
-          imagePullPolicy: Always
           env:
             - name: WATCH_NAMESPACE
               valueFrom:
