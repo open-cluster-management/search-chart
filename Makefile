@@ -29,3 +29,6 @@ build-local: lint
 
 test:
 	helm install search stable/search-prod --dry-run
+
+copyright-check:
+	./copyright-check.sh	

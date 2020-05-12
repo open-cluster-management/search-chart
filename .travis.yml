@@ -21,4 +21,5 @@ before_script:
   - make lint
 
 script:
+  - make copyright-check
   - make build
