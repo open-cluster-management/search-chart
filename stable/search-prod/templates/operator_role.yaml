@@ -14,3 +14,28 @@ rules:
   - create
   - list
   - watch
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - create
+- apiGroups:
+  - "apps"
+  resources:
+  - "*" 
+  verbs:
+  - get
+- apiGroups:
+  - "search.acm.com"
+  resources:
+  - "*"
+  verbs:
+  - "*"
