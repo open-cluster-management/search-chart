@@ -1,0 +1,27 @@
+# Copyright (c) 2020 Red Hat, Inc.
+
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: search-api
+subjects:
+- kind: ServiceAccount
+  name: search-api
+  namespace: open-cluster-management # FIXME: don't hardcode this!
+roleRef:
+  kind: ClusterRole
+  name: search-api
+  apiGroup: rbac.authorization.k8s.io
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: search-api
+subjects:
+- kind: ServiceAccount
+  name: search-api
+roleRef:
+  kind: Role
+  name: search-api
+  apiGroup: rbac.authorization.k8s.io
