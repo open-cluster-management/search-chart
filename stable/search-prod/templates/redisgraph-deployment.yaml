@@ -29,8 +29,6 @@ spec:
         release: {{ .Release.Name }}
         chart: {{ template "search.chart" . }}
         heritage: {{ .Release.Service }}
-      annotations:
-        seccomp.security.alpha.kubernetes.io/pod: docker/default
     spec:
       affinity:
         nodeAffinity:
@@ -85,6 +83,8 @@ spec:
         - name: "redis-graph-certs"
           readOnly: true
           mountPath: "/certs"
+        - name: stunnel-pid
+          mountPath: "/rg"
       hostIPC: false
       hostNetwork: false
       hostPID: false
@@ -93,9 +93,8 @@ spec:
       - name: {{ .Values.global.pullSecret }}
       {{- end }}
       volumes:
-      - name: icp-search-certs
-        secret:
-          secretName: {{ .Release.Name }}-search-secrets
+      - name: stunnel-pid
+        emptyDir: {}
       - name: redis-graph-certs
         secret:
           secretName: {{ .Release.Name }}-redisgraph-secrets
