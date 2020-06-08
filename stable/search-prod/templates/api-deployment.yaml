@@ -28,8 +28,6 @@ spec:
         release: {{ .Release.Name }}
         chart: {{.Chart.Name}}-{{.Chart.Version}}
         heritage: {{ .Release.Service }}
-      annotations:
-        seccomp.security.alpha.kubernetes.io/pod: docker/default
     spec:
       serviceAccountName: search-api
       securityContext:

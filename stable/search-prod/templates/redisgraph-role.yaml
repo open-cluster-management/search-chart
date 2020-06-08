@@ -5,7 +5,7 @@ kind: Role
 metadata:
   name: search-redisgraph
 rules:
-- apiGroups: [""]
+- apiGroups: ["*"]
   resources: ["*"]
   verbs:
   - get

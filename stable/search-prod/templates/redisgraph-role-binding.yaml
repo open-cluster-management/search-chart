@@ -8,6 +8,6 @@ subjects:
 - kind: ServiceAccount
   name: search-redisgraph
 roleRef:
-  kind: ClusterRole
+  kind: Role
   name: search-redisgraph
   apiGroup: rbac.authorization.k8s.io
