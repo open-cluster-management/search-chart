@@ -29,6 +29,8 @@ spec:
         release: {{ .Release.Name }}
         chart: {{ template "search.chart" . }}
         heritage: {{ .Release.Service }}
+      annotations:
+        seccomp.security.alpha.kubernetes.io/pod: docker/default
     spec:
       affinity:
         nodeAffinity:
