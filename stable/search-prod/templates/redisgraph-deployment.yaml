@@ -55,7 +55,7 @@ spec:
             drop:
             - ALL
           privileged: false
-          readOnlyRootFilesystem: false
+          readOnlyRootFilesystem: true
         env:
         - name: REDIS_PASSWORD
           valueFrom:
