@@ -30,6 +30,7 @@ spec:
         chart: {{ template "search.chart" . }}
         heritage: {{ .Release.Service }}
     spec:
+      serviceAccountName: search-redisgraph
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
