@@ -1,0 +1,28 @@
+# Copyright (c) 2020 Red Hat, Inc.
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: search-aggregator
+rules:
+- apiGroups: ['open-cluster-management.io']
+  resources: ["managedclusterinfo"]
+  verbs:
+  - get
+  - list
+  - watch
+# Rules below are DEPRECATED and will be removed in 2.0
+- apiGroups: ['mcm.ibm.com']
+  resources: ["clusterstatus"]
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups: ["clusterregistry.k8s.io"]
+  resources: ["clusters"]
+  verbs:
+  - get
+- apiGroups: ['hive.openshift.io']
+  resources: ["clusterdeployments"]
+  verbs:
+  - get
