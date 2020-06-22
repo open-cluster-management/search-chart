@@ -5,9 +5,9 @@ kind: ConfigMap
 metadata:
   name: search-aggregator
   labels:
-    config: mcm-aggregator
+    config: acm-proxyserver
 data:
-  service: search-aggregator
+  service: "{{ .Release.Namespace }}/search-aggregator"
   port: "3010"
   path: "/aggregator/clusters/"
   sub-resource: "/sync"
