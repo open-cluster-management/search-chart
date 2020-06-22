@@ -21,5 +21,6 @@ spec:
   commonName: search-aggregator
   dnsNames:
   - search-aggregator
+  - search-aggregator.open-cluster-management.svc
   organization:
   - Red Hat
