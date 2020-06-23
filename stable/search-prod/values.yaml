@@ -30,6 +30,10 @@ global:
     search_collector: ""
     search_operator: ""
 
+    
+hubconfig:
+  replicaCount: 1
+
 search:
   name: search
   aggregator:

@@ -14,7 +14,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.hubconfig.replicaCount }}
   selector:
     matchLabels:
       app: {{ template "search.name" . }}
