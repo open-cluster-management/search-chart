@@ -6,14 +6,7 @@ metadata:
   name: search-aggregator
 rules:
 - apiGroups: ["cluster.open-cluster-management.io"]
-  resources: [" managedclusters"]
-  verbs:
-  - get
-  - list
-  - watch
-# APIs below won't be used in 2.0 and rules will be removed after migration.
-- apiGroups: ["clusterregistry.k8s.io"]
-  resources: ["clusters"]
+  resources: ["managedclusters"]
   verbs:
   - get
   - list
@@ -25,20 +18,9 @@ kind: Role
 metadata:
   name: search-aggregator
 rules:
-- apiGroups: ['open-cluster-management.io']
+- apiGroups: ['internal.open-cluster-management.io']
   resources: ["managedclusterinfos"]
   verbs:
   - get
   - list
   - watch
-# APIs below won't be used in 2.0 and rules will be removed after migration.
-- apiGroups: ['mcm.ibm.com']
-  resources: ["clusterstatus"]
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups: ['hive.openshift.io']
-  resources: ["clusterdeployments"]
-  verbs:
-  - get
