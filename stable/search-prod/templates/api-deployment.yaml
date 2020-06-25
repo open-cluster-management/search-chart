@@ -43,6 +43,10 @@ spec:
                 {{- range .Values.global.arch }}
                 - {{ . }}
                 {{- end }}
+        {{- with .Values.affinity }}
+        podAntiAffinity: 
+{{ toYaml . | indent 10 }}
+        {{- end }}
       tolerations:
         - key: dedicated
           operator: Exists
@@ -107,6 +111,10 @@ spec:
       {{- if .Values.global.pullSecret }}
       imagePullSecrets:
       - name: {{ .Values.global.pullSecret }}
+      {{- end }}
+      {{- with .Values.hubconfig.nodeSelector }}
+      nodeSelector:
+      {{ toYaml . | indent 8 }}
       {{- end }}
       volumes:
       - name: search-api-certs
