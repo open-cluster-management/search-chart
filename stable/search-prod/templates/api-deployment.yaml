@@ -43,7 +43,7 @@ spec:
                 {{- range .Values.global.arch }}
                 - {{ . }}
                 {{- end }}
-        {{- with .Values.affinity }}
+        {{- with .Values.affinity.podAntiAffinity }}
         podAntiAffinity: 
 {{ toYaml . | indent 10 }}
         {{- end }}
