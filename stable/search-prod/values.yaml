@@ -4,6 +4,8 @@
 
 # Copyright (c) 2020 Red Hat, Inc.
 
+org: open-cluster-management
+
 global:
   pullPolicy: Always
   pullSecret: null
