@@ -12,14 +12,14 @@ rules:
   - create
   - patch
   - delete
-- apiGroups: ["project.openshift.io"]
-  resources: ["projects"]
+- apiGroups: [""]
+  resources: ["namespaces"]
   verbs:
-  - get
+  - list
 - apiGroups: ["rbac.authorization.k8s.io"]
   resources: ["clusterroles", "clusterrolebindings", "roles", "rolebindings"]
   verbs:
-  - get
+  - list
 - apiGroups: ["authentication.k8s.io"]
   resources: ["tokenreviews"]
   verbs:
