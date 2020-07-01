@@ -22,3 +22,4 @@ spec:
     app: {{ .Values.search.name }}
     component: "search-api"
     release: {{ .Release.Name }}
+  sessionAffinity: ClientIP
