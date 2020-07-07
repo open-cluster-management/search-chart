@@ -10,6 +10,7 @@ rules:
   - ""
   resources:
   - secrets
+  - services
   verbs:
   - create
   - list
@@ -28,15 +29,26 @@ rules:
   - get
   - create
 - apiGroups:
-  - "apps"
+  - apps
   resources:
-  - "*" 
+  - deployments
+  - replicasets
+  verbs:
+  - get
+- apiGroups:
+  - apps.open-cluster-management.io
+  resources:
+  - helmreleases
   verbs:
   - get
 - apiGroups:
   - "search.acm.com"
   - "search.open-cluster-management.io"
   resources:
-  - "*"
+  - searchservices
+  - searchservices/finalizers
   verbs:
-  - "*"
+  - create
+  - list
+  - watch
+  - update
