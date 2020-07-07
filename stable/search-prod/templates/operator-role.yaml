@@ -51,3 +51,4 @@ rules:
   - create
   - list
   - watch
+  - update
