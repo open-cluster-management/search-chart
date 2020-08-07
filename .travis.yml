@@ -24,9 +24,7 @@ script:
   - make copyright-check
   - make build
 
-deploy: 
-  provider: script
-  script: 
+after_script:
+  if: type = pull
+  script:
     - make auto
-  on:
-    condition: $TRAVIS_BRANCH = newAuto
