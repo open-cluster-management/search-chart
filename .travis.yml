@@ -16,20 +16,16 @@ branches:
     - /^release-[0-9]+\..*$/
 
 stages:
-  - lint
   - build
   - auto
 
 jobs:
   include:
-    - stage: lint
-      name: "Lint"
+    - stage: build
+      name: "Lint and Build"
       script:
         - make init
         - make lint
-    - stage: build
-      name: "build and copyright"
-      script:
         - make copyright-check
         - make build
     - stage: auto
