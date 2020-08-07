@@ -10,11 +10,6 @@ os:
 services:
   - docker
 
-branches:
-  only:
-    - master
-    - /^release-[0-9]+\..*$/
-
 stages:
   - build
   - auto
