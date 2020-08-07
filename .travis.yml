@@ -24,8 +24,8 @@ script:
   - make copyright-check
   - make build
 
-deploy:
-  provider: script
-    script: make auto
-    on:
-      branch: newAuto
+stages:
+  - name: auto
+  if: branch = newAuto
+  script:
+    make auto
