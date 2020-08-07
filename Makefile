@@ -32,3 +32,8 @@ test:
 
 copyright-check:
 	./copyright-check.sh	
+
+auto:
+	git clone --single-branch --branch dev-auto https://${MCH_REPO_BOT_TOKEN}@github.com/open-cluster-management/multicloudhub-repo.git
+	cd multicloudhub-repo
+	 ./cicd-scripts/chartAutomation.sh search-chart
