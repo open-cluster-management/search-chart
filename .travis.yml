@@ -23,4 +23,4 @@ before_script:
 script:
   - make copyright-check
   - make build
-  - 'if [ "TRAVIS_PULL_REQUEST" = "true" ]; then make auto; fi'
+  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ "$TRAVIS_BRANCH" = "newAuto"]; then make auto; fi'
