@@ -15,12 +15,27 @@ branches:
     - master
     - /^release-[0-9]+\..*$/
 
+stages:
+  - lint
+  - build
+  - auto
 
-before_script:
-  - make init
-  - make lint
-
-script:
-  - make copyright-check
-  - make build
-  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ "$TRAVIS_BRANCH" = "master" ]; then make auto; fi'
+jobs:
+  include:
+    - stage: lint
+      name: "Lint"
+      script:
+        - make init
+        - make lint
+    - stage: build
+      name: "build and copyright"
+      script:
+        - make copyright-check
+        - make build
+    - stage: auto
+      name: "Auto trigger mch-repo"
+      if: type = pull_request
+      script: 
+        - git clone --single-branch --branch dev-auto https://${MCH_REPO_BOT_TOKEN}@github.com/open-cluster-management/multicloudhub-repo.git
+        - cd multicloudhub-repo
+        - ./cicd-scripts/chartAutomation.sh search-chart
