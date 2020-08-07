@@ -27,6 +27,6 @@ script:
 deploy: 
   provider: script
   script: 
-    - "make auto"
-  true: 
-    branch: newAuto
+    - make auto
+  on:
+    condition: $TRAVIS_BRANCH = newAuto
