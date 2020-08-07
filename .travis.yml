@@ -26,4 +26,5 @@ script:
 
 after_script:
   if: type = pull
+  script:
     - make auto
