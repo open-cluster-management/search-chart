@@ -23,8 +23,4 @@ before_script:
 script:
   - make copyright-check
   - make build
-
-after_script:
-  if: "type = pull_request"
-  script:
-    - make auto
+  - 'if [ "TRAVIS_PULL_REQUEST" = "true" ]; then make auto; fi'
