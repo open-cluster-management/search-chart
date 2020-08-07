@@ -25,6 +25,6 @@ script:
   - make build
 
 after_script:
-  if: type = pull
+  if: "type = pull_request"
   script:
     - make auto
