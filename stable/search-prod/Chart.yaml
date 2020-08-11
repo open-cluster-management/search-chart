@@ -1,11 +1,10 @@
 apiVersion: v1
 name: search-prod
-description: Helm chart to install the Multicloud Search service
-version: 3.5.0
+description: Helm chart to install the Open Cluster Management Search service
+version: 2.1.0
 icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png
 tillerVersion: ">=2.9.0"
-kubeVersion: '>=1.10.0'
-appVersion: 3.4.0
+appVersion: 2.1.0
 keywords:
 - RHOCP
 - ICPRHOCP
