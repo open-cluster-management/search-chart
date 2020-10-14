@@ -22,7 +22,7 @@ endif
 default::
 	@echo "Build Harness Bootstrapped"
 
-init:
+init::
 	curl -fksSL https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-linux-amd64.tar.gz | sudo tar --strip-components=1 -xvz -C /usr/local/bin/ linux-amd64/helm
 	helm init -c
 
