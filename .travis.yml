@@ -13,6 +13,7 @@ services:
 stages:
   - build
   - auto
+  - release-ff
 
 branches:
   only:
@@ -35,3 +36,10 @@ jobs:
         - git clone --single-branch --branch master https://${MCH_REPO_BOT_TOKEN}@github.com/open-cluster-management/multicloudhub-repo.git
         - cd multicloudhub-repo
         - ./cicd-scripts/chartAutomation.sh search-chart
+    - stage: release-ff
+      name: "Push commits to current release branch"
+      if: type = push AND branch =~ /^master$/
+      script:
+        - make
+        - make release-ff
+
