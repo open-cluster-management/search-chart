@@ -5,7 +5,7 @@ metadata:
 spec:
   # Add fields here
   redisgraph_resource:
-    {{ toYaml .Values.search.redisgraph.resources | indent 4 }}
+  {{ toYaml .Values.search.redisgraph.resources | indent 4 }}
   persistence: true
   allowdegrademode: true
   storagesize: 10Gi
