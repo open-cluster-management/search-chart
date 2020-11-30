@@ -14,7 +14,7 @@ metadata:
     component: "redisgraph"
     heritage: {{ .Release.Service }}
 spec:
-  secretName: {{ .Release.Name }}-redisgraph-secrets
+  secretName: "search-redisgraph-secrets"
   issuerRef:
     name: {{ .Values.global.certificateAuthority.issuer }}
     kind: {{ .Values.global.certificateAuthority.kind }}

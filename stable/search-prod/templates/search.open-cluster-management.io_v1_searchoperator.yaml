@@ -1,0 +1,19 @@
+apiVersion: search.open-cluster-management.io/v1
+kind: SearchOperator
+metadata:
+  name: searchoperator
+spec:
+  # Add fields here
+  redisgraph_resource:
+    {{ toYaml .Values.search.redisgraph.resources | indent 4 }}
+  persistence: true
+  allowdegrademode: true
+  storagesize: 10Gi
+  pullpolicy: {{ .Values.global.pullPolicy }}
+  searchimageoverrides:
+    redisgraph_tls: {{ .Values.global.imageOverrides.redisgraph_tls }}
+  {{- if .Values.global.pullSecret }}
+  pullsecret: {{ .Values.global.pullSecret }}
+  {{- end }}
+  
+
