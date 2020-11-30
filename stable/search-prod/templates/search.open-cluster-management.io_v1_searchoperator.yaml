@@ -3,7 +3,6 @@ kind: SearchOperator
 metadata:
   name: searchoperator
 spec:
-  # Add fields here
   persistence: true
   allowdegrademode: true
   storagesize: 10Gi
@@ -20,4 +19,3 @@ spec:
     request_memory: {{ toYaml .Values.search.redisgraph.resources.requests.memory }}
     
   
-
