@@ -4,8 +4,6 @@ metadata:
   name: searchoperator
 spec:
   # Add fields here
-  redisgraph_resource:
-  {{ toYaml .Values.search.redisgraph.resources | indent 4 }}
   persistence: true
   allowdegrademode: true
   storagesize: 10Gi
@@ -15,5 +13,11 @@ spec:
   {{- if .Values.global.pullSecret }}
   pullsecret: {{ .Values.global.pullSecret }}
   {{- end }}
+  redisgraph_resource:
+    limit_cpu: {{ toYaml .Values.search.redisgraph.resources.limits.cpu }}
+    limit_memory: {{ toYaml .Values.search.redisgraph.resources.limits.memory }}
+    request_cpu: {{ toYaml .Values.search.redisgraph.resources.requests.cpu }}
+    request_memory: {{ toYaml .Values.search.redisgraph.resources.requests.memory }}
+    
   
 
