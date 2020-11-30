@@ -13,7 +13,6 @@ spec:
   pullsecret: {{ .Values.global.pullSecret }}
   {{- end }}
   redisgraph_resource:
-    limit_cpu: {{ toYaml .Values.search.redisgraph.resources.limits.cpu }}
     limit_memory: {{ toYaml .Values.search.redisgraph.resources.limits.memory }}
     request_cpu: {{ toYaml .Values.search.redisgraph.resources.requests.cpu }}
     request_memory: {{ toYaml .Values.search.redisgraph.resources.requests.memory }}
