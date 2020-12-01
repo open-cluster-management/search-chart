@@ -129,7 +129,7 @@ spec:
             path: searchapi.key
       - name: redis-certs
         secret:
-          secretName: {{ .Release.Name }}-redisgraph-secrets
+          secretName: search-redisgraph-secrets
           items:
           - key: ca.crt
             path: redis.crt

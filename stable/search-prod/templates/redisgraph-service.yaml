@@ -19,6 +19,6 @@ spec:
       port: 6380
       targetPort: 6380
   selector:
-    app: {{ template "search.name" . }}
+    app: "search"
     component: "redisgraph"
     release: {{ .Release.Name }}
