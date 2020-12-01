@@ -23,8 +23,6 @@ spec:
         - name: search-operator
           image: {{ .Values.global.imageOverrides.search_operator }}
           imagePullPolicy: {{ .Values.global.pullPolicy }}
-          command:
-          - search-operator
           env:
             - name: WATCH_NAMESPACE
               valueFrom:
