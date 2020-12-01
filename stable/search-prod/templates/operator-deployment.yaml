@@ -18,20 +18,21 @@ spec:
       containers:
       - args:
         - --enable-leader-election
-        command: /manager 
-        - name: search-operator
-          image: {{ .Values.global.imageOverrides.search_operator }}
-          imagePullPolicy: {{ .Values.global.pullPolicy }}
-          env:
-            - name: WATCH_NAMESPACE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.namespace
-            - name: POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: OPERATOR_NAME
-              value: "search-operator"
-          resources:
-{{ toYaml .Values.search.operator.resources | indent 12 }}
+        command:
+        - /manager 
+        name: search-operator
+        image: {{ .Values.global.imageOverrides.search_operator }}
+        imagePullPolicy: {{ .Values.global.pullPolicy }}
+        env:
+          - name: WATCH_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: OPERATOR_NAME
+            value: "search-operator"
+        resources:
+{{ toYaml .Values.search.operator.resources | indent 10 }}
