@@ -18,8 +18,7 @@ spec:
       containers:
       - args:
         - --enable-leader-election
-        command:
-        - /manager 
+        command: /manager 
         - name: search-operator
           image: {{ .Values.global.imageOverrides.search_operator }}
           imagePullPolicy: {{ .Values.global.pullPolicy }}
