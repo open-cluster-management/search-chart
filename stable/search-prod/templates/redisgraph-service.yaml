@@ -21,4 +21,3 @@ spec:
   selector:
     app: "search"
     component: "redisgraph"
-    release: {{ .Release.Name }}
