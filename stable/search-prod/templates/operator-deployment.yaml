@@ -16,11 +16,10 @@ spec:
     spec:
       serviceAccountName: search-operator
       containers:
-      - args:
+      - name: search-operator
+        args:
         - --enable-leader-election
-        command:
-        - /manager 
-        name: search-operator
+        command: ["/manager"]
         image: {{ .Values.global.imageOverrides.search_operator }}
         imagePullPolicy: {{ .Values.global.pullPolicy }}
         env:
