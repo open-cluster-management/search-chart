@@ -32,7 +32,7 @@ TBD
 ## PodSecurityPolicy Requirements
    This chart has to be installed in kube-system namespace.
 # Red Hat OpenShift SecurityContextConstraints Requirements
-   This chart has to be installed in  kube-system namespace on a OpenShift cluster.
+  
 ## Resources Required
 
 For Multicloud Search, minimum resource requirements in the cluster is as follows:
