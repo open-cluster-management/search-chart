@@ -13,8 +13,14 @@ spec:
     metadata:
       labels:
         name: search-operator
+        ocm-antiaffinity-selector: "searchoperator"
     spec:
       serviceAccountName: search-operator
+      affinity:
+        {{- with .Values.collector.affinity.podAntiAffinity }}
+        podAntiAffinity: 
+{{ toYaml . | indent 10 }}
+        {{- end }}
       containers:
       - name: search-operator
         args:

@@ -37,27 +37,120 @@ hubconfig:
   nodeSelector: null
   replicaCount: 1
 
-affinity:
-  podAntiAffinity:
-    preferredDuringSchedulingIgnoredDuringExecution:
-    - weight: 70
-      podAffinityTerm:
-        topologyKey: topology.kubernetes.io/zone
-        labelSelector:
-          matchExpressions:
-          - key: app
-            operator: In
-            values:
-            - search-prod
-    - weight: 35
-      podAffinityTerm:
-        topologyKey: kubernetes.io/hostname
-        labelSelector:
-          matchExpressions:
-          - key: app
-            operator: In
-            values:
-            - search-prod
+api:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 70
+        podAffinityTerm:
+          topologyKey: topology.kubernetes.io/zone
+          labelSelector:
+            matchExpressions:
+            - key: ocm-antiaffinity-selector
+              operator: In
+              values:
+              - searchapi
+      - weight: 35
+        podAffinityTerm:
+          topologyKey: kubernetes.io/hostname
+          labelSelector:
+            matchExpressions:
+            - key: ocm-antiaffinity-selector
+              operator: In
+              values:
+              - searchapi
+
+aggregator:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 70
+        podAffinityTerm:
+          topologyKey: topology.kubernetes.io/zone
+          labelSelector:
+            matchExpressions:
+            - key: ocm-antiaffinity-selector
+              operator: In
+              values:
+              - searchaggregator
+      - weight: 35
+        podAffinityTerm:
+          topologyKey: kubernetes.io/hostname
+          labelSelector:
+            matchExpressions:
+            - key: ocm-antiaffinity-selector
+              operator: In
+              values:
+              - searchaggregator
+  
+collector:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 70
+        podAffinityTerm:
+          topologyKey: topology.kubernetes.io/zone
+          labelSelector:
+            matchExpressions:
+            - key: ocm-antiaffinity-selector
+              operator: In
+              values:
+              - searchcollector
+      - weight: 35
+        podAffinityTerm:
+          topologyKey: kubernetes.io/hostname
+          labelSelector:
+            matchExpressions:
+            - key: ocm-antiaffinity-selector
+              operator: In
+              values:
+              - searchcollector
+
+operator:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 70
+        podAffinityTerm:
+          topologyKey: topology.kubernetes.io/zone
+          labelSelector:
+            matchExpressions:
+            - key: ocm-antiaffinity-selector
+              operator: In
+              values:
+              - searchoperator
+      - weight: 35
+        podAffinityTerm:
+          topologyKey: kubernetes.io/hostname
+          labelSelector:
+            matchExpressions:
+            - key: ocm-antiaffinity-selector
+              operator: In
+              values:
+              - searchoperator
+
+redisgraph:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 70
+        podAffinityTerm:
+          topologyKey: topology.kubernetes.io/zone
+          labelSelector:
+            matchExpressions:
+            - key: ocm-antiaffinity-selector
+              operator: In
+              values:
+              - searchredisgraph
+      - weight: 35
+        podAffinityTerm:
+          topologyKey: kubernetes.io/hostname
+          labelSelector:
+            matchExpressions:
+            - key: ocm-antiaffinity-selector
+              operator: In
+              values:
+              - searchredisgraph
 
 search:
   name: search

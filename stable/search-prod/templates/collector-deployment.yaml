@@ -25,6 +25,7 @@ spec:
     metadata:
       labels:
         app: {{ template "search.name" . }}
+        ocm-antiaffinity-selector: "searchcollector"
         component: "search-collector"
         release: {{ .Release.Name }}
         chart: {{ template "search.chart" . }}
@@ -44,6 +45,10 @@ spec:
                 {{- range .Values.global.arch }}
                 - {{ . }}
                 {{- end }}
+        {{- with .Values.collector.affinity.podAntiAffinity }}
+        podAntiAffinity: 
+{{ toYaml . | indent 10 }}
+        {{- end }}
       tolerations:
         - key: dedicated
           operator: Exists
