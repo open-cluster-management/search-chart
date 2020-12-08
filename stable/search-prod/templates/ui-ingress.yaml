@@ -17,7 +17,7 @@ spec:
   rules:
   - http:
       paths:
-      - backend:
+      - path: /search
+        backend:
           serviceName: search-ui
           servicePort: 3000
-        path: /multicloud
