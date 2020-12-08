@@ -4,6 +4,12 @@ kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: {{ .Values.org }}:{{ .Release.Name }}:search-ui
+  labels:
+    app: {{ .Values.search.name }}
+    chart: {{.Chart.Name}}-{{.Chart.Version}}
+    component: "search-ui"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 subjects:
 - kind: ServiceAccount
   name: search-ui

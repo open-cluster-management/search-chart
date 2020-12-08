@@ -62,6 +62,8 @@ spec:
           privileged: false
           readOnlyRootFilesystem: true
         env:
+        - name: SEARCH_API_URL
+          value: https://search-search-api:4010/searchapi
         - name: searchApiUrl
           value: https://search-search-api:4010/searchapi
         - name: cfcRouterUrl
