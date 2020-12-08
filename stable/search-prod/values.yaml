@@ -22,9 +22,6 @@ global:
     os: ""
     customLabelSelector: ""
     customLabelValue: ""
-  tillerIntegration:
-    enabled: false
-    user: null
   imageOverrides:
     redisgraph_tls: ""
     search_aggregator: ""

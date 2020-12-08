@@ -54,7 +54,6 @@ The following tables lists the global configurable parameters of the search char
 
 | Parameter | Description | Default |
 |-----------|-------------|---------|
-| `global.tillerIntegration.user` | Username to tls connect Tiller from hub cluster | admin |
 | `global.pullSecret` | Secret for Docker authentication|
 
 ## Limitations

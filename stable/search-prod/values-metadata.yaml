@@ -108,11 +108,3 @@ global:
         value: "Always"
       - label: "Never"
         value: "Never"
-  tillerIntegration:
-    user:
-      __metadata:
-        label: "Tiller Username"
-        description: "Username to tls connect Tiller from Hub"
-        type: "string"
-        immutable: false
-        required: true

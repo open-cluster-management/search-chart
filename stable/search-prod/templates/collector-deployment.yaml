@@ -83,8 +83,6 @@ spec:
         volumeMounts:
         - name: search-aggregator-certs
           mountPath: /sslcert
-        - name: {{ .Release.Name }}-tiller-client-certs
-          mountPath: /helmcerts
       {{- if .Values.global.pullSecret }}
       imagePullSecrets:
       - name: {{ .Values.global.pullSecret }}
@@ -93,10 +91,6 @@ spec:
       - name: search-aggregator-certs
         secret:
           secretName: search-aggregator-secrets
-      - name: {{ .Release.Name }}-tiller-client-certs
-        secret:
-          secretName: {{ .Release.Name }}-tiller-client-certs
-          optional: true
       hostIPC: false
       hostNetwork: false
       hostPID: false
