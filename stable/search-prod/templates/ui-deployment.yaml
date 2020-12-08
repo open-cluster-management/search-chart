@@ -53,7 +53,7 @@ spec:
         image: {{ .Values.global.imageOverrides.search_ui }}
         imagePullPolicy: {{ .Values.global.pullPolicy }}
         resources:
-        {{- toYaml .Values.consoleui.resources | nindent 10 }}
+        {{- toYaml .Values.search.ui.resources | nindent 10 }}
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:

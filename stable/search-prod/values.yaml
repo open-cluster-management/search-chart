@@ -97,3 +97,10 @@ search:
         cpu: "10m"
       limits:
         memory: "256Mi"
+  ui: 
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "10m"
+      limits:
+        memory: "512Mi"
