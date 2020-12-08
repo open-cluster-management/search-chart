@@ -12,14 +12,14 @@ metadata:
     heritage: {{ .Release.Service }}
 rules:
 - apiGroups:
-  - 'authentication.k8s.io'
+  - authentication.k8s.io
   resources:
-  - 'tokenreviews'
+  - tokenreviews
   verbs:
   - create
 - apiGroups:
   - ''
   resources:
-  - 'services'
+  - services
   verbs:
   - list
