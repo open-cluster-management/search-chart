@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "console.name" . }}
+        app: {{ .Values.search.name }}
         component: "search-ui"
         release: {{ .Release.Name }}
         chart: {{.Chart.Name}}-{{.Chart.Version}}
