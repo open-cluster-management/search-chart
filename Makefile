@@ -35,7 +35,7 @@ build:
 	@echo "CHART_VERSION: $(VERSION)"
 	helm package  --version $(VERSION) $(CHART_NAME)  -d $(STABLE_BUILD_DIR)
 
-build-local: lint
+build-local:
 	helm package  $(CHART_NAME) -d $(STABLE_BUILD_DIR)
 
 test:
