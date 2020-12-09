@@ -31,7 +31,7 @@ jobs:
         - make build
     - stage: auto
       name: "Auto trigger mch-repo"
-      if: type = push AND branch =~ /^master$/
+      if: type = push AND branch =~ /^release-[0-9]+\..*$/
       script: 
         - git clone --single-branch --branch master https://${MCH_REPO_BOT_TOKEN}@github.com/open-cluster-management/multicloudhub-repo.git
         - cd multicloudhub-repo
