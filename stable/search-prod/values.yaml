@@ -28,6 +28,7 @@ global:
     search_api: ""
     search_collector: ""
     search_operator: ""
+    search_ui: ""
 
     
 hubconfig:
@@ -93,3 +94,10 @@ search:
         cpu: "10m"
       limits:
         memory: "256Mi"
+  ui: 
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "25m"
+      limits:
+        memory: "512Mi"

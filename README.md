@@ -4,12 +4,12 @@ Repository that holds search chart.
 ### To install this chart
 1. Log into your cluster
   ```bash
-  cloudctl login -a https://<your-cluster-ip>:443
+  oc login --server=https://api.<your-cluster-ip>:6443
   ```
 
 2. Create an image pull secret with your artifactory credentials
   ```bash
-  kubectl create secret docker-registry -n kube-system quay-secret --docker-server=quay.io \
+  oc create secret docker-registry -n open-cluster-management quay-secret --docker-server=quay.io \
   --docker-username=<quay.io user> \
   --docker-password=<quay.io token>
   ```
@@ -22,7 +22,7 @@ Repository that holds search chart.
 5. Install the chart
   ```bash
   helm upgrade --install search \
-  --namespace kube-system \
+  --namespace open-cluster-management \
   --set global.pullSecret=quay-secret \
-  stable/search-prod-3.5.0.tgz --tls
+  stable/search-prod-2.2.0.tgz --tls
   ```
