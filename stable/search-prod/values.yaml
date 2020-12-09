@@ -30,6 +30,7 @@ global:
     search_operator: ""
     search_ui: ""
 
+ocpingress: ""
     
 hubconfig:
   nodeSelector: null
