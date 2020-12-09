@@ -7,7 +7,7 @@ metadata:
   labels:
     app: {{ .Values.search.name }}
     chart: {{.Chart.Name}}-{{.Chart.Version}}
-    component: "search-ui"
+    component: search-ui
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -15,13 +15,13 @@ spec:
   selector:
     matchLabels:
       app: {{ .Values.search.name }}
-      component: "search-ui"
+      component: search-ui
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
         app: {{ .Values.search.name }}
-        component: "search-ui"
+        component: search-ui
         release: {{ .Release.Name }}
         chart: {{.Chart.Name}}-{{.Chart.Version}}
         heritage: {{ .Release.Service }}
