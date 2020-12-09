@@ -62,8 +62,18 @@ spec:
           privileged: false
           readOnlyRootFilesystem: true
         env:
+        - name: API_SERVER_URL
+          value: https://kubernetes.default.svc:443
         - name: SEARCH_API_URL
           value: https://search-search-api:4010/searchapi
+        - name: FRONTEND_URL
+          value: "https://multicloud-console.{{ .Values.ocpingress }}/search/"
+        - name: BACKEND_URL
+          value: "https://multicloud-console.{{ .Values.ocpingress }}/search/"
+        - name: OAUTH2_REDIRECT_URL
+          value: https://multicloud-console.{{ .Values.ocpingress }}/search/login/callback
+        - name: PORT
+          value: '3000'
         - name: cfcRouterUrl
           value: {{ .Values.cfcRouterUrl }}
         ports:
