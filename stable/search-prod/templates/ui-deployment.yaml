@@ -37,7 +37,7 @@ spec:
               - key: beta.kubernetes.io/arch
                 operator: In
                 values:
-                {{- range .Values.arch }}
+                {{- range .Values.global.arch }}
                 - {{ . }}
                 {{- end }}
         {{- with .Values.affinity.podAntiAffinity }}
@@ -63,8 +63,6 @@ spec:
           readOnlyRootFilesystem: true
         env:
         - name: SEARCH_API_URL
-          value: https://search-search-api:4010/searchapi
-        - name: searchApiUrl
           value: https://search-search-api:4010/searchapi
         - name: cfcRouterUrl
           value: {{ .Values.cfcRouterUrl }}
