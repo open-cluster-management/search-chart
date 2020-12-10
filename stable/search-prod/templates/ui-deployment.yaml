@@ -66,6 +66,8 @@ spec:
           value: https://kubernetes.default.svc:443
         - name: SEARCH_API_URL
           value: https://search-search-api:4010/searchapi
+        - name: CONSOLE_API_URL
+          value: https://console-api:4000/hcmuiapi
         - name: FRONTEND_URL
           value: "https://multicloud-console.{{ .Values.ocpingress }}/search/"
         - name: BACKEND_URL
