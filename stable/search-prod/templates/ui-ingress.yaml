@@ -21,3 +21,12 @@ spec:
         backend:
           serviceName: search-ui
           servicePort: 3000
+      - path: /overview
+        backend:
+          serviceName: search-ui
+          servicePort: 3000
+      - path: /resources
+        backend:
+          serviceName: search-ui
+          servicePort: 3000
+      
