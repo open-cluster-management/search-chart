@@ -70,14 +70,10 @@ spec:
           value: https://console-api:4000/hcmuiapi
         - name: FRONTEND_URL
           value: "https://multicloud-console.{{ .Values.ocpingress }}/search/"
-        - name: BACKEND_URL
-          value: "https://multicloud-console.{{ .Values.ocpingress }}/search/"
         - name: OAUTH2_REDIRECT_URL
           value: https://multicloud-console.{{ .Values.ocpingress }}/search/login/callback
         - name: PORT
           value: '3000'
-        - name: cfcRouterUrl
-          value: {{ .Values.cfcRouterUrl }}
         ports:
         - containerPort: 3000
           protocol: TCP
