@@ -87,7 +87,7 @@ search:
         memory: "128Mi"
         cpu: "25m"
       limits:
-        memory: "1024Mi"
+        memory: "4Gi"
   operator: 
     resources:
       requests:
