@@ -13,7 +13,7 @@ Repository that holds search chart.
   --docker-username=<quay.io user> \
   --docker-password=<quay.io token>
   ```
-3. Clone this repo on your local machine.
+3. Clone this repo on your local machine. 
 
 4. Package the chart:
   ```bash
