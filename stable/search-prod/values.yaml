@@ -78,17 +78,17 @@ search:
   searchapi:
     resources:
       requests:
-        memory: "64Mi"
+        memory: "128Mi"
         cpu: "25m"
       limits:
         memory: "1024Mi"
   redisgraph:
     resources:
       requests:
-        memory: "64Mi"
+        memory: "128Mi"
         cpu: "25m"
       limits:
-        memory: "1024Mi"
+        memory: "4Gi"
   operator: 
     resources:
       requests:
