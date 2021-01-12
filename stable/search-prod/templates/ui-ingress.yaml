@@ -29,4 +29,16 @@ spec:
         backend:
           serviceName: search-ui
           servicePort: 3000
+      - path: /multicloud/search
+        backend:
+          serviceName: search-ui
+          servicePort: 3000
+      - path: /multicloud/overview
+        backend:
+          serviceName: search-ui
+          servicePort: 3000
+      - path: /multicloud/details
+        backend:
+          serviceName: search-ui
+          servicePort: 3000
       
