@@ -24,6 +24,7 @@ spec:
     metadata:
       labels:
         app: {{ .Values.search.name }}
+        ocm-antiaffinity-selector: "searchapi"
         component: "search-api"
         release: {{ .Release.Name }}
         chart: {{.Chart.Name}}-{{.Chart.Version}}
@@ -43,7 +44,7 @@ spec:
                 {{- range .Values.global.arch }}
                 - {{ . }}
                 {{- end }}
-        {{- with .Values.affinity.podAntiAffinity }}
+        {{- with .Values.api.affinity.podAntiAffinity }}
         podAntiAffinity: 
 {{ toYaml . | indent 10 }}
         {{- end }}

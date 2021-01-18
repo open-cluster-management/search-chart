@@ -25,6 +25,7 @@ spec:
         release: {{ .Release.Name }}
         chart: {{.Chart.Name}}-{{.Chart.Version}}
         heritage: {{ .Release.Service }}
+        ocm-antiaffinity-selector: "searchui"
     spec:
       serviceAccountName: search-ui
       securityContext:
@@ -40,7 +41,7 @@ spec:
                 {{- range .Values.global.arch }}
                 - {{ . }}
                 {{- end }}
-        {{- with .Values.affinity.podAntiAffinity }}
+        {{- with .Values.ui.affinity.podAntiAffinity }}
         podAntiAffinity: 
 {{ toYaml . | indent 10 }}
         {{- end }}
