@@ -22,16 +22,15 @@ global:
     os: ""
     customLabelSelector: ""
     customLabelValue: ""
-  tillerIntegration:
-    enabled: false
-    user: null
   imageOverrides:
     redisgraph_tls: ""
     search_aggregator: ""
     search_api: ""
     search_collector: ""
     search_operator: ""
+    search_ui: ""
 
+ocpingress: ""
     
 hubconfig:
   nodeSelector: null
@@ -158,7 +157,7 @@ search:
         memory: "128Mi"
         cpu: "25m"
       limits:
-        memory: "1024Mi"
+        memory: "4Gi"
   operator: 
     resources:
       requests:
@@ -166,3 +165,10 @@ search:
         cpu: "10m"
       limits:
         memory: "256Mi"
+  ui: 
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "25m"
+      limits:
+        memory: "512Mi"

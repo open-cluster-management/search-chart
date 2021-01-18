@@ -1,0 +1,26 @@
+# Copyright (c) 2020 Red Hat, Inc.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: search-ui
+  labels:
+    app: {{ .Values.search.name }}
+    chart: {{.Chart.Name}}-{{.Chart.Version}}
+    component: search-ui
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+      name: frontend
+    - port: 4000
+      targetPort: 4000
+      protocol: TCP
+      name: backend
+  selector:
+    app: {{ .Values.search.name }}
+    component: search-ui
+    release: {{ .Release.Name }}

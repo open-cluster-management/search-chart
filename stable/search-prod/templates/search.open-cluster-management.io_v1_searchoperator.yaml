@@ -1,11 +1,8 @@
-apiVersion: search.open-cluster-management.io/v1
+apiVersion: search.open-cluster-management.io/v1alpha1
 kind: SearchOperator
 metadata:
   name: searchoperator
 spec:
-  persistence: true
-  allowdegrademode: true
-  storagesize: 10Gi
   pullpolicy: {{ .Values.global.pullPolicy }}
   searchimageoverrides:
     redisgraph_tls: {{ .Values.global.imageOverrides.redisgraph_tls }}
