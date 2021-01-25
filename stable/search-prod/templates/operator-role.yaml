@@ -86,7 +86,7 @@ rules:
 - apiGroups:
   - security.openshift.io
   resourceNames:
-  - anyuid
+  - nonroot
   resources:
   - securitycontextconstraints
   verbs:
