@@ -28,6 +28,10 @@ spec:
         command: ["/manager"]
         image: {{ .Values.global.imageOverrides.search_operator }}
         imagePullPolicy: {{ .Values.global.pullPolicy }}
+        {{- with .Values.hubconfig.nodeSelector }}
+        nodeSelector:
+        {{ toYaml . | indent 8 }}
+        {{- end }}
         env:
           - name: WATCH_NAMESPACE
             valueFrom:

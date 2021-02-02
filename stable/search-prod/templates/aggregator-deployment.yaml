@@ -119,12 +119,7 @@ spec:
             path: server.crt
           - key: tls.key
             path: server.key
-      {{- if .Values.global.nodeSelector.enabled }}
+      {{- with .Values.hubconfig.nodeSelector }}
       nodeSelector:
-      {{- if .Values.global.nodeSelector.os }}
-        "beta.kubernetes.io/os" : {{ .Values.global.nodeSelector.os }}
-      {{- end }}
-      {{- if .Values.global.nodeSelector.customLabelSelector }}
-        {{ .Values.global.nodeSelector.customLabelSelector }} : {{ .Values.global.nodeSelector.customLabelValue}}
-      {{- end }}
+      {{ toYaml . | indent 8 }}
       {{- end }}
