@@ -41,3 +41,7 @@ spec:
             value: "search-operator"
         resources:
 {{ toYaml .Values.search.operator.resources | indent 10 }}
+      {{- with .Values.hubconfig.nodeSelector }}
+      nodeSelector:
+      {{ toYaml . | indent 8 }}
+      {{- end }}

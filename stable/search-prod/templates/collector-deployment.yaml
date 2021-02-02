@@ -99,12 +99,7 @@ spec:
       hostIPC: false
       hostNetwork: false
       hostPID: false
-      {{- if .Values.global.nodeSelector.enabled }}
+      {{- with .Values.hubconfig.nodeSelector }}
       nodeSelector:
-      {{- if .Values.global.nodeSelector.os }}
-        "beta.kubernetes.io/os" : {{ .Values.global.nodeSelector.os }}
-      {{- end }}
-      {{- if .Values.global.nodeSelector.customLabelSelector }}
-        {{ .Values.global.nodeSelector.customLabelSelector }} : {{ .Values.global.nodeSelector.customLabelValue}}
-      {{- end }}
+      {{ toYaml . | indent 8 }}
       {{- end }}
