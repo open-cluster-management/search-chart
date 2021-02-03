@@ -9,8 +9,9 @@ spec:
   {{- if .Values.global.pullSecret }}
   pullsecret: {{ .Values.global.pullSecret }}
   {{- end }}
-  {{- if .Values.hubconfig.nodeSelector }}
-  nodeSelector: {{ .Values.hubconfig.nodeSelector }}
+  {{- with .Values.hubconfig.nodeSelector }}
+  nodeSelector:
+  {{ toYaml . | indent 4 }}
   {{- end }}
   redisgraph_resource:
     limit_memory: {{ toYaml .Values.search.redisgraph.resources.limits.memory }}
