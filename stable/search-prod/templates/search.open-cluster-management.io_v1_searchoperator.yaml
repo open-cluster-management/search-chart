@@ -11,7 +11,7 @@ spec:
   {{- end }}
   {{- with .Values.hubconfig.nodeSelector }}
   nodeSelector:
-  {{ toYaml . | indent 4 }}
+  {{ toYaml . | indent 2 }}
   {{- end }}
   redisgraph_resource:
     limit_memory: {{ toYaml .Values.search.redisgraph.resources.limits.memory }}
