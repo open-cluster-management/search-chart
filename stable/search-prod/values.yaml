@@ -17,11 +17,6 @@ global:
   certificateAuthority:
     issuer: multicloud-ca-issuer
     kind: Issuer
-  nodeSelector:
-    enabled: false
-    os: ""
-    customLabelSelector: ""
-    customLabelValue: ""
   imageOverrides:
     redisgraph_tls: ""
     search_aggregator: ""

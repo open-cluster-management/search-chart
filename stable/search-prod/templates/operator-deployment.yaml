@@ -16,6 +16,10 @@ spec:
         ocm-antiaffinity-selector: "searchoperator"
     spec:
       serviceAccountName: search-operator
+      tolerations:
+      - effect: NoSchedule 
+        key: node-role.kubernetes.io/infra 
+        operator: Exists
       affinity:
         {{- with .Values.collector.affinity.podAntiAffinity }}
         podAntiAffinity: 

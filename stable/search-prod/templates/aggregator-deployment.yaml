@@ -53,6 +53,9 @@ spec:
         - key: dedicated
           operator: Exists
           effect: NoSchedule
+        - effect: NoSchedule 
+          key: node-role.kubernetes.io/infra 
+          operator: Exists
       containers:
       - name: aggregator
         image: {{ .Values.global.imageOverrides.search_aggregator }}

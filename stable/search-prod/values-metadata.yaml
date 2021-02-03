@@ -76,15 +76,6 @@ global:
         label: "Certificate Issuer Kind"
         description: "Kind of certificate issuer (ClusterIssuer or Issuer)"
         type: string
-  nodeSelector:
-    os:
-      type: string
-    customLabelValue:
-      type: string
-    customLabelSelector:
-      type: string
-    enabled:
-      type: boolean
   __metadata:
     label: "Global Settings for Search"
     description: "Global Settings for Search Chart Deployment"
