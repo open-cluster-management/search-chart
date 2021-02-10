@@ -180,13 +180,13 @@ search:
     resources:
       requests:
         memory: "32Mi"
-        cpu: "5m"
+        cpu: "1m"
       limits:
         memory: "256Mi"
   ui: 
     resources:
       requests:
-        memory: "128Mi"
+        memory: "96Mi"
         cpu: "10m"
       limits:
         memory: "256Mi"
