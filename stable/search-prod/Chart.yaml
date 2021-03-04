@@ -1,3 +1,5 @@
+# Copyright (c) 2021 Red Hat, Inc.
+# Copyright Contributors to the Open Cluster Management project
 apiVersion: v1
 name: search-prod
 description: Helm chart to install the Open Cluster Management Search service
