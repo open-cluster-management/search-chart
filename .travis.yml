@@ -1,3 +1,5 @@
+# Copyright (c) 2021 Red Hat, Inc.
+# Copyright Contributors to the Open Cluster Management project
 ---
 dist: xenial
 sudo: required
@@ -27,7 +29,6 @@ jobs:
       script:
         - make init
         - make lint
-        - make copyright-check
         - make build
     - stage: auto
       name: "Auto trigger mch-repo"

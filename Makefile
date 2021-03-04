@@ -5,6 +5,7 @@
 # restricted by GSA ADP Schedule Contract with IBM Corp.
 ###############################################################################
 # Copyright (c) 2020 Red Hat, Inc.
+# Copyright Contributors to the Open Cluster Management project
 
 SHELL = /bin/bash
 STABLE_BUILD_DIR = stable
@@ -41,5 +42,3 @@ build-local:
 test:
 	helm install search stable/search-prod --dry-run
 
-copyright-check:
-	./copyright-check.sh	
