@@ -1,5 +1,9 @@
+<!-- Copyright Contributors to the Open Cluster Management project -->
 # search-chart
-Repository that holds search chart.
+[Open Cluster Management](https://open-cluster-management.io/) - Helm chart for the search component.
+
+## Deprecation Notice
+This helm chart will be replaced by the [search-operator](https://github.com/open-cluster-management/search-operator). Currently we are in a transition state and both (chart and operator) are required to deploy the search component. The direction is to consolidate the deployment of all the search component parts with the operator and remove this Helm chart repo.
 
 ### To install this chart
 1. Log into your cluster
