@@ -1,0 +1,45 @@
+# Copyright (c) 2020 Red Hat, Inc.
+# Copyright Contributors to the Open Cluster Management project
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.open-cluster-management.io/auth-type: access-token
+    kubernetes.io/ingress.class: ingress-open-cluster-management
+  name: search-ui
+  labels:
+    app: {{ .Values.search.name }}
+    chart: {{.Chart.Name}}-{{.Chart.Version}}
+    component: search-ui
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /search
+        backend:
+          serviceName: search-ui
+          servicePort: 3000
+      - path: /overview
+        backend:
+          serviceName: search-ui
+          servicePort: 3000
+      - path: /resources
+        backend:
+          serviceName: search-ui
+          servicePort: 3000
+      - path: /multicloud/search
+        backend:
+          serviceName: search-ui
+          servicePort: 3000
+      - path: /multicloud/overview
+        backend:
+          serviceName: search-ui
+          servicePort: 3000
+      - path: /multicloud/details
+        backend:
+          serviceName: search-ui
+          servicePort: 3000
+      
