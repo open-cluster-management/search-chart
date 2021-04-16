@@ -70,7 +70,7 @@ spec:
           readOnlyRootFilesystem: true
         env:
         - name: REDIS_HOST
-          value: '{{ template "search.fullname" . }}-search-redisgraph.open-cluster-management.svc'
+          value: '{{ template "search.fullname" . }}-search-redisgraph.{{ .Values.org }}.svc'
         - name: REDIS_SSH_PORT
           value: "6380"
         - name: REDIS_PASSWORD
