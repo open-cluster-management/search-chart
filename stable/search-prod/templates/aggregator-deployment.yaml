@@ -117,8 +117,8 @@ spec:
         configMap:
           name: search-redis-ca-crt
           items:
-            - key: service-ca.crt
-              path: redis.crt
+          - key: service-ca.crt
+            path: redis.crt
       {{- with .Values.hubconfig.nodeSelector }}
       nodeSelector:
       {{ toYaml . | indent 8 }}
