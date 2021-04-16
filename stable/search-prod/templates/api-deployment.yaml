@@ -73,7 +73,7 @@ spec:
         - name: PLATFORM_IDENTITY_PROVIDER_URL
           value: {{ .Values.global.cfcRouterUrl }}/idprovider
         - name: redisSSLEndpoint
-          value: '{{ template "search.fullname" . }}-search-redisgraph.open-cluster-management.svc:6380'
+          value: '{{ template "search.fullname" . }}-search-redisgraph.{{ .Values.org }}.svc:6380'
         - name: redisPassword
           valueFrom:
             secretKeyRef:
