@@ -107,7 +107,7 @@ spec:
         volumeMounts:
         - name: search-api-certs
           mountPath: /opt/app-root/search-api/sslcert
-        - name: redis-certs
+        - name: redis-graph-certs
           mountPath: /opt/app-root/search-api/rediscert/redis.crt
           subPath: redis.crt
       hostIPC: false
@@ -130,7 +130,7 @@ spec:
             path: searchapi.crt
           - key: tls.key
             path: searchapi.key
-      - name: redis-certs
+      - name: redis-graph-certs
         configMap:
           name: search-redis-ca-crt
           items:
