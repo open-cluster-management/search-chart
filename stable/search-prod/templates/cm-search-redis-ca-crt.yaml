@@ -4,5 +4,3 @@ metadata:
   annotations:
     service.beta.openshift.io/inject-cabundle: "true"
   name: search-redis-ca-crt
-  namespace: open-cluster-management
-  selfLink: /api/v1/namespaces/open-cluster-management/configmaps/search-redis-ca-crt
