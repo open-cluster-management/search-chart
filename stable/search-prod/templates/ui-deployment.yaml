@@ -102,6 +102,9 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
+        volumeMounts:
+        - name: search-ui-certs
+          mountPath: /app/certs
       {{- if .Values.global.pullSecret }}
       imagePullSecrets:
       - name: {{ .Values.global.pullSecret }}
@@ -110,3 +113,12 @@ spec:
       nodeSelector:
       {{ toYaml . | indent 8 }}
       {{- end }}
+      volumes:
+      - name: search-ui-certs
+        secret:
+          secretName: search-ui-secrets
+          items:
+          - key: tls.crt
+            path: tls.crt
+          - key: tls.key
+            path: tls.key
