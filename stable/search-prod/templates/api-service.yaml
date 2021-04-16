@@ -14,6 +14,8 @@ metadata:
     chart: {{.Chart.Name}}-{{.Chart.Version}}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  annotations:
+    service.beta.openshift.io/serving-cert-secret-name: {{ .Release.Name }}-search-api-secrets
 spec:
   ports:
     - port: 4010

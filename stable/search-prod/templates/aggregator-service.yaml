@@ -14,6 +14,8 @@ metadata:
     chart: {{ template "search.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+  annotations:
+    service.beta.openshift.io/serving-cert-secret-name: search-aggregator-secrets
 spec:
   ports:
     - name: search-aggregator

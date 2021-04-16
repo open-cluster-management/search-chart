@@ -117,8 +117,6 @@ spec:
         secret:
           secretName: search-redisgraph-secrets
           items:
-          - key: ca.crt
-            path: redis.crt
           - key: tls.crt
             path: server.crt
           - key: tls.key
