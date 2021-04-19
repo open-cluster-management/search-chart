@@ -70,7 +70,7 @@ spec:
           readOnlyRootFilesystem: true
         env:
         - name: REDIS_HOST
-          value: '{{ template "search.fullname" . }}-search-redisgraph'
+          value: '{{ template "search.fullname" . }}-search-redisgraph.{{ .Values.org }}.svc'
         - name: REDIS_SSH_PORT
           value: "6380"
         - name: REDIS_PASSWORD
@@ -114,15 +114,11 @@ spec:
         secret:
           secretName: search-aggregator-secrets
       - name: redis-graph-certs
-        secret:
-          secretName: search-redisgraph-secrets
+        configMap:
+          name: search-redis-ca-crt
           items:
-          - key: ca.crt
+          - key: service-ca.crt
             path: redis.crt
-          - key: tls.crt
-            path: server.crt
-          - key: tls.key
-            path: server.key
       {{- with .Values.hubconfig.nodeSelector }}
       nodeSelector:
       {{ toYaml . | indent 8 }}

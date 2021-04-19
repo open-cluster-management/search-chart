@@ -73,7 +73,7 @@ spec:
         - name: PLATFORM_IDENTITY_PROVIDER_URL
           value: {{ .Values.global.cfcRouterUrl }}/idprovider
         - name: redisSSLEndpoint
-          value: '{{ template "search.fullname" . }}-search-redisgraph:6380'
+          value: '{{ template "search.fullname" . }}-search-redisgraph.{{ .Values.org }}.svc:6380'
         - name: redisPassword
           valueFrom:
             secretKeyRef:
@@ -107,7 +107,7 @@ spec:
         volumeMounts:
         - name: search-api-certs
           mountPath: /opt/app-root/search-api/sslcert
-        - name: redis-certs
+        - name: redis-graph-certs
           mountPath: /opt/app-root/search-api/rediscert/redis.crt
           subPath: redis.crt
       hostIPC: false
@@ -126,22 +126,16 @@ spec:
         secret:
           secretName: {{ .Release.Name }}-search-api-secrets
           items:
-          - key: ca.crt
-            path: searchapica.crt
           - key: tls.crt
             path: searchapi.crt
           - key: tls.key
             path: searchapi.key
-      - name: redis-certs
-        secret:
-          secretName: search-redisgraph-secrets
+      - name: redis-graph-certs
+        configMap:
+          name: search-redis-ca-crt
           items:
-          - key: ca.crt
-            path: redis.crt
-          - key: tls.crt
-            path: server.crt
-          - key: tls.key
-            path: server.key
+            - key: service-ca.crt
+              path: redis.crt
       {{- with .Values.hubconfig.nodeSelector }}
       nodeSelector:
       {{ toYaml . | indent 8 }}
