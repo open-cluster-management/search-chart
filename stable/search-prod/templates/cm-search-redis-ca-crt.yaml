@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   annotations:
     service.beta.openshift.io/inject-cabundle: "true"
-  name: search-redis-ca-crt
+  name: search-ca-crt

@@ -132,7 +132,7 @@ spec:
             path: searchapi.key
       - name: redis-graph-certs
         configMap:
-          name: search-redis-ca-crt
+          name: search-ca-crt
           items:
             - key: service-ca.crt
               path: redis.crt
