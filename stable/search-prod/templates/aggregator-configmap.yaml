@@ -14,3 +14,4 @@ data:
   sub-resource: "/sync"
   use-id: "true"
   secret: "{{ .Release.Namespace }}/search-aggregator-secrets"
+  caConfigMap: search-ca-crt
