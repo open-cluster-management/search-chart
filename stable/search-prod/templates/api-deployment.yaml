@@ -79,6 +79,10 @@ spec:
             secretKeyRef:
               name: redisgraph-user-secret
               key: redispwd
+        - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
         ports:
         - containerPort: 4010
           protocol: TCP
