@@ -25,3 +25,7 @@ rules:
   resources: ["tokenreviews"]
   verbs:
   - create
+- apiGroups: ["search.open-cluster-management.io"]
+  resources: ["searchoperators"]
+  verbs:
+  - get
