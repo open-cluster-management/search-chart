@@ -22,6 +22,9 @@ spec:
       component: "search-aggregator"
       release: {{ .Release.Name }}
       heritage: {{ .Release.Service }}
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 100%
   template:
     metadata:
       labels:
