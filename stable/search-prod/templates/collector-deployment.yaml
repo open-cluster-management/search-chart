@@ -74,7 +74,7 @@ spec:
         - name: CLUSTER_NAME
           value: local-cluster
         - name: AGGREGATOR_URL
-          value: 'https://search-aggregator.{{ .Values.org }}.svc:3010'
+          value: 'https://search-aggregator.{{ .Release.Namespace }}.svc:3010'
         resources:
 {{ toYaml .Values.search.collector.resources | indent 10 }}
         livenessProbe:
