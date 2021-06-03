@@ -18,3 +18,9 @@ rules:
   - get
   - list
   - watch
+- apiGroups: ['agent.open-cluster-management.io']
+  resources: ["klusterletaddonconfigs"]
+  verbs:
+  - get
+  - list
+  - watch
