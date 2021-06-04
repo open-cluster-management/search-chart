@@ -17,6 +17,8 @@ spec:
         ocm-antiaffinity-selector: "searchoperator"
     spec:
       serviceAccountName: search-operator
+      securityContext:
+          runAsNonRoot: true
       tolerations:
       - effect: NoSchedule 
         key: node-role.kubernetes.io/infra 
