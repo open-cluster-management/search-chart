@@ -34,6 +34,8 @@ spec:
         image: {{ .Values.global.imageOverrides.search_operator }}
         imagePullPolicy: {{ .Values.global.pullPolicy }}
         env:
+          - name: RELEASE_NAME
+            value: {{ .Release.Name }}
           - name: WATCH_NAMESPACE
             valueFrom:
               fieldRef:
