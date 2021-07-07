@@ -112,7 +112,7 @@ spec:
       volumes:
       - name: search-certs
         secret:
-          secretName: search-aggregator-secrets
+          secretName: search-aggregator-certs
       - name: redis-graph-certs
         configMap:
           name: search-ca-crt

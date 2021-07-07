@@ -128,7 +128,7 @@ spec:
       volumes:
       - name: search-api-certs
         secret:
-          secretName: {{ .Release.Name }}-search-api-secrets
+          secretName: search-api-certs
           items:
           - key: tls.crt
             path: searchapi.crt
