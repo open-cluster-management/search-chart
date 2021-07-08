@@ -99,7 +99,7 @@ spec:
       volumes:
       - name: search-aggregator-certs
         secret:
-          secretName: search-aggregator-secrets
+          secretName: search-aggregator-certs
       hostIPC: false
       hostNetwork: false
       hostPID: false

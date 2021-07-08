@@ -13,5 +13,5 @@ data:
   path: "/aggregator/clusters/"
   sub-resource: "/sync"
   use-id: "true"
-  secret: "{{ .Release.Namespace }}/search-aggregator-secrets"
+  secret: "{{ .Release.Namespace }}/search-aggregator-certs"
   caConfigMap: search-ca-crt
