@@ -26,6 +26,8 @@ spec:
         heritage: {{ .Release.Service }}
     spec:
       serviceAccountName: search-operator
+      securityContext:
+          runAsNonRoot: true
       tolerations:
       - effect: NoSchedule 
         key: node-role.kubernetes.io/infra 
