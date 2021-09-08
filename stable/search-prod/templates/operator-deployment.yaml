@@ -34,7 +34,7 @@ spec:
         key: node-role.kubernetes.io/infra 
         operator: Exists
       affinity:
-        {{- with .Values.collector.affinity.podAntiAffinity }}
+        {{- with .Values.operator.affinity.podAntiAffinity }}
         podAntiAffinity: 
 {{ toYaml . | indent 10 }}
         {{- end }}
@@ -63,4 +63,8 @@ spec:
       {{- with .Values.hubconfig.nodeSelector }}
       nodeSelector:
       {{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- if .Values.global.pullSecret }}
+      imagePullSecrets:
+      - name: {{ .Values.global.pullSecret }}
       {{- end }}
