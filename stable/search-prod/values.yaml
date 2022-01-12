@@ -24,7 +24,6 @@ global:
     search_api: ""
     search_collector: ""
     search_operator: ""
-    search_ui: ""
 
 ocpingress: ""
     
@@ -124,29 +123,6 @@ operator:
               values:
               - searchoperator
 
-ui:
-  affinity:
-    podAntiAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 70
-        podAffinityTerm:
-          topologyKey: topology.kubernetes.io/zone
-          labelSelector:
-            matchExpressions:
-            - key: ocm-antiaffinity-selector
-              operator: In
-              values:
-              - searchui
-      - weight: 35
-        podAffinityTerm:
-          topologyKey: kubernetes.io/hostname
-          labelSelector:
-            matchExpressions:
-            - key: ocm-antiaffinity-selector
-              operator: In
-              values:
-              - searchui
-
 search:
   name: search
   aggregator:
@@ -182,12 +158,5 @@ search:
       requests:
         memory: "32Mi"
         cpu: "1m"
-      limits:
-        memory: "256Mi"
-  ui: 
-    resources:
-      requests:
-        memory: "96Mi"
-        cpu: "10m"
       limits:
         memory: "256Mi"
