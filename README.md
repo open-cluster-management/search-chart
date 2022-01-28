@@ -4,7 +4,7 @@
 
 ## Deprecation Notice
 
-This Helm chart is replaced by the [search-operator](https://github.com/open-cluster-management/search-operator). Currently, we are in a transition state and both (chart and operator) are required to deploy the search component. The direction is to consolidate the deployment of all the search component parts with the operator and remove this Helm chart repo.
+This Helm chart is replaced by the [search-operator](https://github.com/stolostron/search-operator). Currently, we are in a transition state and both (chart and operator) are required to deploy the search component. The direction is to consolidate the deployment of all the search component parts with the operator and remove this Helm chart repo.
 
 ### To install this chart
 
