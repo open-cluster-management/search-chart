@@ -5,7 +5,7 @@
 # Copyright (c) 2020 Red Hat, Inc.
 # Copyright Contributors to the Open Cluster Management project
 
-org: stolostron
+org: open-cluster-management
 
 global:
   pullPolicy: Always
