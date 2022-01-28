@@ -23,7 +23,7 @@ default::
 	@echo "Build Harness Bootstrapped"
 
 init::
-	curl -fksSL https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-linux-amd64.tar.gz | sudo tar --strip-components=1 -xvz -C /usr/local/bin/ linux-amd64/helm
+	curl -fksSL https://get.helm.sh/helm-v2.14.1-linux-amd64.tar.gz | sudo tar --strip-components=1 -xvz -C /usr/local/bin/ linux-amd64/helm
 	helm init --stable-repo-url https://charts.helm.sh/stable -c
 
 lint:
