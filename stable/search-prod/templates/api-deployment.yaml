@@ -47,15 +47,12 @@ spec:
                 {{- end }}
         {{- with .Values.api.affinity.podAntiAffinity }}
         podAntiAffinity: 
-{{ toYaml . | indent 10 }}
+        {{- toYaml . | nindent 10 }}
         {{- end }}
+      {{- with .Values.hubconfig.tolerations }}
       tolerations:
-        - key: dedicated
-          operator: Exists
-          effect: NoSchedule
-        - effect: NoSchedule 
-          key: node-role.kubernetes.io/infra 
-          operator: Exists
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
       - name: search-api
         image: {{ .Values.global.imageOverrides.search_api }}
@@ -107,7 +104,7 @@ spec:
           successThreshold: 1
           timeoutSeconds: 1
         resources:
-{{ toYaml .Values.search.searchapi.resources | indent 10 }}
+        {{- toYaml .Values.search.searchapi.resources | nindent 10 }}
         volumeMounts:
         - name: search-api-certs
           mountPath: /opt/app-root/search-api/sslcert
@@ -123,7 +120,7 @@ spec:
       {{- end }}
       {{- with .Values.hubconfig.nodeSelector }}
       nodeSelector:
-      {{ toYaml . | indent 8 }}
+      {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
       - name: search-api-certs
@@ -142,5 +139,5 @@ spec:
               path: redis.crt
       {{- with .Values.hubconfig.nodeSelector }}
       nodeSelector:
-      {{ toYaml . | indent 8 }}
+      {{- toYaml . | nindent 8 }}
       {{- end }}
