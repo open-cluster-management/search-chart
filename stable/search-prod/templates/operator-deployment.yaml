@@ -29,14 +29,14 @@ spec:
       serviceAccountName: search-operator
       securityContext:
           runAsNonRoot: true
+      {{- with .Values.hubconfig.tolerations }}
       tolerations:
-      - effect: NoSchedule 
-        key: node-role.kubernetes.io/infra 
-        operator: Exists
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
       affinity:
         {{- with .Values.operator.affinity.podAntiAffinity }}
         podAntiAffinity: 
-{{ toYaml . | indent 10 }}
+        {{- toYaml . | nindent 10 }}
         {{- end }}
       containers:
       - name: search-operator
@@ -59,10 +59,10 @@ spec:
           - name: OPERATOR_NAME
             value: "search-operator"
         resources:
-{{ toYaml .Values.search.operator.resources | indent 10 }}
+        {{- toYaml .Values.search.operator.resources | nindent 10 }}
       {{- with .Values.hubconfig.nodeSelector }}
       nodeSelector:
-      {{ toYaml . | indent 8 }}
+      {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- if .Values.global.pullSecret }}
       imagePullSecrets:
