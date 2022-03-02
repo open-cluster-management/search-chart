@@ -58,6 +58,8 @@ spec:
                 fieldPath: metadata.name
           - name: OPERATOR_NAME
             value: "search-operator"
+          - name: SEARCH_COLLECTOR_IMAGE_NAME
+            value: {{ .Values.global.imageOverrides.search_collector }}
         resources:
         {{- toYaml .Values.search.operator.resources | nindent 10 }}
       {{- with .Values.hubconfig.nodeSelector }}
