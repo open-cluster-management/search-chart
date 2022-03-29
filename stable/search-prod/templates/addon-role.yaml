@@ -11,3 +11,14 @@ rules:
       - proxy.open-cluster-management.io
     resources:
       - clusterstatuses/aggregator
+  - apiGroups:
+      - coordination.k8s.io
+    resources:
+      - leases
+    verbs:
+      - get
+      - list
+      - patch
+      - update
+      - watch
+      - create
