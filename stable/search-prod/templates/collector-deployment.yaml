@@ -40,7 +40,7 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: beta.kubernetes.io/arch
+              - key: kubernetes.io/arch
                 operator: In
                 values:
                 {{- range .Values.global.arch }}
@@ -48,15 +48,12 @@ spec:
                 {{- end }}
         {{- with .Values.collector.affinity.podAntiAffinity }}
         podAntiAffinity: 
-{{ toYaml . | indent 10 }}
+        {{- toYaml . | nindent 10 }}
         {{- end }}
+      {{- with .Values.hubconfig.tolerations }}
       tolerations:
-        - key: dedicated
-          operator: Exists
-          effect: NoSchedule
-        - effect: NoSchedule 
-          key: node-role.kubernetes.io/infra 
-          operator: Exists
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
       - name: collector
         image: {{ .Values.global.imageOverrides.search_collector }}
@@ -75,8 +72,12 @@ spec:
           value: local-cluster
         - name: AGGREGATOR_URL
           value: 'https://search-aggregator.{{ .Release.Namespace }}.svc:3010'
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
         resources:
-{{ toYaml .Values.search.collector.resources | indent 10 }}
+          {{- toYaml .Values.search.collector.resources | nindent 10 }}
         livenessProbe:
           exec:
             command:
@@ -105,5 +106,5 @@ spec:
       hostPID: false
       {{- with .Values.hubconfig.nodeSelector }}
       nodeSelector:
-      {{ toYaml . | indent 8 }}
+      {{- toYaml . | nindent 8 }}
       {{- end }}

@@ -40,7 +40,7 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: beta.kubernetes.io/arch
+              - key: kubernetes.io/arch
                 operator: In
                 values:
                 {{- range .Values.global.arch }}
@@ -48,15 +48,12 @@ spec:
                 {{- end }}
         {{- with .Values.aggregator.affinity.podAntiAffinity }}
         podAntiAffinity: 
-{{ toYaml . | indent 10 }}
+        {{- toYaml . | nindent 10 }}
         {{- end }}
+      {{- with .Values.hubconfig.tolerations }}
       tolerations:
-        - key: dedicated
-          operator: Exists
-          effect: NoSchedule
-        - effect: NoSchedule 
-          key: node-role.kubernetes.io/infra 
-          operator: Exists
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
       - name: aggregator
         image: {{ .Values.global.imageOverrides.search_aggregator }}
@@ -79,7 +76,7 @@ spec:
               name: redisgraph-user-secret
               key: redispwd
         resources:
-{{ toYaml .Values.search.aggregator.resources | indent 10 }}
+        {{- toYaml .Values.search.aggregator.resources | nindent 10 }}
         livenessProbe:
           httpGet:
             path: /liveness
@@ -121,5 +118,5 @@ spec:
             path: redis.crt
       {{- with .Values.hubconfig.nodeSelector }}
       nodeSelector:
-      {{ toYaml . | indent 8 }}
+      {{- toYaml . | nindent 8 }}
       {{- end }}
