@@ -75,6 +75,10 @@ spec:
           value: local-cluster
         - name: AGGREGATOR_URL
           value: 'https://search-aggregator.{{ .Release.Namespace }}.svc:3010'
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
         resources:
 {{ toYaml .Values.search.collector.resources | indent 10 }}
         livenessProbe:
